@@ -104,7 +104,7 @@ SDL_bool WormEntity::canMove(int i, int j) {
 		node->getTile(i,j)==SEA_TILE_00   ||
 		node->getTile(i,j)==BRICK_TILE_00
 		)
-		&&(i!=pi&&j!=pj)
+		&&!(i==pi&&j==pj)
 	);
 }
 
