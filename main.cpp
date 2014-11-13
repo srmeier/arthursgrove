@@ -1,11 +1,16 @@
 /*
 g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
+.\test.exe
+
+git status
 git add .
 git commit -m "---"
 git push
 */
 
 /*
+- need to add more enemies!
+
 - for polymorphism make sure to use "virtual"
 - interactable entity
 	overworld->iteractWith(i,j) (within PlayerEntity->canMove)
