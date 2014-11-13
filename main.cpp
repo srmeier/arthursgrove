@@ -19,7 +19,7 @@ git push
 //----------------------------------------------------------------------
 #define SCREEN_W 320 // 40 -> 20
 #define SCREEN_H 240 // 30 -> 15
-#define NUM_SPRITES 78
+#define NUM_SPRITES 80
 #define SCREEN_NAME "Prototype"
 #define SCREEN_SCALE 2
 
@@ -47,6 +47,7 @@ git push
 #include "entity.h"
 #include "weaponentity.h"
 #include "swordentity.h"
+#include "sandstormentity.h"
 #include "tsunamientity.h"
 #include "playerentity.h"
 #include "bugentity.h"
@@ -100,8 +101,6 @@ int SDL_main(int argc, char* argv[]) {
 	PlayerEntity player(16*5, 16*5);
 	Overworld::getRef().addPlayer(&player);
 
-	WormEntity worm(16*4, 16*7);
-
 	TTF_Font* font = TTF_OpenFont("SDS_8x8.ttf", 8);
 	SDL_Color color = {0xFF, 0xFF, 0xFF, 0x00};
 
@@ -123,11 +122,9 @@ int SDL_main(int argc, char* argv[]) {
 			case 0: {
 				Overworld::getRef().updateNode();
 				player.update();
-				worm.update();
 
 				Overworld::getRef().drawNode();
 				player.draw();
-				worm.draw(); 
 			} break;
 
 			case 1: {

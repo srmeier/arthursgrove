@@ -15,7 +15,7 @@ void StraightInput::poll(void) {
 
 	int i = parent->getI();
 	int j = parent->getJ();
-	
+
 	clear();
 	switch(rand()%_freq) {
 		case 0: {
@@ -33,4 +33,16 @@ void StraightInput::poll(void) {
 
 		default: clear(); break;
 	}
+
+	SDL_bool check = (SDL_bool)(pi==i&&pj==j);     // center
+	check = (SDL_bool)(check||(pi==i+1&&pj==j));   // right
+	check = (SDL_bool)(check||(pi==i-1&&pj==j));   // left
+	check = (SDL_bool)(check||(pi==i&&pj==j-1));   // up
+	check = (SDL_bool)(check||(pi==i&&pj==j+1));   // down
+	check = (SDL_bool)(check||(pi==i+1&&pj==j-1)); // top-right
+	check = (SDL_bool)(check||(pi==i-1&&pj==j-1)); // top-left
+	check = (SDL_bool)(check||(pi==i-1&&pj==j+1)); // bot-left
+	check = (SDL_bool)(check||(pi==i+1&&pj==j+1)); // bot-right
+
+	if(check) _a = SDL_TRUE;
 }

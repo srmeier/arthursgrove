@@ -16,7 +16,7 @@ protected:
 public:
 	Drawable(SpriteTag tag);
 
-	void draw(void);
+	virtual void draw(void);
 };
 
 /* drawable.cpp */

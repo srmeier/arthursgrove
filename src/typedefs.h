@@ -82,7 +82,9 @@ typedef enum {
 	TSUNAMI_TILE_00,    // 0x4A
 	TSUNAMI_TILE_01,    // 0x4B
 	WORM_TILE_00,       // 0x4C
-	WORM_TILE_01
+	WORM_TILE_01,       // 0x4D
+	DUSTCLOUD_TILE_00,  // 0x4E
+	DUSTCLOUD_TILE_01
 } SpriteTag;
 
 //----------------------------------------------------------------------

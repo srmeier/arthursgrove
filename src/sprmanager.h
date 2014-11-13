@@ -444,6 +444,16 @@ SprManager::SprManager(void) {
 		367, 368,
 		399, 400
 	}; buildSprite(WORM_TILE_01, 2, 2, wormTile01);
+
+	int dustcloudTile00[2*2] = {
+		369, 370,
+		401, 402
+	}; buildSprite(DUSTCLOUD_TILE_00, 2, 2, dustcloudTile00);
+
+	int dustcloudTile01[2*2] = {
+		371, 372,
+		403, 404
+	}; buildSprite(DUSTCLOUD_TILE_01, 2, 2, dustcloudTile01);
 }
 
 SprManager::~SprManager(void) {
