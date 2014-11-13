@@ -1,6 +1,6 @@
 /* straightinput.cpp */
 //----------------------------------------------------------------------
-StraightInput::StraightInput(int freq = 32) {
+StraightInput::StraightInput(int freq = 48) {
 	_freq = freq;
 }
 

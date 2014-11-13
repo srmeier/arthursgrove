@@ -194,15 +194,19 @@ SDL_bool PlayerEntity::canMove(int i, int j) {
 	if(j<3&&overworld.hasTopNode()) {
 		_y += 16*12;
 		overworld.moveTop();
+		weapon->active = SDL_FALSE;
 	} else if(j>=15&&overworld.hasBotNode()) {
 		_y -= 16*12;
 		overworld.moveBot();
+		weapon->active = SDL_FALSE;
 	} else if(i<0&&overworld.hasLeftNode()) {
 		_x += 16*20;
 		overworld.moveLeft();
+		weapon->active = SDL_FALSE;
 	} else if(i>=20&&overworld.hasRightNode()) {
 		_x -= 16*20;
 		overworld.moveRight();
+		weapon->active = SDL_FALSE;
 	}
 
 	return (SDL_bool) (
