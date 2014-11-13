@@ -37,11 +37,12 @@ git push
 #include "sprmanager.h"
 
 #include "input.h"
+#include "drawable.h"
+#include "moveable.h"
+
 #include "playerinput.h"
 #include "randominput.h"
-
-#include "moveable.h"
-#include "drawable.h"
+#include "straightinput.h"
 
 #include "entity.h"
 #include "weaponentity.h"
@@ -54,6 +55,7 @@ git push
 #include "worldnode.h"
 #include "overworld.h"
 
+#include "straightinput.cpp"
 #include "tsunamientity.cpp"
 #include "playerentity.cpp"
 #include "bugentity.cpp"
@@ -98,6 +100,8 @@ int SDL_main(int argc, char* argv[]) {
 	PlayerEntity player(16*5, 16*5);
 	Overworld::getRef().addPlayer(&player);
 
+	WormEntity worm(16*4, 16*7);
+
 	TTF_Font* font = TTF_OpenFont("SDS_8x8.ttf", 8);
 	SDL_Color color = {0xFF, 0xFF, 0xFF, 0x00};
 
@@ -119,9 +123,11 @@ int SDL_main(int argc, char* argv[]) {
 			case 0: {
 				Overworld::getRef().updateNode();
 				player.update();
+				worm.update();
 
 				Overworld::getRef().drawNode();
 				player.draw();
+				worm.draw(); 
 			} break;
 
 			case 1: {

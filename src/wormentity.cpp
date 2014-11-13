@@ -1,7 +1,7 @@
 /* wormentity.cpp */
 //----------------------------------------------------------------------
-WormEntity::WormEntity(int x, int y): Moveable(x, y, new RandomInput()), Entity(x, y, WORM_TILE_00) {
-	// nothing
+WormEntity::WormEntity(int x, int y): Moveable(x, y, new StraightInput()), Entity(x, y, WORM_TILE_00) {
+	((StraightInput*) input)->parent = this;
 }
 
 void WormEntity::update(void) {
