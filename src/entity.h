@@ -10,7 +10,7 @@ public:
 	~Entity(void);
 
 	virtual void update(void);
-	void setPos(int x, int y);
+	virtual void setPos(int x, int y);
 
 	SDL_bool active = SDL_TRUE;
 };

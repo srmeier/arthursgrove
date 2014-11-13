@@ -19,7 +19,7 @@ git push
 //----------------------------------------------------------------------
 #define SCREEN_W 320 // 40 -> 20
 #define SCREEN_H 240 // 30 -> 15
-#define NUM_SPRITES 76
+#define NUM_SPRITES 78
 #define SCREEN_NAME "Prototype"
 #define SCREEN_SCALE 2
 
@@ -49,13 +49,15 @@ git push
 #include "tsunamientity.h"
 #include "playerentity.h"
 #include "bugentity.h"
+#include "wormentity.h"
 
 #include "worldnode.h"
 #include "overworld.h"
 
+#include "tsunamientity.cpp"
 #include "playerentity.cpp"
 #include "bugentity.cpp"
-#include "tsunamientity.cpp"
+#include "wormentity.cpp"
 
 //----------------------------------------------------------------------
 SDL_bool      running  = SDL_TRUE;

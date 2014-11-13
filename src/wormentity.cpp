@@ -1,10 +1,10 @@
-/* bugentity.cpp */
+/* wormentity.cpp */
 //----------------------------------------------------------------------
-BugEntity::BugEntity(int x, int y): Moveable(x, y, new RandomInput()), Entity(x, y, BUG_TILE_00) {
+WormEntity::WormEntity(int x, int y): Moveable(x, y, new RandomInput()), Entity(x, y, WORM_TILE_00) {
 	// nothing
 }
 
-void BugEntity::update(void) {
+void WormEntity::update(void) {
 	Moveable::update();
 
 	if(_frame>0) _frame--;
@@ -21,12 +21,12 @@ void BugEntity::update(void) {
 			_dying = SDL_FALSE;
 		}
 	} else {
-		if(_frame==0&&_tag==BUG_TILE_00) {
+		if(_frame==0&&_tag==WORM_TILE_00) {
 			_frame = _fpa;
-			_tag = BUG_TILE_01;
-		} else if(_frame==0&&_tag==BUG_TILE_01) {
+			_tag = WORM_TILE_01;
+		} else if(_frame==0&&_tag==WORM_TILE_01) {
 			_frame = _fpa;
-			_tag = BUG_TILE_00;
+			_tag = WORM_TILE_00;
 		}
 	}
 
@@ -34,17 +34,17 @@ void BugEntity::update(void) {
 	_rect.y = _y;
 }
 
-void BugEntity::setPos(int x, int y) {
+void WormEntity::setPos(int x, int y) {
 	_rect.x = x;
 	_rect.y = y;
 
 	active = SDL_TRUE;
 	_dying = SDL_FALSE;
-	_tag = BUG_TILE_00;
+	_tag = WORM_TILE_00;
 	Moveable::setPos(x, y);
 }
 
-SDL_bool BugEntity::canMove(int i, int j) {
+SDL_bool WormEntity::canMove(int i, int j) {
 	if(i<0||i>=20||j<0||j>=15) return SDL_FALSE;
 	if(_dying) return SDL_FALSE;
 
@@ -67,7 +67,7 @@ SDL_bool BugEntity::canMove(int i, int j) {
 	);
 }
 
-void BugEntity::hit(int damage) {
+void WormEntity::hit(int damage) {
 	if(_dying) return;
 
 	if(damage>0) {

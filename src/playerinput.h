@@ -24,6 +24,7 @@ void PlayerInput::poll(void) {
 			
 			case SDL_KEYDOWN: {
 				switch(event.key.keysym.sym) {
+					case SDLK_ESCAPE: running = SDL_FALSE; break;
 					case SDLK_UP: _up = SDL_TRUE; break;
 					case SDLK_DOWN: _down = SDL_TRUE; break;
 					case SDLK_LEFT: _left = SDL_TRUE; break;

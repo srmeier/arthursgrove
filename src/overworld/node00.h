@@ -85,7 +85,7 @@ void Node00::update(void) {
 
 		_bug[i]->update();
 
-		// /*
+		/*
 		if(!_bug[i]->active) {
 			int ni = rand()%20;
 			int nj = rand()%15;
@@ -93,7 +93,7 @@ void Node00::update(void) {
 			if(canSpawn(ni,nj))
 				_bug[i]->setPos(16*ni, 16*nj);
 		}
-		// */
+		*/
 	}
 }
 

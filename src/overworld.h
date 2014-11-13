@@ -31,7 +31,7 @@ private:
 	~Overworld(void);
 
 	int _i = 0;
-	int _j = 2;
+	int _j = 0;
 	int _w = 4;
 	int _h = 4;
 

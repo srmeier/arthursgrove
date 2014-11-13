@@ -434,6 +434,16 @@ SprManager::SprManager(void) {
 		363, 364,
 		395, 396
 	}; buildSprite(TSUNAMI_TILE_01, 2, 2, tsunamiTile01);
+
+	int wormTile00[2*2] = {
+		365, 366,
+		397, 398
+	}; buildSprite(WORM_TILE_00, 2, 2, wormTile00);
+
+	int wormTile01[2*2] = {
+		367, 368,
+		399, 400
+	}; buildSprite(WORM_TILE_01, 2, 2, wormTile01);
 }
 
 SprManager::~SprManager(void) {
