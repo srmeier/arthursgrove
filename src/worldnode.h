@@ -78,6 +78,7 @@ void WorldNode::draw(void) {
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
 
 	// inventory
+	/*
 	gui_rect.y -= 16+2; gui_rect.x += 16*15;
 	spr = SprManager::getRef().getSprite(FRAME_TILE_09);
 
@@ -91,22 +92,28 @@ void WorldNode::draw(void) {
 		gui_rect.y += 16+4;
 		SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
 	}
+	*/
 
 	// equiped frames
 	gui_rect.x = 64+16;
-	gui_rect.y = 8+4;
+	gui_rect.y = 8;
 	spr = SprManager::getRef().getSprite(FRAME_TILE_0A);
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	gui_rect.x += 4;
+	gui_rect.y += 8;
 	spr = SprManager::getRef().getSprite(SHIELD_TILE_00);
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
-	SprManager::getRef().drawText("A", gui_rect.x+4, gui_rect.y+16);
+	SprManager::getRef().drawText("A", gui_rect.x+4, gui_rect.y+18);
 
-	gui_rect.x = 64+16+16+4;
+	gui_rect.x = 64+16+16+16;
+	gui_rect.y -= 8;
 	spr = SprManager::getRef().getSprite(FRAME_TILE_0A);
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	gui_rect.x += 4;
+	gui_rect.y += 8;
 	spr = SprManager::getRef().getSprite(ATTACK_TILE_02);
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
-	SprManager::getRef().drawText("B", gui_rect.x+4, gui_rect.y+16);
+	SprManager::getRef().drawText("B", gui_rect.x+4, gui_rect.y+18);
 }
 
 PlayerEntity* WorldNode::getPlayer(void) {

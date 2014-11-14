@@ -36,7 +36,7 @@ public:
 //----------------------------------------------------------------------
 SprManager::SprManager(void) {
 	TTF_Init();
-	
+
 	SDL_Surface* surface = SDL_LoadBMP("spritesheet.bmp");
 
 	_font = TTF_OpenFont("SDS_8x8.ttf", 8);
@@ -493,11 +493,12 @@ SprManager::SprManager(void) {
 		415, 416
 	}; buildSprite(FRAME_TILE_09, 2, 2, frameTile09);
 
-	int frameTile0A[2*3] = {
-		417, 418,
-		449, 450,
-		481, 482
-	}; buildSprite(FRAME_TILE_0A, 2, 3, frameTile0A);
+	int frameTile0A[3*4] = {
+		417, 418, 419,
+		449, 450, 451,
+		481, 482, 483,
+		513, 514, 515
+	}; buildSprite(FRAME_TILE_0A, 3, 4, frameTile0A);
 }
 
 SprManager::~SprManager(void) {
