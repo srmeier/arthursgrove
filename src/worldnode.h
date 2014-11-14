@@ -76,6 +76,21 @@ void WorldNode::draw(void) {
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
 	spr = SprManager::getRef().getSprite(GUI_TILE_02);
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+
+	// inventory
+	gui_rect.y -= 16+2; gui_rect.x += 16*15;
+	spr = SprManager::getRef().getSprite(FRAME_TILE_09);
+
+	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	gui_rect.y += 16+4;
+	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+
+	for(int i=0; i<5; i++) {
+		gui_rect.y -= 16+4; gui_rect.x -= 16+4;
+		SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+		gui_rect.y += 16+4;
+		SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	}
 }
 
 PlayerEntity* WorldNode::getPlayer(void) {

@@ -479,6 +479,11 @@ SprManager::SprManager(void) {
 		381, 382,
 		413, 414
 	}; buildSprite(GUI_TILE_03, 2, 2, guiTile03);
+
+	int frameTile09[2*2] = {
+		383, 384,
+		415, 416
+	}; buildSprite(FRAME_TILE_09, 2, 2, frameTile09);
 }
 
 SprManager::~SprManager(void) {
