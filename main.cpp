@@ -10,16 +10,13 @@ git push
 
 /*
 - need to add more enemies!
-
 - for polymorphism make sure to use "virtual"
-- interactable entity
-	overworld->iteractWith(i,j) (within PlayerEntity->canMove)
 */
 
 //----------------------------------------------------------------------
 #define SCREEN_W 320 // 40 -> 20
 #define SCREEN_H 240 // 30 -> 15
-#define NUM_SPRITES 86
+#define NUM_SPRITES 87
 #define SCREEN_NAME "Prototype"
 #define SCREEN_SCALE 2
 
@@ -75,7 +72,6 @@ int gamestate = 0;
 int SDL_main(int argc, char* argv[]) {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	srand(time(NULL));
-	TTF_Init();
 
 	window = SDL_CreateWindow(
 		SCREEN_NAME,
@@ -100,22 +96,6 @@ int SDL_main(int argc, char* argv[]) {
 
 	PlayerEntity player(16*5, 16*5);
 	Overworld::getRef().addPlayer(&player);
-
-	/*
-	TTF_Font* font = TTF_OpenFont("SDS_8x8.ttf", 8);
-	SDL_Color color = {0xFF, 0xFF, 0xFF, 0x00};
-
-	SDL_Surface* text = TTF_RenderText_Solid(font, "123456789ABCDEF123456789ABCDEF12345678", color);
-	SDL_Rect rect = {8, 8, text->w, text->h};
-	SDL_Rect rect0 = {8, 16, text->w, text->h};
-	SDL_Rect rect1 = {8, 16+8, text->w, text->h};
-	SDL_Rect rect2 = {8, 16+16, text->w, text->h};
-
-	SDL_BlitSurface(text, NULL, screen, &rect);
-	SDL_BlitSurface(text, NULL, screen, &rect0);
-	SDL_BlitSurface(text, NULL, screen, &rect1);
-	SDL_BlitSurface(text, NULL, screen, &rect2);
-	*/
 
 	/* === */
 
@@ -145,12 +125,6 @@ int SDL_main(int argc, char* argv[]) {
 	}
 
 	/* === */
-
-	/*
-	SDL_FreeSurface(text);
-	TTF_CloseFont(font);
-	*/
-
 	/* === */
 
 	SDL_DestroyRenderer(renderer);
@@ -159,7 +133,6 @@ int SDL_main(int argc, char* argv[]) {
 	SDL_DestroyWindow(window);
 	window = NULL;
 
-	TTF_Quit();
 	SDL_Quit();
 	return 0;
 }

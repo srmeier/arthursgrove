@@ -2,6 +2,9 @@
 #ifndef _SPRMANAGER_HEADER_
 #define _SPRMANAGER_HEADER_
 
+//----------------------------------------------------------------------
+extern SDL_Surface* screen;
+
 /* spritemanager.h */
 //----------------------------------------------------------------------
 class SprManager {
@@ -15,6 +18,7 @@ private:
 	void buildSprite(SpriteTag tag, int w, int h, int inds[]);
 
 	int _n;
+	TTF_Font* _font;
 	Sprite _sprites[NUM_SPRITES];
 	SDL_Surface** _spritesheet;
 
@@ -25,13 +29,17 @@ public:
 	}
 
 	Sprite* getSprite(SpriteTag tag);
+	void drawText(const char* str, int x, int y);
 };
 
 /* spritemanager.cpp */
 //----------------------------------------------------------------------
 SprManager::SprManager(void) {
+	TTF_Init();
+	
 	SDL_Surface* surface = SDL_LoadBMP("spritesheet.bmp");
 
+	_font = TTF_OpenFont("SDS_8x8.ttf", 8);
 	_n = ((surface->w/8)*(surface->h/8)+1);
 	_spritesheet = (SDL_Surface**) malloc(sizeof(SDL_Surface*)*_n);
 
@@ -484,6 +492,12 @@ SprManager::SprManager(void) {
 		383, 384,
 		415, 416
 	}; buildSprite(FRAME_TILE_09, 2, 2, frameTile09);
+
+	int frameTile0A[2*3] = {
+		417, 418,
+		449, 450,
+		481, 482
+	}; buildSprite(FRAME_TILE_0A, 2, 3, frameTile0A);
 }
 
 SprManager::~SprManager(void) {
@@ -498,6 +512,9 @@ SprManager::~SprManager(void) {
 		SDL_FreeSurface(_spritesheet[i]);
 	free(_spritesheet);
 	_spritesheet = NULL;
+
+	TTF_CloseFont(_font);
+	TTF_Quit();
 }
 
 void SprManager::buildSprite(SpriteTag tag, int w, int h, int inds[]) {
@@ -522,6 +539,16 @@ void SprManager::buildSprite(SpriteTag tag, int w, int h, int inds[]) {
 Sprite* SprManager::getSprite(SpriteTag tag) {
 	if(tag<0||tag>=NUM_SPRITES) return NULL;
 	return &_sprites[tag];
+}
+
+void SprManager::drawText(const char* str, int x, int y) {
+	SDL_Color color = {0xFF, 0xFF, 0xFF, 0x00};
+	SDL_Surface* text = TTF_RenderText_Solid(_font, str, color);
+
+	SDL_Rect rect = {x, y, text->w, text->h};
+	SDL_BlitSurface(text, NULL, screen, &rect);
+
+	SDL_FreeSurface(text);
 }
 
 #endif
