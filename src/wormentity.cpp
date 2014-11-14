@@ -30,7 +30,9 @@ void WormEntity::update(void) {
 	if(weapon->active) weapon->update();
 	else _tomove = SDL_TRUE;
 
-	if(_attack_next_chance&&!_moving&&!weapon->active&&_attack_delay==0) {
+	SDL_bool check = (SDL_bool) (active&&!_dying);
+	if(_attack_next_chance&&!_moving&&!weapon->active&&_attack_delay==0&&check) {
+
 		_tomove = SDL_FALSE;
 		_attack_delay = 72;
 		_attack_next_chance = SDL_FALSE;

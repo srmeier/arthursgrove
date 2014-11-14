@@ -67,6 +67,8 @@ Node00::~Node00(void) {
 }
 
 void Node00::update(void) {
+	WorldNode::update();
+	
 	int pi = _player->getI();
 	int pj = _player->getJ();
 

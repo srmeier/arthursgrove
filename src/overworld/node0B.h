@@ -44,6 +44,8 @@ Node0B::Node0B(void) {
 }
 
 void Node0B::update(void) {
+	WorldNode::update();
+	
 	if(_sea_frame>0) _sea_frame--;
 	if(_sea_frame==0) {
 		_sea_frame = _fpa;

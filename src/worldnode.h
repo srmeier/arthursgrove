@@ -22,7 +22,7 @@ public:
 /* worldnode.cpp */
 //----------------------------------------------------------------------
 void WorldNode::update(void) {
-	// nothing
+	_player->update();
 }
 
 void WorldNode::draw(void) {
@@ -33,6 +33,40 @@ void WorldNode::draw(void) {
 			SDL_BlitSurface(spr->tile, NULL, screen, &rect);
 		}
 	}
+
+	_player->draw();
+
+	Sprite* spr;
+
+	// heart near top
+	SDL_Rect gui_rect = {8, 8, 16, 16};
+	spr = SprManager::getRef().getSprite(HEART_TILE_01);
+	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+
+	gui_rect.x += 16;
+	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+
+	gui_rect.x += 16;
+	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+
+	gui_rect.x += 16;
+	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+
+	// bar at bottom
+	gui_rect.x = 8; gui_rect.y = 24;
+	spr = SprManager::getRef().getSprite(GUI_TILE_00);
+	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+
+	gui_rect.x += 16;
+	spr = SprManager::getRef().getSprite(GUI_TILE_01);
+	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+
+	gui_rect.x += 16;
+	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+
+	gui_rect.x += 16;
+	spr = SprManager::getRef().getSprite(GUI_TILE_02);
+	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
 }
 
 PlayerEntity* WorldNode::getPlayer(void) {

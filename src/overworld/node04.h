@@ -51,6 +51,8 @@ Node04::~Node04(void) {
 }
 
 void Node04::update(void) {
+	WorldNode::update();
+
 	int pi = _player->getI();
 	int pj = _player->getJ();
 

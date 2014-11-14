@@ -454,6 +454,26 @@ SprManager::SprManager(void) {
 		371, 372,
 		403, 404
 	}; buildSprite(DUSTCLOUD_TILE_01, 2, 2, dustcloudTile01);
+
+	int guiTile00[2*2] = {
+		373, 374,
+		405, 406
+	}; buildSprite(GUI_TILE_00, 2, 2, guiTile00);
+
+	int guiTile01[2*2] = {
+		375, 376,
+		407, 408
+	}; buildSprite(GUI_TILE_01, 2, 2, guiTile01);
+
+	int guiTile02[2*2] = {
+		377, 378,
+		409, 410
+	}; buildSprite(GUI_TILE_02, 2, 2, guiTile02);
+
+	int heartTile01[2*2] = {
+		379, 380,
+		411, 412
+	}; buildSprite(HEART_TILE_01, 2, 2, heartTile01);
 }
 
 SprManager::~SprManager(void) {

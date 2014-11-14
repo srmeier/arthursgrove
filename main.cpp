@@ -19,7 +19,7 @@ git push
 //----------------------------------------------------------------------
 #define SCREEN_W 320 // 40 -> 20
 #define SCREEN_H 240 // 30 -> 15
-#define NUM_SPRITES 80
+#define NUM_SPRITES 84
 #define SCREEN_NAME "Prototype"
 #define SCREEN_SCALE 2
 
@@ -101,6 +101,7 @@ int SDL_main(int argc, char* argv[]) {
 	PlayerEntity player(16*5, 16*5);
 	Overworld::getRef().addPlayer(&player);
 
+	/*
 	TTF_Font* font = TTF_OpenFont("SDS_8x8.ttf", 8);
 	SDL_Color color = {0xFF, 0xFF, 0xFF, 0x00};
 
@@ -109,6 +110,12 @@ int SDL_main(int argc, char* argv[]) {
 	SDL_Rect rect0 = {8, 16, text->w, text->h};
 	SDL_Rect rect1 = {8, 16+8, text->w, text->h};
 	SDL_Rect rect2 = {8, 16+16, text->w, text->h};
+
+	SDL_BlitSurface(text, NULL, screen, &rect);
+	SDL_BlitSurface(text, NULL, screen, &rect0);
+	SDL_BlitSurface(text, NULL, screen, &rect1);
+	SDL_BlitSurface(text, NULL, screen, &rect2);
+	*/
 
 	/* === */
 
@@ -121,20 +128,12 @@ int SDL_main(int argc, char* argv[]) {
 		switch(gamestate) {
 			case 0: {
 				Overworld::getRef().updateNode();
-				player.update();
-
 				Overworld::getRef().drawNode();
-				player.draw();
 			} break;
 
 			case 1: {
 			} break;
 		}
-
-		SDL_BlitSurface(text, NULL, screen, &rect);
-		SDL_BlitSurface(text, NULL, screen, &rect0);
-		SDL_BlitSurface(text, NULL, screen, &rect1);
-		SDL_BlitSurface(text, NULL, screen, &rect2);
 
 		/* === */
 
@@ -147,8 +146,10 @@ int SDL_main(int argc, char* argv[]) {
 
 	/* === */
 
+	/*
 	SDL_FreeSurface(text);
 	TTF_CloseFont(font);
+	*/
 
 	/* === */
 

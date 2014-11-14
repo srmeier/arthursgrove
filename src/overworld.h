@@ -139,7 +139,7 @@ SpriteTag Overworld::getTile(int i, int j) {
 
 void Overworld::addPlayer(PlayerEntity* player) {
 	_player = player;
-	_nodes[_j][_i]->addPlayerEntity(_player);
+	_nodes[_j][_i]->addPlayerEntity(player);
 }
 
 #endif
