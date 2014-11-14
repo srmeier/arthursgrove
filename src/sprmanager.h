@@ -474,6 +474,11 @@ SprManager::SprManager(void) {
 		379, 380,
 		411, 412
 	}; buildSprite(HEART_TILE_01, 2, 2, heartTile01);
+
+	int guiTile03[2*2] = {
+		381, 382,
+		413, 414
+	}; buildSprite(GUI_TILE_03, 2, 2, guiTile03);
 }
 
 SprManager::~SprManager(void) {

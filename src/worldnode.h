@@ -54,17 +54,26 @@ void WorldNode::draw(void) {
 
 	// bar at bottom
 	gui_rect.x = 8; gui_rect.y = 24;
+	spr = SprManager::getRef().getSprite(GUI_TILE_03);
+	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
 	spr = SprManager::getRef().getSprite(GUI_TILE_00);
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
 
 	gui_rect.x += 16;
+	spr = SprManager::getRef().getSprite(GUI_TILE_03);
+	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
 	spr = SprManager::getRef().getSprite(GUI_TILE_01);
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
 
 	gui_rect.x += 16;
+	spr = SprManager::getRef().getSprite(GUI_TILE_03);
+	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	spr = SprManager::getRef().getSprite(GUI_TILE_01);
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
 
 	gui_rect.x += 16;
+	spr = SprManager::getRef().getSprite(GUI_TILE_03);
+	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
 	spr = SprManager::getRef().getSprite(GUI_TILE_02);
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
 }
