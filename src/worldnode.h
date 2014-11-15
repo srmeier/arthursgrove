@@ -9,6 +9,8 @@ protected:
 	int _tiles[15][20];
 	PlayerEntity* _player;
 
+	void _drawGUI(void);
+
 public:
 	virtual void update(void);
 	virtual void draw(void);
@@ -25,16 +27,15 @@ void WorldNode::update(void) {
 	_player->update();
 }
 
-void WorldNode::draw(void) {
-	for(int j=0; j<15; j++) {
+void WorldNode::_drawGUI(void) {
+	// GUI
+	for(int j=0; j<3; j++) {
 		for(int i=0; i<20; i++) {
 			Sprite* spr = SprManager::getRef().getSprite((SpriteTag) _tiles[j][i]);
 			SDL_Rect rect = {16*i, 16*j, spr->w, spr->h};
 			SDL_BlitSurface(spr->tile, NULL, screen, &rect);
 		}
 	}
-
-	_player->draw();
 
 	Sprite* spr;
 
@@ -78,21 +79,10 @@ void WorldNode::draw(void) {
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
 
 	// inventory
-	/*
-	gui_rect.y -= 16+2; gui_rect.x += 16*15;
+	gui_rect.y -= 16; gui_rect.x += 16*7-8;
 	spr = SprManager::getRef().getSprite(FRAME_TILE_09);
-
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
-	gui_rect.y += 16+4;
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
-
-	for(int i=0; i<5; i++) {
-		gui_rect.y -= 16+4; gui_rect.x -= 16+4;
-		SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
-		gui_rect.y += 16+4;
-		SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
-	}
-	*/
+	SprManager::getRef().drawText("Bag", gui_rect.x+16*4, gui_rect.y+18+8);
 
 	// equiped frames
 	gui_rect.x = 64+16;
@@ -114,6 +104,19 @@ void WorldNode::draw(void) {
 	spr = SprManager::getRef().getSprite(ATTACK_TILE_02);
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
 	SprManager::getRef().drawText("B", gui_rect.x+4, gui_rect.y+18);
+}
+
+void WorldNode::draw(void) {
+	for(int j=3; j<15; j++) {
+		for(int i=0; i<20; i++) {
+			Sprite* spr = SprManager::getRef().getSprite((SpriteTag) _tiles[j][i]);
+			SDL_Rect rect = {16*i, 16*j, spr->w, spr->h};
+			SDL_BlitSurface(spr->tile, NULL, screen, &rect);
+		}
+	}
+
+	_player->draw();
+	_drawGUI();
 }
 
 PlayerEntity* WorldNode::getPlayer(void) {

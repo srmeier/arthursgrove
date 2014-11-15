@@ -488,10 +488,12 @@ SprManager::SprManager(void) {
 		413, 414
 	}; buildSprite(GUI_TILE_03, 2, 2, guiTile03);
 
-	int frameTile09[2*2] = {
-		383, 384,
-		415, 416
-	}; buildSprite(FRAME_TILE_09, 2, 2, frameTile09);
+	int frameTile09[19*4] = {
+		383, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 384,
+		420, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 421,
+		420, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 421,
+		415, 453, 453, 453, 453, 453, 453, 453, 135, 135, 135, 453, 453, 453, 453, 453, 453, 453, 416
+	}; buildSprite(FRAME_TILE_09, 19, 4, frameTile09);
 
 	int frameTile0A[3*4] = {
 		417, 418, 419,
@@ -543,7 +545,7 @@ Sprite* SprManager::getSprite(SpriteTag tag) {
 }
 
 void SprManager::drawText(const char* str, int x, int y) {
-	SDL_Color color = {0xFF, 0xFF, 0xFF, 0x00};
+	SDL_Color color = {0xDF, 0xEF, 0xD7, 0x00};
 	SDL_Surface* text = TTF_RenderText_Solid(_font, str, color);
 
 	SDL_Rect rect = {x, y, text->w, text->h};
