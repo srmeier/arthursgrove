@@ -536,6 +536,96 @@ SprManager::SprManager(void) {
 		434, 435,
 		466, 467
 	}; buildSprite(KEY_TILE_00, 2, 2, keyTile00);
+
+	int floorTile00[2*2] = {
+		436, 437,
+		468, 469
+	}; buildSprite(FLOOR_TILE_00, 2, 2, floorTile00);
+
+	int floorTile01[2*2] = {
+		438, 439,
+		470, 471
+	}; buildSprite(FLOOR_TILE_01, 2, 2, floorTile01);
+
+	int floorTile02[2*2] = {
+		440, 441,
+		472, 473
+	}; buildSprite(FLOOR_TILE_02, 2, 2, floorTile02);
+
+	int wallTile00[2*2] = {
+		442, 443,
+		474, 475
+	}; buildSprite(WALL_TILE_00, 2, 2, wallTile00);
+
+	int wallTile01[2*2] = {
+		444, 445,
+		476, 477
+	}; buildSprite(WALL_TILE_01, 2, 2, wallTile01);
+
+	int wallTile02[2*2] = {
+		446, 447,
+		478, 479
+	}; buildSprite(WALL_TILE_02, 2, 2, wallTile02);
+
+	int floorTile03[2*2] = {
+		500, 501,
+		532, 533
+	}; buildSprite(FLOOR_TILE_03, 2, 2, floorTile03);
+
+	int floorTile04[2*2] = {
+		502, 503,
+		534, 535
+	}; buildSprite(FLOOR_TILE_04, 2, 2, floorTile04);
+
+	int floorTile05[2*2] = {
+		504, 505,
+		536, 537
+	}; buildSprite(FLOOR_TILE_05, 2, 2, floorTile05);
+
+	int wallTile03[2*2] = {
+		506, 507,
+		538, 539
+	}; buildSprite(WALL_TILE_03, 2, 2, wallTile03);
+
+	int wallTile04[2*2] = {
+		570, 571,
+		602, 603
+	}; buildSprite(WALL_TILE_04, 2, 2, wallTile04);
+
+	int wallTile05[2*2] = {
+		572, 573,
+		604, 605
+	}; buildSprite(WALL_TILE_05, 2, 2, wallTile05);
+
+	int wallTile06[2*2] = {
+		574, 575,
+		606, 607
+	}; buildSprite(WALL_TILE_06, 2, 2, wallTile06);
+
+	int floorTile06[2*2] = {
+		568, 569,
+		600, 601
+	}; buildSprite(FLOOR_TILE_06, 2, 2, floorTile06);
+
+	int floorTile07[2*2] = {
+		566, 567,
+		598, 599
+	}; buildSprite(FLOOR_TILE_07, 2, 2, floorTile07);
+
+	int floorTile08[2*2] = {
+		564, 565,
+		596, 597
+	}; buildSprite(FLOOR_TILE_08, 2, 2, floorTile08);
+
+	int doorTile00[2*2] = {
+		562, 563,
+		594, 595
+	}; buildSprite(DOOR_TILE_00, 2, 2, doorTile00);
+
+	int doorTile01[2*2] = {
+		560, 561,
+		592, 593
+	}; buildSprite(DOOR_TILE_01, 2, 2, doorTile01);
 }
 
 SprManager::~SprManager(void) {

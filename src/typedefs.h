@@ -98,7 +98,25 @@ typedef enum {
 	SCROLL_TILE_00,     // 0x5A
 	LIGHT_TILE_00,      // 0x5B
 	ROPE_TILE_00,       // 0x5C
-	KEY_TILE_00
+	KEY_TILE_00,        // 0x5D
+	FLOOR_TILE_00,      // 0x5E
+	FLOOR_TILE_01,      // 0x5F
+	FLOOR_TILE_02,      // 0x60
+	WALL_TILE_00,       // 0x61
+	WALL_TILE_01,       // 0x62
+	WALL_TILE_02,       // 0x63
+	FLOOR_TILE_03,      // 0x64
+	FLOOR_TILE_04,      // 0x65
+	FLOOR_TILE_05,      // 0x66
+	WALL_TILE_03,       // 0x67
+	WALL_TILE_04,       // 0x68
+	WALL_TILE_05,       // 0x69
+	WALL_TILE_06,       // 0x6A
+	FLOOR_TILE_06,      // 0x6B
+	FLOOR_TILE_07,      // 0x6C
+	FLOOR_TILE_08,      // 0x6D
+	DOOR_TILE_00,       // 0x6E
+	DOOR_TILE_01
 } SpriteTag;
 
 //----------------------------------------------------------------------

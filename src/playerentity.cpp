@@ -236,6 +236,16 @@ SDL_bool PlayerEntity::canMove(int i, int j) {
 		node->getTile(i,j)==SEA_TILE_0A   ||
 		node->getTile(i,j)==SEA_TILE_0B
 		)&&_has_fish)||
-		node->getTile(i,j)==BRICK_TILE_00
+		node->getTile(i,j)==BRICK_TILE_00 ||
+		node->getTile(i,j)==FLOOR_TILE_00 ||
+		node->getTile(i,j)==FLOOR_TILE_01 ||
+		node->getTile(i,j)==FLOOR_TILE_02 ||
+		node->getTile(i,j)==FLOOR_TILE_03 ||
+		node->getTile(i,j)==FLOOR_TILE_04 ||
+		node->getTile(i,j)==FLOOR_TILE_05 ||
+		node->getTile(i,j)==FLOOR_TILE_06 ||
+		node->getTile(i,j)==FLOOR_TILE_07 ||
+		node->getTile(i,j)==FLOOR_TILE_08 ||
+		node->getTile(i,j)==DOOR_TILE_00
 	);
 }

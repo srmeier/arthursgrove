@@ -30,8 +30,8 @@ private:
 	Overworld(void) {};
 	~Overworld(void);
 
-	int _i = 0;
-	int _j = 0;
+	int _i = 1;
+	int _j = 1;
 	int _w = 4;
 	int _h = 4;
 
