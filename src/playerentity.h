@@ -33,6 +33,7 @@ public:
 	SwordEntity* sword;
 	WeaponEntity* weapon;
 	TsunamiEntity* tsunami;
+	SpriteTag inventory[7];
 };
 
 #endif

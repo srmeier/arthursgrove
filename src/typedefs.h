@@ -91,7 +91,14 @@ typedef enum {
 	HEART_TILE_01,      // 0x53
 	GUI_TILE_03,        // 0x54
 	FRAME_TILE_09,      // 0x55
-	FRAME_TILE_0A
+	FRAME_TILE_0A,      // 0x56
+	FOOD_TILE_00,       // 0x57
+	POTION_TILE_00,     // 0x58
+	RING_TILE_00,       // 0x59
+	SCROLL_TILE_00,     // 0x5A
+	LIGHT_TILE_00,      // 0x5B
+	ROPE_TILE_00,       // 0x5C
+	KEY_TILE_00
 } SpriteTag;
 
 //----------------------------------------------------------------------

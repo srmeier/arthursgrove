@@ -84,6 +84,13 @@ void WorldNode::_drawGUI(void) {
 	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
 	SprManager::getRef().drawText("Bag", gui_rect.x+16*4, gui_rect.y+18+8);
 
+	gui_rect.x += 8; gui_rect.y += 8;
+	for(int i=0; i<7; i++) {
+		spr = SprManager::getRef().getSprite(_player->inventory[i]);
+		SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+		gui_rect.x += 16+4;
+	}
+
 	// equiped frames
 	gui_rect.x = 64+16;
 	gui_rect.y = 8;

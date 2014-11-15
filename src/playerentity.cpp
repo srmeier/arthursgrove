@@ -8,6 +8,16 @@ PlayerEntity::PlayerEntity(int x, int y): Moveable(x, y, new PlayerInput()), Ent
 
 	tsunami = new TsunamiEntity(x, y);
 	tsunami->active = SDL_FALSE;
+
+	for(int i=0; i<7; i++) inventory[i] = EMPTY_TILE;
+
+	inventory[0] = FOOD_TILE_00;
+	inventory[1] = SCROLL_TILE_00;
+	inventory[2] = RING_TILE_00;
+	inventory[3] = POTION_TILE_00;
+	inventory[4] = LIGHT_TILE_00;
+	inventory[5] = ROPE_TILE_00;
+	inventory[6] = KEY_TILE_00;
 }
 
 PlayerEntity::~PlayerEntity(void) {

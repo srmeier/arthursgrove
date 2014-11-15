@@ -501,6 +501,41 @@ SprManager::SprManager(void) {
 		481, 482, 483,
 		513, 514, 515
 	}; buildSprite(FRAME_TILE_0A, 3, 4, frameTile0A);
+
+	int foodTile00[2*2] = {
+		422, 423,
+		454, 455
+	}; buildSprite(FOOD_TILE_00, 2, 2, foodTile00);
+
+	int potionTile00[2*2] = {
+		424, 425,
+		456, 457
+	}; buildSprite(POTION_TILE_00, 2, 2, potionTile00);
+
+	int ringTile00[2*2] = {
+		426, 427,
+		458, 459
+	}; buildSprite(RING_TILE_00, 2, 2, ringTile00);
+
+	int scrollTile00[2*2] = {
+		428, 429,
+		460, 461
+	}; buildSprite(SCROLL_TILE_00, 2, 2, scrollTile00);
+
+	int lightTile00[2*2] = {
+		430, 431,
+		462, 463
+	}; buildSprite(LIGHT_TILE_00, 2, 2, lightTile00);
+
+	int ropeTile00[2*2] = {
+		432, 433,
+		464, 465
+	}; buildSprite(ROPE_TILE_00, 2, 2, ropeTile00);
+
+	int keyTile00[2*2] = {
+		434, 435,
+		466, 467
+	}; buildSprite(KEY_TILE_00, 2, 2, keyTile00);
 }
 
 SprManager::~SprManager(void) {
