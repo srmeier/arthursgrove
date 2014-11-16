@@ -626,6 +626,16 @@ SprManager::SprManager(void) {
 		560, 561,
 		592, 593
 	}; buildSprite(DOOR_TILE_01, 2, 2, doorTile01);
+
+	int npcTile00[2*2] = {
+		558, 559,
+		590, 591
+	}; buildSprite(NPC_TILE_00, 2, 2, npcTile00);
+
+	int npcTile01[2*2] = {
+		556, 557,
+		588, 589
+	}; buildSprite(NPC_TILE_01, 2, 2, npcTile01);
 }
 
 SprManager::~SprManager(void) {
