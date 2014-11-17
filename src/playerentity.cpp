@@ -219,7 +219,16 @@ SDL_bool PlayerEntity::canMove(int i, int j) {
 		weapon->active = SDL_FALSE;
 	}
 
-	return (SDL_bool) (
+	SDL_bool check = SDL_TRUE;
+	Entity* ent = node->getEntityAt(i, j);
+
+	if(ent) {
+		int ei = ((Npc00Entity*) ent)->getI();
+		int ej = ((Npc00Entity*) ent)->getJ();
+		check  = (SDL_bool) (i!=ei&&j!=ej);
+	}
+
+	return (SDL_bool) ((
 		node->getTile(i,j)==GRASS_TILE_00 ||
 		node->getTile(i,j)==SAND_TILE_00  ||
 		((
@@ -247,5 +256,5 @@ SDL_bool PlayerEntity::canMove(int i, int j) {
 		node->getTile(i,j)==FLOOR_TILE_07 ||
 		node->getTile(i,j)==FLOOR_TILE_08 ||
 		node->getTile(i,j)==DOOR_TILE_00
-	);
+	)&&check);
 }

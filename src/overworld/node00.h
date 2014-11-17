@@ -8,6 +8,7 @@ class Node00: public WorldNode {
 protected:
 	int numofbugs = 4;
 	BugEntity* _bug[4];
+	Npc00Entity* _npc00;
 
 public:
 	Node00(void);
@@ -16,6 +17,7 @@ public:
 	void update(void);
 	void draw(void);
 	SDL_bool canSpawn(int i, int j);
+	Entity* getEntityAt(int i, int j);
 };
 
 /* node00.cpp */
@@ -58,12 +60,16 @@ Node00::Node00(void) {
 			}
 		}
 	}
+
+	_npc00 = new Npc00Entity(16*17, 16*9);
 }
 
 Node00::~Node00(void) {
 	for(int i=0; i<numofbugs; i++) {
 		delete _bug[i];
 	}
+
+	delete _npc00;
 }
 
 void Node00::update(void) {
@@ -101,6 +107,8 @@ void Node00::update(void) {
 		}
 		*/
 	}
+
+	_npc00->update();
 }
 
 void Node00::draw(void) {
@@ -108,6 +116,8 @@ void Node00::draw(void) {
 
 	for(int i=0; i<numofbugs; i++)
 		if(_bug[i]->active) _bug[i]->draw();
+
+	_npc00->draw();
 }
 
 SDL_bool Node00::canSpawn(int i, int j) {
@@ -116,12 +126,24 @@ SDL_bool Node00::canSpawn(int i, int j) {
 	int pi = _player->getI();
 	int pj = _player->getJ();
 
+	int ni = _npc00->getI();
+	int nj = _npc00->getJ();
+
 	return (SDL_bool) (
 		(
 		getTile(i,j)==GRASS_TILE_00
 		)
 		&&(i!=pi&&j!=pj)
+		&&(i!=ni&&j!=nj)
 	);
+}
+
+Entity* Node00::getEntityAt(int i, int j) {
+	int ni = _npc00->getI();
+	int nj = _npc00->getJ();
+
+	if(i==ni&&j==nj) return _npc00;
+	else return NULL;
 }
 
 #endif

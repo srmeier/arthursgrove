@@ -18,6 +18,7 @@ public:
 	PlayerEntity* getPlayer(void);
 	SpriteTag getTile(int i, int j);
 	virtual SDL_bool canSpawn(int i, int j);
+	virtual Entity* getEntityAt(int i, int j);
 	void addPlayerEntity(PlayerEntity* player);
 };
 
@@ -132,6 +133,10 @@ PlayerEntity* WorldNode::getPlayer(void) {
 
 SpriteTag WorldNode::getTile(int i, int j) {
 	return (SpriteTag) _tiles[j][i];
+}
+
+Entity* WorldNode::getEntityAt(int i, int j) {
+	return NULL;
 }
 
 void WorldNode::addPlayerEntity(PlayerEntity* player) {

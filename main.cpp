@@ -9,8 +9,7 @@ git push
 */
 
 /*
-- need to npc
-- need to add more enemies!
+- currently the NPC entity for node00 is hardcoded in, I need an NPC class which allows for the "interact" abstraction
 - for polymorphism make sure to use "virtual"
 */
 
@@ -49,6 +48,7 @@ git push
 #include "tsunamientity.h"
 #include "playerentity.h"
 #include "bugentity.h"
+#include "npc00entity.h"
 #include "wormentity.h"
 
 #include "worldnode.h"
@@ -58,6 +58,7 @@ git push
 #include "tsunamientity.cpp"
 #include "playerentity.cpp"
 #include "bugentity.cpp"
+#include "npc00entity.cpp"
 #include "wormentity.cpp"
 
 //----------------------------------------------------------------------
