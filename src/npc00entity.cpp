@@ -1,6 +1,6 @@
 /* npc00entity.cpp */
 //----------------------------------------------------------------------
-Npc00Entity::Npc00Entity(int x, int y): Moveable(x, y, new RandomInput(1000)), Entity(x, y, NPC_TILE_00) {
+Npc00Entity::Npc00Entity(int x, int y): NpcEntity(x, y, NPC_TILE_00, new RandomInput(4*256)) {
 	// nothing
 }
 
@@ -54,4 +54,9 @@ SDL_bool Npc00Entity::canMove(int i, int j) {
 		)
 		&&!(i==pi&&j==pj)
 	);
+}
+
+void Npc00Entity::interactWith(void) {
+	printf("Interacting with NPC\n");
+	fflush(stdout);
 }

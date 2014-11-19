@@ -4,7 +4,7 @@
 
 /* npc00entity.h */
 //----------------------------------------------------------------------
-class Npc00Entity: public Moveable, public Entity {
+class Npc00Entity: public NpcEntity {
 protected:
 	SDL_bool canMove(int i, int j);
 
@@ -16,6 +16,8 @@ public:
 
 	void update(void);
 	void setPos(int x, int y);
+
+	void interactWith(void);
 };
 
 #endif

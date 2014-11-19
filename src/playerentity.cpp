@@ -222,10 +222,15 @@ SDL_bool PlayerEntity::canMove(int i, int j) {
 	SDL_bool check = SDL_TRUE;
 	Entity* ent = node->getEntityAt(i, j);
 
-	if(ent) {
-		int ei = ((Npc00Entity*) ent)->getI();
-		int ej = ((Npc00Entity*) ent)->getJ();
+	// check for NPC
+	NpcEntity* npc_ent = dynamic_cast<NpcEntity*> (ent);
+
+	if(npc_ent) {
+		int ei = npc_ent->getI();
+		int ej = npc_ent->getJ();
 		check  = (SDL_bool) (i!=ei&&j!=ej);
+
+		npc_ent->interactWith();
 	}
 
 	return (SDL_bool) ((

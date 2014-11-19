@@ -9,7 +9,9 @@ git push
 */
 
 /*
-- currently the NPC entity for node00 is hardcoded in, I need an NPC class which allows for the "interact" abstraction
+- need to write the WorldNode::writeMessageToPlayer() and decide on function arguements
+	NpcEntity::interactWith() will call this function when player collides
+- might want to consider adding an "interactable" component
 - for polymorphism make sure to use "virtual"
 */
 
@@ -42,6 +44,8 @@ git push
 #include "straightinput.h"
 
 #include "entity.h"
+#include "moveableentity.h"
+#include "npcentity.h"
 #include "weaponentity.h"
 #include "swordentity.h"
 #include "sandstormentity.h"
