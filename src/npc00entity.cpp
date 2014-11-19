@@ -1,6 +1,6 @@
 /* npc00entity.cpp */
 //----------------------------------------------------------------------
-Npc00Entity::Npc00Entity(int x, int y): NpcEntity(x, y, NPC_TILE_00, new RandomInput(4*256)) {
+Npc00Entity::Npc00Entity(int x, int y): NpcEntity(x, y, NPC_TILE_00, new RandomInput(2*256)) {
 	// nothing
 }
 
@@ -42,21 +42,25 @@ SDL_bool Npc00Entity::canMove(int i, int j) {
 
 	return (SDL_bool) (
 		(
-		node->getTile(i,j)==FLOOR_TILE_00 ||
-		node->getTile(i,j)==FLOOR_TILE_01 ||
-		node->getTile(i,j)==FLOOR_TILE_02 ||
-		node->getTile(i,j)==FLOOR_TILE_03 ||
-		node->getTile(i,j)==FLOOR_TILE_04 ||
-		node->getTile(i,j)==FLOOR_TILE_05 ||
-		node->getTile(i,j)==FLOOR_TILE_06 ||
-		node->getTile(i,j)==FLOOR_TILE_07 ||
-		node->getTile(i,j)==FLOOR_TILE_08
+			node->getTile(i,j)==FLOOR_TILE_00 ||
+			node->getTile(i,j)==FLOOR_TILE_01 ||
+			node->getTile(i,j)==FLOOR_TILE_02 ||
+			node->getTile(i,j)==FLOOR_TILE_03 ||
+			node->getTile(i,j)==FLOOR_TILE_04 ||
+			node->getTile(i,j)==FLOOR_TILE_05 ||
+			node->getTile(i,j)==FLOOR_TILE_06 ||
+			node->getTile(i,j)==FLOOR_TILE_07 ||
+			node->getTile(i,j)==FLOOR_TILE_08
 		)
 		&&!(i==pi&&j==pj)
 	);
 }
 
 void Npc00Entity::interactWith(void) {
-	printf("Interacting with NPC\n");
-	fflush(stdout);
+	Overworld& overworld = Overworld::getRef();
+	WorldNode* node = overworld.getCurNode();
+
+	// will need to write message to player and let him respond
+	char str[] = "Hello Hero, this is a test to see how fucking long this string can be and if the implementation will indeed word"; // strings like this carry infor about size
+	node->writeMessageToPlayer(this, str);
 }

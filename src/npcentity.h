@@ -9,6 +9,7 @@ public:
 	NpcEntity(int x, int y, SpriteTag tag, Input* input);
 
 	virtual void interactWith(void);
+	virtual void resolveInteraction(PlayerEntity* player);
 };
 
 /* npcentity.cpp */
@@ -19,6 +20,11 @@ NpcEntity::NpcEntity(int x, int y, SpriteTag tag, Input* input): MoveableEntity(
 
 void NpcEntity::interactWith(void) {
 	// nothing
+}
+
+void NpcEntity::resolveInteraction(PlayerEntity* player) {
+	player->input->clear();
+	player->allowMovement();
 }
 
 #endif

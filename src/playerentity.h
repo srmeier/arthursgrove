@@ -15,8 +15,8 @@ protected:
 	int _fish_fpa = 14;
 	int _fish_frame = 14;
 	SDL_bool _has_fish = SDL_TRUE;
-	SpriteTag _fish_tag = FISH_TILE_00;
 	SDL_bool _on_sea_tile = SDL_FALSE;
+	SpriteTag _fish_tag = FISH_TILE_00;
 	
 	SDL_bool _attack_next_free_time = SDL_FALSE;
 

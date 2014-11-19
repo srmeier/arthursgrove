@@ -62,32 +62,35 @@ void PlayerEntity::update(void) {
 		}
 	}
 
-	if(_attack_next_free_time&&!_moving) {
-		switch(_movedirec) {
-			case 0: weapon->swingUp(_x, _y); break;
-			case 1: weapon->swingDown(_x, _y); break;
-			case 2: weapon->swingLeft(_x, _y); break;
-			case 3: weapon->swingRight(_x, _y); break;
-		} _attack_next_free_time = SDL_FALSE;
-	}
-
-	if(weapon->active)
-		weapon->update();
-	else {
-		if(input->isDown("b")&&!_moving) {
+	// no need to check for attacks if the player can't move (i.e. talking with NPC)
+	if(_tomove) {
+		if(_attack_next_free_time&&!_moving) {
 			switch(_movedirec) {
 				case 0: weapon->swingUp(_x, _y); break;
 				case 1: weapon->swingDown(_x, _y); break;
 				case 2: weapon->swingLeft(_x, _y); break;
 				case 3: weapon->swingRight(_x, _y); break;
-			}
-		} else if(input->isDown("b")&&_moving) {
-			_attack_next_free_time = SDL_TRUE;
+			} _attack_next_free_time = SDL_FALSE;
 		}
 
-		if(input->isDown("a")&&!_attack_next_free_time&&!weapon->active) {
-			shield->setPos(_x, _y);
-		} else shield->active = SDL_FALSE;
+		if(weapon->active)
+			weapon->update();
+		else {
+			if(input->isDown("b")&&!_moving) {
+				switch(_movedirec) {
+					case 0: weapon->swingUp(_x, _y); break;
+					case 1: weapon->swingDown(_x, _y); break;
+					case 2: weapon->swingLeft(_x, _y); break;
+					case 3: weapon->swingRight(_x, _y); break;
+				}
+			} else if(input->isDown("b")&&_moving) {
+				_attack_next_free_time = SDL_TRUE;
+			}
+
+			if(input->isDown("a")&&!_attack_next_free_time&&!weapon->active) {
+				shield->setPos(_x, _y);
+			} else shield->active = SDL_FALSE;
+		}
 	}
 
 	if(_frame>0) _frame--;
@@ -233,33 +236,36 @@ SDL_bool PlayerEntity::canMove(int i, int j) {
 		npc_ent->interactWith();
 	}
 
-	return (SDL_bool) ((
-		node->getTile(i,j)==GRASS_TILE_00 ||
-		node->getTile(i,j)==SAND_TILE_00  ||
-		((
-		node->getTile(i,j)==SEA_TILE_00   ||
-		node->getTile(i,j)==SEA_TILE_01   ||
-		node->getTile(i,j)==SEA_TILE_02   ||
-		node->getTile(i,j)==SEA_TILE_03   ||
-		node->getTile(i,j)==SEA_TILE_04   ||
-		node->getTile(i,j)==SEA_TILE_05   ||
-		node->getTile(i,j)==SEA_TILE_06   ||
-		node->getTile(i,j)==SEA_TILE_07   ||
-		node->getTile(i,j)==SEA_TILE_08   ||
-		node->getTile(i,j)==SEA_TILE_09   ||
-		node->getTile(i,j)==SEA_TILE_0A   ||
-		node->getTile(i,j)==SEA_TILE_0B
-		)&&_has_fish)||
-		node->getTile(i,j)==BRICK_TILE_00 ||
-		node->getTile(i,j)==FLOOR_TILE_00 ||
-		node->getTile(i,j)==FLOOR_TILE_01 ||
-		node->getTile(i,j)==FLOOR_TILE_02 ||
-		node->getTile(i,j)==FLOOR_TILE_03 ||
-		node->getTile(i,j)==FLOOR_TILE_04 ||
-		node->getTile(i,j)==FLOOR_TILE_05 ||
-		node->getTile(i,j)==FLOOR_TILE_06 ||
-		node->getTile(i,j)==FLOOR_TILE_07 ||
-		node->getTile(i,j)==FLOOR_TILE_08 ||
-		node->getTile(i,j)==DOOR_TILE_00
-	)&&check);
+	return (SDL_bool) (
+		(
+			node->getTile(i,j)==GRASS_TILE_00 ||
+			node->getTile(i,j)==SAND_TILE_00  ||
+		(
+			(
+				node->getTile(i,j)==SEA_TILE_00   ||
+				node->getTile(i,j)==SEA_TILE_01   ||
+				node->getTile(i,j)==SEA_TILE_02   ||
+				node->getTile(i,j)==SEA_TILE_03   ||
+				node->getTile(i,j)==SEA_TILE_04   ||
+				node->getTile(i,j)==SEA_TILE_05   ||
+				node->getTile(i,j)==SEA_TILE_06   ||
+				node->getTile(i,j)==SEA_TILE_07   ||
+				node->getTile(i,j)==SEA_TILE_08   ||
+				node->getTile(i,j)==SEA_TILE_09   ||
+				node->getTile(i,j)==SEA_TILE_0A   ||
+				node->getTile(i,j)==SEA_TILE_0B
+			)&&_has_fish)||
+			node->getTile(i,j)==BRICK_TILE_00 ||
+			node->getTile(i,j)==FLOOR_TILE_00 ||
+			node->getTile(i,j)==FLOOR_TILE_01 ||
+			node->getTile(i,j)==FLOOR_TILE_02 ||
+			node->getTile(i,j)==FLOOR_TILE_03 ||
+			node->getTile(i,j)==FLOOR_TILE_04 ||
+			node->getTile(i,j)==FLOOR_TILE_05 ||
+			node->getTile(i,j)==FLOOR_TILE_06 ||
+			node->getTile(i,j)==FLOOR_TILE_07 ||
+			node->getTile(i,j)==FLOOR_TILE_08 ||
+			node->getTile(i,j)==DOOR_TILE_00
+		)&&check
+	);
 }

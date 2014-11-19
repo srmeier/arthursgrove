@@ -25,6 +25,9 @@ public:
 	int getI(void);
 	int getJ(void);
 
+	void allowMovement(void);
+	void preventMovement(void);
+
 	Input* input;
 };
 
@@ -117,6 +120,14 @@ int Moveable::getI(void) {
 
 int Moveable::getJ(void) {
 	return _j;
+}
+
+void Moveable::allowMovement(void) {
+	_tomove = SDL_TRUE;
+}
+
+void Moveable::preventMovement(void) {
+	_tomove = SDL_FALSE;
 }
 
 #endif

@@ -680,7 +680,9 @@ Sprite* SprManager::getSprite(SpriteTag tag) {
 }
 
 void SprManager::drawText(const char* str, int x, int y) {
-	SDL_Color color = {0xDF, 0xEF, 0xD7, 0x00};
+	if(!str) return;
+
+	SDL_Color color = {0xFF, 0xFF, 0xFF, 0x00};
 	SDL_Surface* text = TTF_RenderText_Solid(_font, str, color);
 
 	SDL_Rect rect = {x, y, text->w, text->h};
