@@ -18,7 +18,8 @@ private:
 	void buildSprite(SpriteTag tag, int w, int h, int inds[]);
 
 	int _n;
-	TTF_Font* _font;
+	TTF_Font* _font6;
+	TTF_Font* _font8;
 	Sprite _sprites[NUM_SPRITES];
 	SDL_Surface** _spritesheet;
 
@@ -29,7 +30,7 @@ public:
 	}
 
 	Sprite* getSprite(SpriteTag tag);
-	void drawText(const char* str, int x, int y);
+	void drawText(const char* str, int x, int y, SDL_Color color, int size);
 };
 
 /* spritemanager.cpp */
@@ -39,7 +40,9 @@ SprManager::SprManager(void) {
 
 	SDL_Surface* surface = SDL_LoadBMP("spritesheet.bmp");
 
-	_font = TTF_OpenFont("SDS_8x8.ttf", 8);
+	_font6 = TTF_OpenFont("SDS_6x6.ttf", 8);
+	_font8 = TTF_OpenFont("SDS_8x8.ttf", 8);
+
 	_n = ((surface->w/8)*(surface->h/8)+1);
 	_spritesheet = (SDL_Surface**) malloc(sizeof(SDL_Surface*)*_n);
 
@@ -636,6 +639,18 @@ SprManager::SprManager(void) {
 		556, 557,
 		588, 589
 	}; buildSprite(NPC_TILE_01, 2, 2, npcTile01);
+
+	/*
+	554, 555,
+	586, 587
+	*/
+
+	int frameTile0B[14*4] = {
+		551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 553,
+		551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 553,
+		551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 553,
+		585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 587
+	}; buildSprite(FRAME_TILE_0B, 14, 4, frameTile0B);
 }
 
 SprManager::~SprManager(void) {
@@ -651,7 +666,8 @@ SprManager::~SprManager(void) {
 	free(_spritesheet);
 	_spritesheet = NULL;
 
-	TTF_CloseFont(_font);
+	TTF_CloseFont(_font6);
+	TTF_CloseFont(_font8);
 	TTF_Quit();
 }
 
@@ -679,11 +695,12 @@ Sprite* SprManager::getSprite(SpriteTag tag) {
 	return &_sprites[tag];
 }
 
-void SprManager::drawText(const char* str, int x, int y) {
+void SprManager::drawText(const char* str, int x, int y, SDL_Color color, int size = 8) {
 	if(!str) return;
 
-	SDL_Color color = {0xFF, 0xFF, 0xFF, 0x00};
-	SDL_Surface* text = TTF_RenderText_Solid(_font, str, color);
+	SDL_Surface* text;
+	if(size==6) text = TTF_RenderText_Solid(_font6, str, color);
+	else text = TTF_RenderText_Solid(_font8, str, color);
 
 	SDL_Rect rect = {x, y, text->w, text->h};
 	SDL_BlitSurface(text, NULL, screen, &rect);

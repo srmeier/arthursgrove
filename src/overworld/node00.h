@@ -10,12 +10,14 @@ protected:
 	BugEntity* _bug[4];
 	Npc00Entity* _npc00;
 
+	void _drawEntities(void);
+
 public:
 	Node00(void);
 	~Node00(void);
 
 	void update(void);
-	void draw(void);
+
 	SDL_bool canSpawn(int i, int j);
 	Entity* getEntityAt(int i, int j);
 };
@@ -111,9 +113,7 @@ void Node00::update(void) {
 	_npc00->update();
 }
 
-void Node00::draw(void) {
-	WorldNode::draw();
-
+void Node00::_drawEntities(void) {
 	for(int i=0; i<numofbugs; i++)
 		if(_bug[i]->active) _bug[i]->draw();
 

@@ -118,7 +118,8 @@ typedef enum {
 	DOOR_TILE_00,       // 0x6E
 	DOOR_TILE_01,       // 0x6F
 	NPC_TILE_00,        // 0x70
-	NPC_TILE_01
+	NPC_TILE_01,        // 0x71
+	FRAME_TILE_0B
 } SpriteTag;
 
 //----------------------------------------------------------------------

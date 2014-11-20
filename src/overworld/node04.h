@@ -8,12 +8,13 @@ class Node04: public WorldNode {
 protected:
 	WormEntity* _worm;
 
+	void _drawEntities(void);
+
 public:
 	Node04(void);
 	~Node04(void);
 
 	void update(void);
-	void draw(void);
 };
 
 /* node04.cpp */
@@ -71,9 +72,7 @@ void Node04::update(void) {
 	if(_worm->active) _worm->update();
 }
 
-void Node04::draw(void) {
-	WorldNode::draw();
-
+void Node04::_drawEntities(void) {
 	if(_worm->active) _worm->draw();
 }
 

@@ -18,7 +18,7 @@ git push
 //----------------------------------------------------------------------
 #define SCREEN_W 320 // 40 -> 20
 #define SCREEN_H 240 // 30 -> 15
-#define NUM_SPRITES 114
+#define NUM_SPRITES 115
 #define SCREEN_NAME "Prototype"
 #define SCREEN_SCALE 2
 

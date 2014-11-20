@@ -61,6 +61,7 @@ void Npc00Entity::interactWith(void) {
 	WorldNode* node = overworld.getCurNode();
 
 	// will need to write message to player and let him respond
-	char str[] = "Hello Hero, this is a test to see how fucking long this string can be and if the implementation will indeed word"; // strings like this carry infor about size
+	char str[] = "Hello Hero, this is a test to see how fucking long this string can be and if"\
+		"the implementation will indeed word"; // strings like this carry infor about size
 	node->writeMessageToPlayer(this, str);
 }
