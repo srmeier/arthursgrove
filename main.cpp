@@ -9,6 +9,10 @@ git push
 */
 
 /*
+- the tsunami state toggles based on whether the play is in the water
+	it looks weird throwing a tsunami and it disappearing when the player gets out and
+	reappearing when the player gets in
+
 - need to write the WorldNode::writeMessageToPlayer() and decide on function arguements
 	NpcEntity::interactWith() will call this function when player collides
 - might want to consider adding an "interactable" component
