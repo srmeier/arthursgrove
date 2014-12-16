@@ -1,6 +1,6 @@
 /*
 g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
-.\test.exe
+.\test
 
 git status
 git add .

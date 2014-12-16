@@ -73,6 +73,10 @@ void PlayerEntity::update(void) {
 			} _attack_next_free_time = SDL_FALSE;
 		}
 
+		if(tsunami->active && weapon!=tsunami) {
+			tsunami->update();
+		}
+
 		if(weapon->active)
 			weapon->update();
 		else {
@@ -188,6 +192,10 @@ void PlayerEntity::draw(void) {
 
 	if(shield->active) shield->draw();
 	if(weapon->active) weapon->draw();
+
+	if(tsunami->active && weapon!=tsunami) {
+		tsunami->draw();
+	}
 }
 
 int PlayerEntity::getX(void) {
