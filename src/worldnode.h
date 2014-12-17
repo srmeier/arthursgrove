@@ -12,6 +12,8 @@ protected:
 	char* _messageForPlayer1;
 	char* _messageForPlayer2;
 	char* _messageForPlayer3;
+	char* _messageForPlayer4;
+	char* _messageForPlayer5;
 	NpcEntity* _interactingNpc;
 	SDL_bool _writingMessageToPlayer;
 
@@ -41,6 +43,8 @@ WorldNode::WorldNode(void) {
 	_messageForPlayer1 = NULL;
 	_messageForPlayer2 = NULL;
 	_messageForPlayer3 = NULL;
+	_messageForPlayer4 = NULL;
+	_messageForPlayer5 = NULL;
 	_writingMessageToPlayer = SDL_FALSE;
 }
 
@@ -51,6 +55,10 @@ WorldNode::~WorldNode(void) {
 	_messageForPlayer2 = NULL;
 	free(_messageForPlayer3);
 	_messageForPlayer3 = NULL;
+	free(_messageForPlayer4);
+	_messageForPlayer4 = NULL;
+	free(_messageForPlayer5);
+	_messageForPlayer5 = NULL;
 }
 
 void WorldNode::update(void) {
@@ -86,9 +94,11 @@ void WorldNode::_drawGUI(void) {
 		SDL_BlitSurface(spr->tile, NULL, screen, &rect);
 
 		SprManager& sprmanager = SprManager::getRef();
-		sprmanager.drawText(_messageForPlayer1, drawx+4, drawy+4, color, 6);
-		sprmanager.drawText(_messageForPlayer2, drawx+4, drawy+4+6, color, 6);
-		sprmanager.drawText(_messageForPlayer3, drawx+4, drawy+4+12, color, 6);
+		sprmanager.drawText(_messageForPlayer1, drawx+5, drawy+2, color, 6);
+		sprmanager.drawText(_messageForPlayer2, drawx+5, drawy+2+6, color, 6);
+		sprmanager.drawText(_messageForPlayer3, drawx+5, drawy+2+12, color, 6);
+		sprmanager.drawText(_messageForPlayer4, drawx+5, drawy+2+18, color, 6);
+		sprmanager.drawText(_messageForPlayer5, drawx+5, drawy+2+24, color, 6);
 
 		static int on = 1;
 		if(_messageAButnFlash>0) _messageAButnFlash--;
@@ -97,7 +107,8 @@ void WorldNode::_drawGUI(void) {
 			if(on) on = 0; else on = 1;
 		}
 
-		if(on) sprmanager.drawText("Press B", drawx, drawy+18, color, 6);
+		//SDL_Color color0 = {0x00, 0xFF, 0xAA, 0xAA};
+		if(on) sprmanager.drawText("Press B", drawx+5+8*14-5, drawy+8*5-2, color, 6);
 	}
 
 	// GUI
@@ -213,13 +224,17 @@ void WorldNode::writeMessageToPlayer(NpcEntity* npcentity, const char* message) 
 	_messageForPlayer2 = NULL;
 	free(_messageForPlayer3);
 	_messageForPlayer3 = NULL;
+	free(_messageForPlayer4);
+	_messageForPlayer4 = NULL;
+	free(_messageForPlayer5);
+	_messageForPlayer5 = NULL;
 
 	int n = 0;
 	int lineLen = 25;
 	int L = strlen(message);
 	int l = strlen(message);
 
-	while(l>0&&n<3) {
+	while(l>0&&n<5) {
 		switch(n) {
 			case 0: {
 				if(L<lineLen) {
@@ -254,6 +269,30 @@ void WorldNode::writeMessageToPlayer(NpcEntity* npcentity, const char* message) 
 					_messageForPlayer3 = (char*) malloc(sizeof(char)*(lineLen+1));
 					memcpy(_messageForPlayer3, (message+2*lineLen), sizeof(char)*lineLen);
 					_messageForPlayer3[lineLen] = '\0';
+				}
+			} break;
+
+			case 3: {
+				if(L<4*lineLen) {
+					_messageForPlayer4 = (char*) malloc(sizeof(char)*(l+1));
+					memcpy(_messageForPlayer4, (message+3*lineLen), sizeof(char)*l);
+					_messageForPlayer4[l] = '\0';
+				} else {
+					_messageForPlayer4 = (char*) malloc(sizeof(char)*(lineLen+1));
+					memcpy(_messageForPlayer4, (message+3*lineLen), sizeof(char)*lineLen);
+					_messageForPlayer4[lineLen] = '\0';
+				}
+			} break;
+
+			case 4: {
+				if(L<5*lineLen) {
+					_messageForPlayer5 = (char*) malloc(sizeof(char)*(l+1));
+					memcpy(_messageForPlayer5, (message+4*lineLen), sizeof(char)*l);
+					_messageForPlayer5[l] = '\0';
+				} else {
+					_messageForPlayer5 = (char*) malloc(sizeof(char)*(lineLen+1));
+					memcpy(_messageForPlayer5, (message+4*lineLen), sizeof(char)*lineLen);
+					_messageForPlayer5[lineLen] = '\0';
 				}
 			} break;
 		}
