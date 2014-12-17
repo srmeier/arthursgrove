@@ -77,8 +77,8 @@ void WorldNode::_drawGUI(void) {
 	}
 
 	if(_writingMessageToPlayer) {
-		int drawx = 16*(_interactingNpc->getI()-6);
-		int drawy = 16*(_interactingNpc->getJ()-2);
+		int drawx = 16*(_interactingNpc->getI()-9);
+		int drawy = 16*(_interactingNpc->getJ()-3);
 		SDL_Color color = {0x00, 0x00, 0x00, 0x00};
 
 		Sprite* spr = SprManager::getRef().getSprite(FRAME_TILE_0B);
