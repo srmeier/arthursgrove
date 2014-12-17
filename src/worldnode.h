@@ -86,9 +86,9 @@ void WorldNode::_drawGUI(void) {
 		SDL_BlitSurface(spr->tile, NULL, screen, &rect);
 
 		SprManager& sprmanager = SprManager::getRef();
-		sprmanager.drawText(_messageForPlayer1, drawx, drawy, color, 6);
-		sprmanager.drawText(_messageForPlayer2, drawx, drawy+6, color, 6);
-		sprmanager.drawText(_messageForPlayer3, drawx, drawy+12, color, 6);
+		sprmanager.drawText(_messageForPlayer1, drawx+4, drawy+4, color, 6);
+		sprmanager.drawText(_messageForPlayer2, drawx+4, drawy+4+6, color, 6);
+		sprmanager.drawText(_messageForPlayer3, drawx+4, drawy+4+12, color, 6);
 
 		static int on = 1;
 		if(_messageAButnFlash>0) _messageAButnFlash--;
@@ -215,44 +215,51 @@ void WorldNode::writeMessageToPlayer(NpcEntity* npcentity, const char* message) 
 	_messageForPlayer3 = NULL;
 
 	int n = 0;
+	int lineLen = 25;
 	int L = strlen(message);
 	int l = strlen(message);
 
 	while(l>0&&n<3) {
 		switch(n) {
 			case 0: {
-				if(L<38) {
-					_messageForPlayer1 = (char*) malloc(sizeof(char)*l);
+				if(L<lineLen) {
+					_messageForPlayer1 = (char*) malloc(sizeof(char)*(l+1));
 					memcpy(_messageForPlayer1, message, sizeof(char)*l);
+					_messageForPlayer1[l] = '\0';
 				} else {
-					_messageForPlayer1 = (char*) malloc(sizeof(char)*38);
-					memcpy(_messageForPlayer1, message, sizeof(char)*38);
+					_messageForPlayer1 = (char*) malloc(sizeof(char)*(lineLen+1));
+					memcpy(_messageForPlayer1, message, sizeof(char)*lineLen);
+					_messageForPlayer1[lineLen] = '\0';
 				}
 			} break;
 
 			case 1: {
-				if(L<2*38) {
-					_messageForPlayer2 = (char*) malloc(sizeof(char)*l);
-					memcpy(_messageForPlayer2, (message+38), sizeof(char)*l);
+				if(L<2*lineLen) {
+					_messageForPlayer2 = (char*) malloc(sizeof(char)*(l+1));
+					memcpy(_messageForPlayer2, (message+lineLen), sizeof(char)*l);
+					_messageForPlayer2[l] = '\0';
 				} else {
-					_messageForPlayer2 = (char*) malloc(sizeof(char)*38);
-					memcpy(_messageForPlayer2, (message+38), sizeof(char)*38);
+					_messageForPlayer2 = (char*) malloc(sizeof(char)*(lineLen+1));
+					memcpy(_messageForPlayer2, (message+lineLen), sizeof(char)*lineLen);
+					_messageForPlayer2[lineLen] = '\0';
 				}
 			} break;
 
 			case 2: {
-				if(L<3*38) {
-					_messageForPlayer3 = (char*) malloc(sizeof(char)*l);
-					memcpy(_messageForPlayer3, (message+2*38), sizeof(char)*l);
+				if(L<3*lineLen) {
+					_messageForPlayer3 = (char*) malloc(sizeof(char)*(l+1));
+					memcpy(_messageForPlayer3, (message+2*lineLen), sizeof(char)*l);
+					_messageForPlayer3[l] = '\0';
 				} else {
-					_messageForPlayer3 = (char*) malloc(sizeof(char)*38);
-					memcpy(_messageForPlayer3, (message+2*38), sizeof(char)*38);
+					_messageForPlayer3 = (char*) malloc(sizeof(char)*(lineLen+1));
+					memcpy(_messageForPlayer3, (message+2*lineLen), sizeof(char)*lineLen);
+					_messageForPlayer3[lineLen] = '\0';
 				}
 			} break;
 		}
 
 		n++;
-		l -= 38;
+		l -= lineLen;
 	}
 
 	_messageAButnFlash = 32;
