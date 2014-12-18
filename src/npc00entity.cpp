@@ -61,7 +61,9 @@ void Npc00Entity::interactWith(void) {
 	WorldNode* node = overworld.getCurNode();
 
 	// will need to write message to player and let him respond
-	char str[] = "Hello Hero, this is a test string for testing. "\
-		"Testing 1 2 3, Testing 1 2 3, Testing 1 2 3, Testing 1 2 3";
+	char str[] =\
+		"Hello, I'm looking for my"\
+		"amulet. If you see it be "\
+		"sure to let me know!     ";
 	node->writeMessageToPlayer(this, str);
 }
