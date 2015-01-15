@@ -69,6 +69,7 @@ git push
 SDL_bool      running  = SDL_TRUE;
 SDL_Window*   window   = NULL;
 SDL_Surface*  screen   = NULL;
+SDL_Texture*  texture  = NULL;
 SDL_Renderer* renderer = NULL;
 
 //----------------------------------------------------------------------
@@ -98,6 +99,14 @@ int SDL_main(int argc, char* argv[]) {
 	SDL_SetColorKey(screen, 1, 0xFF00FF);
 	SDL_FillRect(screen, 0, 0xFF00FF);
 
+	texture = SDL_CreateTexture(
+		renderer,
+		SDL_PIXELFORMAT_RGBA8888,
+		SDL_TEXTUREACCESS_STREAMING,
+		screen->w,
+		screen->h
+	);
+
 	/* === */
 
 	PlayerEntity player(16*5, 16*5);
@@ -112,26 +121,45 @@ int SDL_main(int argc, char* argv[]) {
 		/* === */
 
 		switch(gamestate) {
-			case 0: {
+			case 0x00: {
 				Overworld::getRef().updateNode();
 				Overworld::getRef().drawNode();
 			} break;
-
-			case 1: {
+			case 0x01: {
 			} break;
 		}
 
 		/* === */
 
-		SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer, screen);
-		SDL_RenderCopy(renderer, tex, NULL, NULL);
+		int pitch;
+		void *pixels;
 
+		SDL_LockTexture(texture, NULL, &pixels, &pitch);
+
+		SDL_ConvertPixels(
+			screen->w,
+			screen->h,
+			screen->format->format,
+			screen->pixels,
+			screen->pitch,
+			SDL_PIXELFORMAT_RGBA8888,
+			pixels, pitch
+		);
+
+		SDL_UnlockTexture(texture);
+
+		SDL_RenderCopy(renderer, texture, NULL, NULL);
 		SDL_RenderPresent(renderer);
-		SDL_DestroyTexture(tex);
 	}
 
 	/* === */
 	/* === */
+
+	SDL_DestroyTexture(texture);
+	texture = NULL;
+
+	SDL_FreeSurface(screen);
+	screen = NULL;
 
 	SDL_DestroyRenderer(renderer);
 	renderer = NULL;
