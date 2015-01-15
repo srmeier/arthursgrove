@@ -60,7 +60,6 @@ void Npc00Entity::interactWith(void) {
 	Overworld& overworld = Overworld::getRef();
 	WorldNode* node = overworld.getCurNode();
 
-	// will need to write message to player and let him respond
 	char str[] =\
 		"Hello, I'm looking for my"\
 		"amulet. If you see it be "\

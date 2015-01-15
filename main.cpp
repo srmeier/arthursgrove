@@ -1,6 +1,7 @@
 /*
 g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
 .\test
+- for polymorphism make sure to use "virtual"
 
 git status
 git add .
@@ -9,10 +10,11 @@ git push
 */
 
 /*
-- need to write the WorldNode::writeMessageToPlayer() and decide on function arguements
-	NpcEntity::interactWith() will call this function when player collides
+- need to add a method to the player class which checks for a particular
+	spriteID within the inventory array
 - might want to consider adding an "interactable" component
-- for polymorphism make sure to use "virtual"
+	(although the entity class basically is a moveable interact
+	component)
 */
 
 //----------------------------------------------------------------------
