@@ -151,6 +151,8 @@ Sprite* buildSprite(int w, int h, int inds[]) {
 			SDL_BlitSurface(Game.gfx.tiles[inds[w*j+i]], NULL, spr->tile, &rect);
 		}
 	}
+
+	return spr;
 }
 
 //-----------------------------------------------------------------------------

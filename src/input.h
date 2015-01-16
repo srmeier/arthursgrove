@@ -12,12 +12,19 @@ protected:
 	SDL_bool _right;
 	SDL_bool _a, _b;
 
+	SDL_bool _upc;
+	SDL_bool _downc;
+	SDL_bool _leftc;
+	SDL_bool _rightc;
+	SDL_bool _ac, _bc;
+
 public:
 	Input(void);
 
 	void clear(void);
-	virtual void poll(void) = 0;
+	virtual void poll(void);
 	SDL_bool isDown(const char* key);
+	SDL_bool isPressed(const char* key);
 	void setKey(const char* key, SDL_bool isdown);
 };
 
@@ -28,12 +35,28 @@ Input::Input(void) {
 }
 
 void Input::clear(void) {
-	_a     = SDL_FALSE;
-	_b     = SDL_FALSE;
-	_up    = SDL_FALSE;
-	_down  = SDL_FALSE;
-	_left  = SDL_FALSE;
-	_right = SDL_FALSE;
+	_a      = SDL_FALSE;
+	_b      = SDL_FALSE;
+	_up     = SDL_FALSE;
+	_down   = SDL_FALSE;
+	_left   = SDL_FALSE;
+	_right  = SDL_FALSE;
+
+	_ac     = SDL_FALSE;
+	_bc     = SDL_FALSE;
+	_upc    = SDL_FALSE;
+	_downc  = SDL_FALSE;
+	_leftc  = SDL_FALSE;
+	_rightc = SDL_FALSE;
+}
+
+void Input::poll(void) {
+	if(!_up) _upc = SDL_FALSE;
+	if(!_down) _downc = SDL_FALSE;
+	if(!_left) _leftc = SDL_FALSE;
+	if(!_right) _rightc = SDL_FALSE;
+	if(!_a) _ac = SDL_FALSE;
+	if(!_b) _bc = SDL_FALSE;
 }
 
 SDL_bool Input::isDown(const char* key) {
@@ -49,6 +72,58 @@ SDL_bool Input::isDown(const char* key) {
 		return _a;
 	} else if(!strcmp(key, "b")) {
 		return _b;
+	}
+}
+
+SDL_bool Input::isPressed(const char* key) {
+	if(!strcmp(key, "up")) {
+		if(_up&&!_upc) {
+			_upc = SDL_TRUE;
+			return SDL_TRUE;
+		} else {
+			_upc = SDL_FALSE;
+			return SDL_FALSE;
+		}
+	} else if(!strcmp(key, "down")) {
+		if(_down&&!_downc) {
+			_downc = SDL_TRUE;
+			return SDL_TRUE;
+		} else {
+			_downc = SDL_FALSE;
+			return SDL_FALSE;
+		}
+	} else if(!strcmp(key, "left")) {
+		if(_left&&!_leftc) {
+			_leftc = SDL_TRUE;
+			return SDL_TRUE;
+		} else {
+			_leftc = SDL_FALSE;
+			return SDL_FALSE;
+		}
+	} else if(!strcmp(key, "right")) {
+		if(_right&&!_rightc) {
+			_rightc = SDL_TRUE;
+			return SDL_TRUE;
+		} else {
+			_rightc = SDL_FALSE;
+			return SDL_FALSE;
+		}
+	} else if(!strcmp(key, "a")) {
+		if(_a&&!_ac) {
+			_ac = SDL_TRUE;
+			return SDL_TRUE;
+		} else {
+			_ac = SDL_FALSE;
+			return SDL_FALSE;
+		}
+	} else if(!strcmp(key, "b")) {
+		if(_b&&!_bc) {
+			_bc = SDL_TRUE;
+			return SDL_TRUE;
+		} else {
+			_bc = SDL_FALSE;
+			return SDL_FALSE;
+		}
 	}
 }
 

@@ -29,6 +29,10 @@ public:
 /* resourcemanager.cpp */
 //-----------------------------------------------------------------------------
 ResourceManager::ResourceManager(void) {
+	for(int i=0; i<SpriteID::NUM_SPRITES; i++) {
+		_sprites[i] = NULL;
+	}
+
 	//% === %
 	int emptyTile[2*2] = {
 		  0,   0,
@@ -251,7 +255,6 @@ ResourceManager::ResourceManager(void) {
 	_sprites[SpriteID::ATTACK07] = buildSprite(2, 2, attackTile07);
 
 	//% === %
-
 	int shieldTile00[2*2] = {
 		179, 180,
 		211, 212
@@ -273,7 +276,6 @@ ResourceManager::ResourceManager(void) {
 	_sprites[SpriteID::BUG01] = buildSprite(2, 2, bugTile01);
 
 	//% === %
-
 	int smallflameTile00[2*2] = {
 		185, 186,
 		217, 218
@@ -322,524 +324,522 @@ ResourceManager::ResourceManager(void) {
 	};
 	_sprites[SpriteID::PLAYER06] = buildSprite(2, 2, playerTile06);
 
-	/*
 	//% === %
-
 	int playerTile07[2*2] = {
 		231, 232,
 		263, 264
-	}; buildSprite(PLAYER_TILE_07, 2, 2, playerTile07);
+	};
+	_sprites[SpriteID::PLAYER07] = buildSprite(2, 2, playerTile07);
 
 	//% === %
-
 	int playerTile08[2*2] = {
 		233, 234,
 		265, 266
-	}; buildSprite(PLAYER_TILE_08, 2, 2, playerTile08);
+	};
+	_sprites[SpriteID::PLAYER08] = buildSprite(2, 2, playerTile08);
 
 	//% === %
-
 	int playerTile09[2*2] = {
 		235, 236,
 		267, 268
-	}; buildSprite(PLAYER_TILE_09, 2, 2, playerTile09);
+	};
+	_sprites[SpriteID::PLAYER09] = buildSprite(2, 2, playerTile09);
 
 	//% === %
-
 	int playerTile0A[2*2] = {
 		237, 238,
 		269, 270
-	}; buildSprite(PLAYER_TILE_0A, 2, 2, playerTile0A);
+	};
+	_sprites[SpriteID::PLAYER0A] = buildSprite(2, 2, playerTile0A);
 
 	//% === %
-
 	int playerTile0B[2*2] = {
 		239, 240,
 		271, 272
-	}; buildSprite(PLAYER_TILE_0B, 2, 2, playerTile0B);
+	};
+	_sprites[SpriteID::PLAYER0B] = buildSprite(2, 2, playerTile0B);
 
 	//% === %
-
 	int treeTile01[2*2] = {
 		241, 242,
 		273, 274
-	}; buildSprite(TREE_TILE_01, 2, 2, treeTile01);
+	};
+	_sprites[SpriteID::TREE01] = buildSprite(2, 2, treeTile01);
 
 	//% === %
-
 	int treeTile02[2*2] = {
 		243, 244,
 		275, 276
-	}; buildSprite(TREE_TILE_02, 2, 2, treeTile02);
+	};
+	_sprites[SpriteID::TREE02] = buildSprite(2, 2, treeTile02);
 
 	//% === %
-
 	int treeTile03[2*2] = {
 		245, 246,
 		277, 278
-	}; buildSprite(TREE_TILE_03, 2, 2, treeTile03);
+	};
+	_sprites[SpriteID::TREE03] = buildSprite(2, 2, treeTile03);
 
 	//% === %
-
 	int treeTile04[2*2] = {
 		247, 248,
 		279, 280
-	}; buildSprite(TREE_TILE_04, 2, 2, treeTile04);
+	};
+	_sprites[SpriteID::TREE04] = buildSprite(2, 2, treeTile04);
 
 	//% === %
-
 	int treeTile05[2*2] = {
 		249, 250,
 		281, 282
-	}; buildSprite(TREE_TILE_05, 2, 2, treeTile05);
+	};
+	_sprites[SpriteID::TREE05] = buildSprite(2, 2, treeTile05);
 
 	//% === %
-
 	int treeTile06[2*2] = {
 		251, 252,
 		283, 284
-	}; buildSprite(TREE_TILE_06, 2, 2, treeTile06);
+	};
+	_sprites[SpriteID::TREE06] = buildSprite(2, 2, treeTile06);
 
 	//% === %
-
 	int treeTile07[2*2] = {
 		253, 254,
 		285, 286
-	}; buildSprite(TREE_TILE_07, 2, 2, treeTile07);
+	};
+	_sprites[SpriteID::TREE07] = buildSprite(2, 2, treeTile07);
 
 	//% === %
-
 	int treeTile08[2*2] = {
 		255, 256,
 		287, 288
-	}; buildSprite(TREE_TILE_08, 2, 2, treeTile08);
+	};
+	_sprites[SpriteID::TREE08] = buildSprite(2, 2, treeTile08);
 
 	//% === %
-
 	int treeTile09[2*2] = {
 		289, 290,
 		321, 322
-	}; buildSprite(TREE_TILE_09, 2, 2, treeTile09);
+	};
+	_sprites[SpriteID::TREE09] = buildSprite(2, 2, treeTile09);
 
 	//% === %
-
 	int rockTile01[2*2] = {
 		291, 292,
 		323, 324
-	}; buildSprite(ROCK_TILE_01, 2, 2, rockTile01);
+	};
+	_sprites[SpriteID::ROCK01] = buildSprite(2, 2, rockTile01);
 
 	//% === %
-
 	int rockTile02[2*2] = {
 		293, 294,
 		325, 326
-	}; buildSprite(ROCK_TILE_02, 2, 2, rockTile02);
+	};
+	_sprites[SpriteID::ROCK02] = buildSprite(2, 2, rockTile02);
 
 	//% === %
-
 	int rockTile03[2*2] = {
 		295, 296,
 		327, 328
-	}; buildSprite(ROCK_TILE_03, 2, 2, rockTile03);
+	};
+	_sprites[SpriteID::ROCK03] = buildSprite(2, 2, rockTile03);
 
 	//% === %
-
 	int rockTile04[2*2] = {
 		297, 298,
 		329, 330
-	}; buildSprite(ROCK_TILE_04, 2, 2, rockTile04);
+	};
+	_sprites[SpriteID::ROCK04] = buildSprite(2, 2, rockTile04);
 
 	//% === %
-
 	int rockTile05[2*2] = {
 		299, 300,
 		331, 332
-	}; buildSprite(ROCK_TILE_05, 2, 2, rockTile05);
+	};
+	_sprites[SpriteID::ROCK05] = buildSprite(2, 2, rockTile05);
 
 	//% === %
-
 	int seaTile01[2*2] = {
 		301, 302,
 		333, 334
-	}; buildSprite(SEA_TILE_01, 2, 2, seaTile01);
+	};
+	_sprites[SpriteID::SEA01] = buildSprite(2, 2, seaTile01);
 
 	//% === %
-
 	int fishTile00[2*2] = {
 		303, 304,
 		335, 336
-	}; buildSprite(FISH_TILE_00, 2, 2, fishTile00);
+	};
+	_sprites[SpriteID::FISH00] = buildSprite(2, 2, fishTile00);
 
 	//% === %
-
 	int fishTile01[2*2] = {
 		305, 306,
 		337, 338
-	}; buildSprite(FISH_TILE_01, 2, 2, fishTile01);
+	};
+	_sprites[SpriteID::FISH01] = buildSprite(2, 2, fishTile01);
 
 	//% === %
-
 	int seaTile02[2*2] = {
 		307, 308,
 		339, 340
-	}; buildSprite(SEA_TILE_02, 2, 2, seaTile02);
+	};
+	_sprites[SpriteID::SEA02] = buildSprite(2, 2, seaTile02);
 
 	//% === %
-
 	int seaTile03[2*2] = {
 		309, 310,
 		341, 342
-	}; buildSprite(SEA_TILE_03, 2, 2, seaTile03);
+	};
+	_sprites[SpriteID::SEA03] = buildSprite(2, 2, seaTile03);
 
 	//% === %
-
 	int seaTile04[2*2] = {
 		311, 312,
 		343, 344
-	}; buildSprite(SEA_TILE_04, 2, 2, seaTile04);
+	};
+	_sprites[SpriteID::SEA04] = buildSprite(2, 2, seaTile04);
 
 	//% === %
-
 	int seaTile05[2*2] = {
 		313, 314,
 		345, 346
-	}; buildSprite(SEA_TILE_05, 2, 2, seaTile05);
+	};
+	_sprites[SpriteID::SEA05] = buildSprite(2, 2, seaTile05);
 
 	//% === %
-
 	int seaTile06[2*2] = {
 		315, 316,
 		347, 348
-	}; buildSprite(SEA_TILE_06, 2, 2, seaTile06);
+	};
+	_sprites[SpriteID::SEA06] = buildSprite(2, 2, seaTile06);
 
 	//% === %
-
 	int seaTile07[2*2] = {
 		317, 318,
 		349, 350
-	}; buildSprite(SEA_TILE_07, 2, 2, seaTile07);
+	};
+	_sprites[SpriteID::SEA07] = buildSprite(2, 2, seaTile07);
 
 	//% === %
-
 	int seaTile08[2*2] = {
 		319, 320,
 		351, 352
-	}; buildSprite(SEA_TILE_08, 2, 2, seaTile08);
+	};
+	_sprites[SpriteID::SEA08] = buildSprite(2, 2, seaTile08);
 
 	//% === %
-
 	int seaTile09[2*2] = {
 		353, 354,
 		385, 386
-	}; buildSprite(SEA_TILE_09, 2, 2, seaTile09);
+	};
+	_sprites[SpriteID::SEA09] = buildSprite(2, 2, seaTile09);
 
 	//% === %
-
 	int seaTile0A[2*2] = {
 		355, 356,
 		387, 388
-	}; buildSprite(SEA_TILE_0A, 2, 2, seaTile0A);
+	};
+	_sprites[SpriteID::SEA0A] = buildSprite(2, 2, seaTile0A);
 
 	//% === %
-
 	int seaTile0B[2*2] = {
 		357, 358,
 		389, 390
-	}; buildSprite(SEA_TILE_0B, 2, 2, seaTile0B);
+	};
+	_sprites[SpriteID::SEA0B] = buildSprite(2, 2, seaTile0B);
 
 	//% === %
-
 	int sandTile01[2*2] = {
 		359, 360,
 		391, 392
-	}; buildSprite(SAND_TILE_01, 2, 2, sandTile01);
+	};
+	_sprites[SpriteID::SAND01] = buildSprite(2, 2, sandTile01);
 
 	//% === %
-
 	int tsunamiTile00[2*2] = {
 		361, 362,
 		393, 394
-	}; buildSprite(TSUNAMI_TILE_00, 2, 2, tsunamiTile00);
+	};
+	_sprites[SpriteID::TSUNAMI00] = buildSprite(2, 2, tsunamiTile00);
 
 	//% === %
-
 	int tsunamiTile01[2*2] = {
 		363, 364,
 		395, 396
-	}; buildSprite(TSUNAMI_TILE_01, 2, 2, tsunamiTile01);
+	};
+	_sprites[SpriteID::TSUNAMI01] = buildSprite(2, 2, tsunamiTile01);
 
 	//% === %
-
 	int wormTile00[2*2] = {
 		365, 366,
 		397, 398
-	}; buildSprite(WORM_TILE_00, 2, 2, wormTile00);
+	};
+	_sprites[SpriteID::WORM00] = buildSprite(2, 2, wormTile00);
 
 	//% === %
-
 	int wormTile01[2*2] = {
 		367, 368,
 		399, 400
-	}; buildSprite(WORM_TILE_01, 2, 2, wormTile01);
+	};
+	_sprites[SpriteID::WORM01] = buildSprite(2, 2, wormTile01);
 
 	//% === %
-
 	int dustcloudTile00[2*2] = {
 		369, 370,
 		401, 402
-	}; buildSprite(DUSTCLOUD_TILE_00, 2, 2, dustcloudTile00);
+	};
+	_sprites[SpriteID::DUSTCLOUD00] = buildSprite(2, 2, dustcloudTile00);
 
 	//% === %
-
 	int dustcloudTile01[2*2] = {
 		371, 372,
 		403, 404
-	}; buildSprite(DUSTCLOUD_TILE_01, 2, 2, dustcloudTile01);
+	};
+	_sprites[SpriteID::DUSTCLOUD01] = buildSprite(2, 2, dustcloudTile01);
 
 	//% === %
-
 	int guiTile00[2*2] = {
 		373, 374,
 		405, 406
-	}; buildSprite(GUI_TILE_00, 2, 2, guiTile00);
+	};
+	_sprites[SpriteID::GUI00] = buildSprite(2, 2, guiTile00);
 
 	//% === %
-
 	int guiTile01[2*2] = {
 		375, 376,
 		407, 408
-	}; buildSprite(GUI_TILE_01, 2, 2, guiTile01);
+	};
+	_sprites[SpriteID::GUI01] = buildSprite(2, 2, guiTile01);
 
 	//% === %
-
 	int guiTile02[2*2] = {
 		377, 378,
 		409, 410
-	}; buildSprite(GUI_TILE_02, 2, 2, guiTile02);
+	};
+	_sprites[SpriteID::GUI02] = buildSprite(2, 2, guiTile02);
 
 	//% === %
-
 	int heartTile01[2*2] = {
 		379, 380,
 		411, 412
-	}; buildSprite(HEART_TILE_01, 2, 2, heartTile01);
+	};
+	_sprites[SpriteID::HEART01] = buildSprite(2, 2, heartTile01);
 
 	//% === %
-
 	int guiTile03[2*2] = {
 		381, 382,
 		413, 414
-	}; buildSprite(GUI_TILE_03, 2, 2, guiTile03);
+	};
+	_sprites[SpriteID::GUI03] = buildSprite(2, 2, guiTile03);
 
 	//% === %
-
 	int frameTile09[19*4] = {
 		383, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 452, 384,
 		420, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 421,
 		420, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 135, 421,
 		415, 453, 453, 453, 453, 453, 453, 453, 135, 135, 135, 453, 453, 453, 453, 453, 453, 453, 416
-	}; buildSprite(FRAME_TILE_09, 19, 4, frameTile09);
+	};
+	_sprites[SpriteID::FRAME09] = buildSprite(19, 4, frameTile09);
 
 	//% === %
-
 	int frameTile0A[3*4] = {
 		417, 418, 419,
 		449, 450, 451,
 		481, 482, 483,
 		513, 514, 515
-	}; buildSprite(FRAME_TILE_0A, 3, 4, frameTile0A);
+	};
+	_sprites[SpriteID::FRAME0A] = buildSprite(3, 4, frameTile0A);
 
 	//% === %
-
 	int foodTile00[2*2] = {
 		422, 423,
 		454, 455
-	}; buildSprite(FOOD_TILE_00, 2, 2, foodTile00);
+	};
+	_sprites[SpriteID::FOOD00] = buildSprite(2, 2, foodTile00);
 
 	//% === %
-
 	int potionTile00[2*2] = {
 		424, 425,
 		456, 457
-	}; buildSprite(POTION_TILE_00, 2, 2, potionTile00);
+	};
+	_sprites[SpriteID::POTION00] = buildSprite(2, 2, potionTile00);
 
 	//% === %
-
 	int ringTile00[2*2] = {
 		426, 427,
 		458, 459
-	}; buildSprite(RING_TILE_00, 2, 2, ringTile00);
+	};
+	_sprites[SpriteID::RING00] = buildSprite(2, 2, ringTile00);
 
 	//% === %
-
 	int scrollTile00[2*2] = {
 		428, 429,
 		460, 461
-	}; buildSprite(SCROLL_TILE_00, 2, 2, scrollTile00);
+	};
+	_sprites[SpriteID::SCROLL00] = buildSprite(2, 2, scrollTile00);
 
 	//% === %
-
 	int lightTile00[2*2] = {
 		430, 431,
 		462, 463
-	}; buildSprite(LIGHT_TILE_00, 2, 2, lightTile00);
+	};
+	_sprites[SpriteID::LIGHT00] = buildSprite(2, 2, lightTile00);
 
 	//% === %
-
 	int ropeTile00[2*2] = {
 		432, 433,
 		464, 465
-	}; buildSprite(ROPE_TILE_00, 2, 2, ropeTile00);
+	};
+	_sprites[SpriteID::ROPE00] = buildSprite(2, 2, ropeTile00);
 
 	//% === %
-
 	int keyTile00[2*2] = {
 		434, 435,
 		466, 467
-	}; buildSprite(KEY_TILE_00, 2, 2, keyTile00);
+	};
+	_sprites[SpriteID::KEY00] = buildSprite(2, 2, keyTile00);
 
 	//% === %
-
 	int floorTile00[2*2] = {
 		436, 437,
 		468, 469
-	}; buildSprite(FLOOR_TILE_00, 2, 2, floorTile00);
+	};
+	_sprites[SpriteID::FLOOR00] = buildSprite(2, 2, floorTile00);
 
 	//% === %
-
 	int floorTile01[2*2] = {
 		438, 439,
 		470, 471
-	}; buildSprite(FLOOR_TILE_01, 2, 2, floorTile01);
+	};
+	_sprites[SpriteID::FLOOR01] = buildSprite(2, 2, floorTile01);
 
 	//% === %
-
 	int floorTile02[2*2] = {
 		440, 441,
 		472, 473
-	}; buildSprite(FLOOR_TILE_02, 2, 2, floorTile02);
+	};
+	_sprites[SpriteID::FLOOR02] = buildSprite(2, 2, floorTile02);
 
 	//% === %
-
 	int wallTile00[2*2] = {
 		442, 443,
 		474, 475
-	}; buildSprite(WALL_TILE_00, 2, 2, wallTile00);
+	};
+	_sprites[SpriteID::WALL00] = buildSprite(2, 2, wallTile00);
 
 	//% === %
-
 	int wallTile01[2*2] = {
 		444, 445,
 		476, 477
-	}; buildSprite(WALL_TILE_01, 2, 2, wallTile01);
+	};
+	_sprites[SpriteID::WALL01] = buildSprite(2, 2, wallTile01);
 
 	//% === %
-
 	int wallTile02[2*2] = {
 		446, 447,
 		478, 479
-	}; buildSprite(WALL_TILE_02, 2, 2, wallTile02);
+	};
+	_sprites[SpriteID::WALL02] = buildSprite(2, 2, wallTile02);
 
 	//% === %
-
 	int floorTile03[2*2] = {
 		500, 501,
 		532, 533
-	}; buildSprite(FLOOR_TILE_03, 2, 2, floorTile03);
+	};
+	_sprites[SpriteID::FLOOR03] = buildSprite(2, 2, floorTile03);
 
 	//% === %
-
 	int floorTile04[2*2] = {
 		502, 503,
 		534, 535
-	}; buildSprite(FLOOR_TILE_04, 2, 2, floorTile04);
+	};
+	_sprites[SpriteID::FLOOR04] = buildSprite(2, 2, floorTile04);
 
 	//% === %
-
 	int floorTile05[2*2] = {
 		504, 505,
 		536, 537
-	}; buildSprite(FLOOR_TILE_05, 2, 2, floorTile05);
+	};
+	_sprites[SpriteID::FLOOR05] = buildSprite(2, 2, floorTile05);
 
 	//% === %
-
 	int wallTile03[2*2] = {
 		506, 507,
 		538, 539
-	}; buildSprite(WALL_TILE_03, 2, 2, wallTile03);
+	};
+	_sprites[SpriteID::WALL03] = buildSprite(2, 2, wallTile03);
 
 	//% === %
-
 	int wallTile04[2*2] = {
 		570, 571,
 		602, 603
-	}; buildSprite(WALL_TILE_04, 2, 2, wallTile04);
+	};
+	_sprites[SpriteID::WALL04] = buildSprite(2, 2, wallTile04);
 
 	//% === %
-
 	int wallTile05[2*2] = {
 		572, 573,
 		604, 605
-	}; buildSprite(WALL_TILE_05, 2, 2, wallTile05);
+	};
+	_sprites[SpriteID::WALL05] = buildSprite(2, 2, wallTile05);
 
 	//% === %
-
 	int wallTile06[2*2] = {
 		574, 575,
 		606, 607
-	}; buildSprite(WALL_TILE_06, 2, 2, wallTile06);
+	};
+	_sprites[SpriteID::WALL06] = buildSprite(2, 2, wallTile06);
 
 	//% === %
-
 	int floorTile06[2*2] = {
 		568, 569,
 		600, 601
-	}; buildSprite(FLOOR_TILE_06, 2, 2, floorTile06);
+	};
+	_sprites[SpriteID::FLOOR06] = buildSprite(2, 2, floorTile06);
 
 	//% === %
-
 	int floorTile07[2*2] = {
 		566, 567,
 		598, 599
-	}; buildSprite(FLOOR_TILE_07, 2, 2, floorTile07);
+	};
+	_sprites[SpriteID::FLOOR07] = buildSprite(2, 2, floorTile07);
 
 	//% === %
-
 	int floorTile08[2*2] = {
 		564, 565,
 		596, 597
-	}; buildSprite(FLOOR_TILE_08, 2, 2, floorTile08);
+	};
+	_sprites[SpriteID::FLOOR08] = buildSprite(2, 2, floorTile08);
 
 	//% === %
-
 	int doorTile00[2*2] = {
 		562, 563,
 		594, 595
-	}; buildSprite(DOOR_TILE_00, 2, 2, doorTile00);
+	};
+	_sprites[SpriteID::DOOR00] = buildSprite(2, 2, doorTile00);
 
 	//% === %
-
 	int doorTile01[2*2] = {
 		560, 561,
 		592, 593
-	}; buildSprite(DOOR_TILE_01, 2, 2, doorTile01);
+	};
+	_sprites[SpriteID::DOOR01] = buildSprite(2, 2, doorTile01);
 
 	//% === %
-
 	int npcTile00[2*2] = {
 		558, 559,
 		590, 591
-	}; buildSprite(NPC_TILE_00, 2, 2, npcTile00);
+	};
+	_sprites[SpriteID::NPC00] = buildSprite(2, 2, npcTile00);
 
 	//% === %
-
 	int npcTile01[2*2] = {
 		556, 557,
 		588, 589
-	}; buildSprite(NPC_TILE_01, 2, 2, npcTile01);
+	};
+	_sprites[SpriteID::NPC01] = buildSprite(2, 2, npcTile01);
 
 	//% === %
-
 	int frameTile0B[20*6] = {
 		554, 584, 584, 584, 584, 584, 584, 584, 584, 584, 584, 584, 584, 584, 584, 584, 584, 584, 584, 555,
 		552, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 553,
@@ -847,8 +847,8 @@ ResourceManager::ResourceManager(void) {
 		552, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 553,
 		552, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 551, 553,
 		586, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 587
-	}; buildSprite(FRAME_TILE_0B, 20, 6, frameTile0B);
-	*/
+	};
+	_sprites[SpriteID::FRAME0B] = buildSprite(20, 6, frameTile0B);
 }
 
 ResourceManager::~ResourceManager(void) {

@@ -27,11 +27,11 @@ CLEAN-UP:
 
 //-----------------------------------------------------------------------------
 #include "engine.h"
+#include "input.h"
 
 #include "resourcemanager.h"
 
 /*
-#include "input.h"
 #include "drawable.h"
 #include "moveable.h"
 
@@ -69,6 +69,8 @@ int SDL_main(int argc, char* argv[]) {
 	startGame();
 
 	/* === */
+
+	ResourceManager& rm = ResourceManager::getRef();
 
 	//PlayerEntity player(16*5, 16*5);
 	//Overworld::getRef().addPlayer(&player);
