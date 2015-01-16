@@ -2,14 +2,13 @@
 g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
 .\test
 - for polymorphism make sure to use "virtual"
-
-git status
-git add .
-git commit -m "---"
-git push
 */
 
 /*
+CLEAN-UP:
+- 
+
+% === %
 - need to add a method to the player class which checks for a particular
 	spriteID within the inventory array
 - might want to consider adding an "interactable" component
@@ -17,14 +16,7 @@ git push
 	component)
 */
 
-//----------------------------------------------------------------------
-#define SCREEN_W 320 // 40 -> 20
-#define SCREEN_H 240 // 30 -> 15
-#define NUM_SPRITES 115
-#define SCREEN_NAME "Prototype"
-#define SCREEN_SCALE 2
-
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 #include <math.h>
 #include <time.h>
 #include <stdio.h>
@@ -33,10 +25,12 @@ git push
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
-//----------------------------------------------------------------------
-#include "typedefs.h"
-#include "sprmanager.h"
+//-----------------------------------------------------------------------------
+#include "engine.h"
 
+#include "resourcemanager.h"
+
+/*
 #include "input.h"
 #include "drawable.h"
 #include "moveable.h"
@@ -66,66 +60,31 @@ git push
 #include "bugentity.cpp"
 #include "npc00entity.cpp"
 #include "wormentity.cpp"
+*/
 
-//----------------------------------------------------------------------
-SDL_bool      running  = SDL_TRUE;
-SDL_Window*   window   = NULL;
-SDL_Surface*  screen   = NULL;
-SDL_Texture*  texture  = NULL;
-SDL_Renderer* renderer = NULL;
+//-----------------------------------------------------------------------------
 
-//----------------------------------------------------------------------
-int gamestate = 0;
-
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 int SDL_main(int argc, char* argv[]) {
-	SDL_Init(SDL_INIT_EVERYTHING);
-	srand(time(NULL));
-
-	window = SDL_CreateWindow(
-		SCREEN_NAME,
-		SDL_WINDOWPOS_CENTERED,
-		SDL_WINDOWPOS_CENTERED,
-		SCREEN_SCALE*SCREEN_W,
-		SCREEN_SCALE*SCREEN_H,
-		0
-	);
-
-	renderer = SDL_CreateRenderer(
-		window, -1,
-		SDL_RENDERER_ACCELERATED|
-		SDL_RENDERER_PRESENTVSYNC
-	);
-
-	screen = SDL_CreateRGBSurface(0, SCREEN_W, SCREEN_H, 24, 0x00, 0x00, 0x00, 0x00);
-	SDL_SetColorKey(screen, 1, 0xFF00FF);
-	SDL_FillRect(screen, 0, 0xFF00FF);
-
-	texture = SDL_CreateTexture(
-		renderer,
-		SDL_PIXELFORMAT_RGBA8888,
-		SDL_TEXTUREACCESS_STREAMING,
-		screen->w,
-		screen->h
-	);
+	startGame();
 
 	/* === */
 
-	PlayerEntity player(16*5, 16*5);
-	Overworld::getRef().addPlayer(&player);
+	//PlayerEntity player(16*5, 16*5);
+	//Overworld::getRef().addPlayer(&player);
 
 	/* === */
 
-	while(running) {
-		SDL_RenderClear(renderer);
-		SDL_FillRect(screen, 0, 0xFF00FF);
+	while(Game.running) {
+		SDL_RenderClear(Game.renderer);
+		SDL_FillRect(Game.gfx.screen, 0, 0x00);
 
 		/* === */
 
-		switch(gamestate) {
+		switch(Game.state) {
 			case 0x00: {
-				Overworld::getRef().updateNode();
-				Overworld::getRef().drawNode();
+				//Overworld::getRef().updateNode();
+				//Overworld::getRef().drawNode();
 			} break;
 			case 0x01: {
 			} break;
@@ -136,39 +95,27 @@ int SDL_main(int argc, char* argv[]) {
 		int pitch;
 		void *pixels;
 
-		SDL_LockTexture(texture, NULL, &pixels, &pitch);
+		SDL_LockTexture(Game.gfx.texture, NULL, &pixels, &pitch);
 
 		SDL_ConvertPixels(
-			screen->w,
-			screen->h,
-			screen->format->format,
-			screen->pixels,
-			screen->pitch,
+			Game.gfx.screen->w,
+			Game.gfx.screen->h,
+			Game.gfx.screen->format->format,
+			Game.gfx.screen->pixels,
+			Game.gfx.screen->pitch,
 			SDL_PIXELFORMAT_RGBA8888,
 			pixels, pitch
 		);
 
-		SDL_UnlockTexture(texture);
+		SDL_UnlockTexture(Game.gfx.texture);
 
-		SDL_RenderCopy(renderer, texture, NULL, NULL);
-		SDL_RenderPresent(renderer);
+		SDL_RenderCopy(Game.renderer, Game.gfx.texture, NULL, NULL);
+		SDL_RenderPresent(Game.renderer);
 	}
 
 	/* === */
 	/* === */
 
-	SDL_DestroyTexture(texture);
-	texture = NULL;
-
-	SDL_FreeSurface(screen);
-	screen = NULL;
-
-	SDL_DestroyRenderer(renderer);
-	renderer = NULL;
-
-	SDL_DestroyWindow(window);
-	window = NULL;
-
-	SDL_Quit();
+	quitGame();
 	return 0;
 }
