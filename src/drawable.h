@@ -11,22 +11,22 @@ class Drawable {
 protected:
 	SDL_Rect _rect;
 	SDL_bool _todraw;
-	SpriteTag _tag;
+	SpriteID _id;
 
 public:
-	Drawable(SpriteTag tag);
+	Drawable(SpriteID id);
 
 	virtual void draw(void);
 };
 
 /* drawable.cpp */
 //----------------------------------------------------------------------
-Drawable::Drawable(SpriteTag tag) {
-	_tag = tag;
+Drawable::Drawable(SpriteID id) {
+	_id = id;
 }
 
 void Drawable::draw(void) {
-	Sprite* spr = SprManager::getRef().getSprite(_tag);
+	Sprite* spr = ResourceManager::getRef().getSprite(_id);
 
 	_rect.w = spr->w;
 	_rect.h = spr->h;
@@ -35,7 +35,7 @@ void Drawable::draw(void) {
 	memcpy(&rect, &_rect, sizeof(SDL_Rect));
 	
 	// for some reason SDL_BlitSurface mods the rect
-	SDL_BlitSurface(spr->tile, NULL, screen, &rect);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &rect);
 }
 
 #endif

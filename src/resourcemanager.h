@@ -3,6 +3,10 @@
 #define _RESOURCEMANAGER_HEADER_
 
 //-----------------------------------------------------------------------------
+/*
+- includes all the tile ids needed for each metasprite
+*/
+
 #include "spriteid.h"
 
 /* resourcemanager.h */

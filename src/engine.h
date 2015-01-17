@@ -12,12 +12,22 @@
 #define SCREEN_SCALE 2
 
 //-----------------------------------------------------------------------------
+/*
+- a tile is an 8x8 surface from the spritesheet
+- a sprite is made up of one or more tiles
+*/
+
 typedef struct {
 	int w, h;
 	SDL_Surface* tile;
 } Sprite;
 
 //-----------------------------------------------------------------------------
+/*
+- the anonymous game struct
+- used to house any global engine variables
+*/
+
 struct {
 	bool running;
 	uint8_t state;
@@ -33,6 +43,11 @@ struct {
 } Game = {};
 
 //-----------------------------------------------------------------------------
+/*
+- initialize all the libraries
+- create all the game tiles
+*/
+
 void startGame(void) {
 	if(SDL_Init(SDL_INIT_EVERYTHING)!=0) {
 		fprintf(stderr, "SDL_Init: %s\n", SDL_GetError());
@@ -102,6 +117,11 @@ void startGame(void) {
 }
 
 //-----------------------------------------------------------------------------
+/*
+- release all the game libraries
+- free all the game tiles
+*/
+
 void quitGame(void) {
 	int i;
 	for(i=0; i<NUM_TILES; i++) {
@@ -133,6 +153,10 @@ void quitGame(void) {
 }
 
 //-----------------------------------------------------------------------------
+/*
+- used to build metasprites from game tiles
+*/
+
 Sprite* buildSprite(int w, int h, int inds[]) {
 	Sprite* spr = (Sprite*)malloc(sizeof(Sprite));
 
@@ -156,6 +180,10 @@ Sprite* buildSprite(int w, int h, int inds[]) {
 }
 
 //-----------------------------------------------------------------------------
+/*
+- free the metasprites generated from game tiles
+*/
+
 void freeSprite(Sprite* spr) {
 	spr->w = 0;
 	spr->h = 0;
@@ -165,6 +193,10 @@ void freeSprite(Sprite* spr) {
 }
 
 //-----------------------------------------------------------------------------
+/*
+- draw text to the screen
+*/
+
 void drawText(const char* str, int x, int y, SDL_Color color, int size = 8) {
 	if(!str) return;
 
