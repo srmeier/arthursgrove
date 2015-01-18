@@ -1,6 +1,6 @@
 /* npc00entity.cpp */
 //----------------------------------------------------------------------
-Npc00Entity::Npc00Entity(int x, int y): NpcEntity(x, y, NPC_TILE_00, new RandomInput(2*256)) {
+Npc00Entity::Npc00Entity(int x, int y): NpcEntity(x, y, SpriteID::NPC00, new RandomInput(2*256)) {
 	// nothing
 }
 
@@ -8,12 +8,12 @@ void Npc00Entity::update(void) {
 	Moveable::update();
 
 	if(_frame>0) _frame--;
-	if(_frame==0&&_tag==NPC_TILE_00) {
+	if(_frame==0&&_id==SpriteID::NPC00) {
 		_frame = _fpa;
-		_tag = NPC_TILE_01;
-	} else if(_frame==0&&_tag==NPC_TILE_01) {
+		_id = SpriteID::NPC01;
+	} else if(_frame==0&&_id==SpriteID::NPC01) {
 		_frame = _fpa;
-		_tag = NPC_TILE_00;
+		_id = SpriteID::NPC00;
 	}
 
 	_rect.x = _x;
@@ -25,7 +25,7 @@ void Npc00Entity::setPos(int x, int y) {
 	_rect.y = y;
 
 	active = SDL_TRUE;
-	_tag = NPC_TILE_00;
+	_id = SpriteID::NPC00;
 	Moveable::setPos(x, y);
 }
 

@@ -16,7 +16,7 @@ protected:
 	int _frame = 4;
 
 public:
-	WeaponEntity(int x, int y, SpriteTag tag);
+	WeaponEntity(int x, int y, SpriteID id);
 
 	virtual void update(void) = 0;
 
@@ -33,7 +33,7 @@ public:
 
 /* weaponentity.cpp */
 //----------------------------------------------------------------------
-WeaponEntity::WeaponEntity(int x, int y, SpriteTag tag): Entity(x, y, tag) {
+WeaponEntity::WeaponEntity(int x, int y, SpriteID id): Entity(x, y, id) {
 	// nothing
 }
 

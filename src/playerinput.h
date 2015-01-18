@@ -2,9 +2,6 @@
 #ifndef _PLAYERINPUT_HEADER_
 #define _PLAYERINPUT_HEADER_
 
-//----------------------------------------------------------------------
-extern SDL_bool running;
-
 /* playerinput.h */
 //----------------------------------------------------------------------
 class PlayerInput: public Input {
@@ -19,12 +16,12 @@ void PlayerInput::poll(void) {
 	while(SDL_PollEvent(&event)) {
 		switch(event.type) {
 			case SDL_QUIT: {
-				running = SDL_FALSE;
+				Game.running = SDL_FALSE;
 			} break;
 			
 			case SDL_KEYDOWN: {
 				switch(event.key.keysym.sym) {
-					case SDLK_ESCAPE: running = SDL_FALSE; break;
+					case SDLK_ESCAPE: Game.running = SDL_FALSE; break;
 					case SDLK_UP: _up = SDL_TRUE; break;
 					case SDLK_DOWN: _down = SDL_TRUE; break;
 					case SDLK_LEFT: _left = SDL_TRUE; break;

@@ -18,7 +18,7 @@ public:
 
 /* swordentity.cpp */
 //----------------------------------------------------------------------
-SwordEntity::SwordEntity(int x, int y): WeaponEntity(x, y, ATTACK_TILE_00) {
+SwordEntity::SwordEntity(int x, int y): WeaponEntity(x, y, SpriteID::ATTACK00) {
 	// nothing
 }
 
@@ -29,100 +29,100 @@ void SwordEntity::update(void) {
 	if(_frame>0) _frame--;
 	switch(_direc) {
 		case 0: {
-			if(_tag==ATTACK_TILE_06&&_frame==0) {
+			if(_id==SpriteID::ATTACK06&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_05;
+				_id = SpriteID::ATTACK05;
 				_rect.y -= 8*2;
-			} else if(_tag==ATTACK_TILE_05&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK05&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_00;
+				_id = SpriteID::ATTACK00;
 				_rect.x += 8*2;
-			} else if(_tag==ATTACK_TILE_00&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK00&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_01;
+				_id = SpriteID::ATTACK01;
 				_rect.x += 8*2;
-			} else if(_tag==ATTACK_TILE_01&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK01&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_02;
+				_id = SpriteID::ATTACK02;
 				_rect.y += 8*2;
-			} else if(_tag==ATTACK_TILE_02&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK02&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_06;
+				_id = SpriteID::ATTACK06;
 				active = SDL_FALSE;
 				canmove = SDL_TRUE;
 			}
 		} break;
 
 		case 1: {
-			if(_tag==ATTACK_TILE_02&&_frame==0) {
+			if(_id==SpriteID::ATTACK02&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_03;
+				_id = SpriteID::ATTACK03;
 				_rect.y += 8*2;
-			} else if(_tag==ATTACK_TILE_03&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK03&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_04;
+				_id = SpriteID::ATTACK04;
 				_rect.x -= 8*2;
-			} else if(_tag==ATTACK_TILE_04&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK04&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_07;
+				_id = SpriteID::ATTACK07;
 				_rect.x -= 8*2;
-			} else if(_tag==ATTACK_TILE_07&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK07&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_06;
+				_id = SpriteID::ATTACK06;
 				_rect.y -= 8*2;
-			} else if(_tag==ATTACK_TILE_06&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK06&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_02;
+				_id = SpriteID::ATTACK02;
 				active = SDL_FALSE;
 				canmove = SDL_TRUE;
 			}
 		} break;
 
 		case 2: {
-			if(_tag==ATTACK_TILE_00&&_frame==0) {
+			if(_id==SpriteID::ATTACK00&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_05;
+				_id = SpriteID::ATTACK05;
 				_rect.x -= 8*2;
-			} else if(_tag==ATTACK_TILE_05&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK05&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_06;
+				_id = SpriteID::ATTACK06;
 				_rect.y += 8*2;
-			} else if(_tag==ATTACK_TILE_06&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK06&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_07;
+				_id = SpriteID::ATTACK07;
 				_rect.y += 8*2;
-			} else if(_tag==ATTACK_TILE_07&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK07&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_04;
+				_id = SpriteID::ATTACK04;
 				_rect.x += 8*2;
-			} else if(_tag==ATTACK_TILE_04&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK04&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_00;
+				_id = SpriteID::ATTACK00;
 				active = SDL_FALSE;
 				canmove = SDL_TRUE;
 			}
 		} break;
 
 		case 3: {
-			if(_tag==ATTACK_TILE_00&&_frame==0) {
+			if(_id==SpriteID::ATTACK00&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_01;
+				_id = SpriteID::ATTACK01;
 				_rect.x += 8*2;
-			} else if(_tag==ATTACK_TILE_01&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK01&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_02;
+				_id = SpriteID::ATTACK02;
 				_rect.y += 8*2;
-			} else if(_tag==ATTACK_TILE_02&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK02&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_03;
+				_id = SpriteID::ATTACK03;
 				_rect.y += 8*2;
-			} else if(_tag==ATTACK_TILE_03&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK03&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_04;
+				_id = SpriteID::ATTACK04;
 				_rect.x -= 8*2;
-			} else if(_tag==ATTACK_TILE_04&&_frame==0) {
+			} else if(_id==SpriteID::ATTACK04&&_frame==0) {
 				_frame = _fpa;
-				_tag = ATTACK_TILE_00;
+				_id = SpriteID::ATTACK00;
 				active = SDL_FALSE;
 				canmove = SDL_TRUE;
 			}
@@ -134,28 +134,28 @@ void SwordEntity::swingUp(int x, int y) {
 	_direc = 0;
 	setPos(x-8*2, y);
 	canmove = SDL_FALSE;
-	_tag = ATTACK_TILE_06;
+	_id = SpriteID::ATTACK06;
 }
 
 void SwordEntity::swingDown(int x, int y) {
 	_direc = 1;
 	setPos(x+8*2, y);
 	canmove = SDL_FALSE;
-	_tag = ATTACK_TILE_02;
+	_id = SpriteID::ATTACK02;
 }
 
 void SwordEntity::swingLeft(int x, int y) {
 	_direc = 2;
 	setPos(x, y-8*2);
 	canmove = SDL_FALSE;
-	_tag = ATTACK_TILE_00;
+	_id = SpriteID::ATTACK00;
 }
 
 void SwordEntity::swingRight(int x, int y) {
 	_direc = 3;
 	setPos(x, y-8*2);
 	canmove = SDL_FALSE;
-	_tag = ATTACK_TILE_00;
+	_id = SpriteID::ATTACK00;
 }
 
 #endif

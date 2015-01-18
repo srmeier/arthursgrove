@@ -16,7 +16,7 @@ protected:
 	int _fish_frame = 14;
 	SDL_bool _has_fish = SDL_TRUE;
 	SDL_bool _on_sea_tile = SDL_FALSE;
-	SpriteTag _fish_tag = FISH_TILE_00;
+	SpriteID _fish_id = SpriteID::FISH00;
 	
 	SDL_bool _attack_next_free_time = SDL_FALSE;
 
@@ -33,7 +33,7 @@ public:
 	SwordEntity* sword;
 	WeaponEntity* weapon;
 	TsunamiEntity* tsunami;
-	SpriteTag inventory[7];
+	SpriteID inventory[7];
 };
 
 #endif

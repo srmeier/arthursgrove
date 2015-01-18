@@ -1,6 +1,6 @@
 /* wormentity.cpp */
 //----------------------------------------------------------------------
-WormEntity::WormEntity(int x, int y): Moveable(x, y, new StraightInput()), Entity(x, y, WORM_TILE_00) {
+WormEntity::WormEntity(int x, int y): Moveable(x, y, new StraightInput()), Entity(x, y, SpriteID::WORM00) {
 	((StraightInput*) input)->parent = this;
 
 	weapon = new SandstormEntity(0, 0);
@@ -12,7 +12,7 @@ WormEntity::~WormEntity(void) {
 }
 
 void WormEntity::draw(void) {
-	Sprite* spr = SprManager::getRef().getSprite(_tag);
+	Sprite* spr = SprManager::getRef().getSprite(_id);
 
 	_rect.w = spr->w;
 	_rect.h = spr->h;
@@ -53,23 +53,23 @@ void WormEntity::update(void) {
 
 	if(_frame>0) _frame--;
 	if(_dying) {
-		if(_frame==0&&_tag==SMALLFLAME_TILE_00) {
+		if(_frame==0&&_id==SpriteID::SMALLFLAME00) {
 			_frame = _fpa;
-			_tag = SMALLFLAME_TILE_01;
-		} else if(_frame==0&&_tag==SMALLFLAME_TILE_01) {
+			_id = SpriteID::SMALLFLAME01;
+		} else if(_frame==0&&_id==SpriteID::SMALLFLAME01) {
 			_frame = _fpa;
-			_tag = WORM_TILE_00;
+			_id = SpriteID::WORM00;
 
 			active = SDL_FALSE;
 			_dying = SDL_FALSE;
 		}
 	} else {
-		if(_frame==0&&_tag==WORM_TILE_00) {
+		if(_frame==0&&_id==SpriteID::WORM00) {
 			_frame = _fpa;
-			_tag = WORM_TILE_01;
-		} else if(_frame==0&&_tag==WORM_TILE_01) {
+			_id = SpriteID::WORM01;
+		} else if(_frame==0&&_id==SpriteID::WORM01) {
 			_frame = _fpa;
-			_tag = WORM_TILE_00;
+			_id = SpriteID::WORM00;
 		}
 	}
 
@@ -101,10 +101,10 @@ SDL_bool WormEntity::canMove(int i, int j) {
 
 	return (SDL_bool) (
 		(
-		node->getTile(i,j)==GRASS_TILE_00 ||
-		node->getTile(i,j)==SAND_TILE_00  ||
-		node->getTile(i,j)==SEA_TILE_00   ||
-		node->getTile(i,j)==BRICK_TILE_00
+		node->getTile(i,j)==SpriteID::GRASS00 ||
+		node->getTile(i,j)==SpriteID::SAND00  ||
+		node->getTile(i,j)==SpriteID::SEA00   ||
+		node->getTile(i,j)==SpriteID::BRICK00
 		)
 		&&!(i==pi&&j==pj)
 	);
@@ -116,6 +116,6 @@ void WormEntity::hit(int damage) {
 	if(damage>0) {
 		_frame = _fpa;
 		_dying = SDL_TRUE;
-		_tag = SMALLFLAME_TILE_00;
+		_id = SpriteID::SMALLFLAME00;
 	}
 }

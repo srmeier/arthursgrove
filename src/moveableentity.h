@@ -9,7 +9,7 @@ protected:
 	virtual SDL_bool canMove(int i, int j);
 
 public:
-	MoveableEntity(int x, int y, SpriteTag tag, Input* input);
+	MoveableEntity(int x, int y, SpriteID id, Input* input);
 
 	void update(void);
 	void setPos(int x, int y);
@@ -17,7 +17,7 @@ public:
 
 /* moveableentity.cpp */
 //----------------------------------------------------------------------
-MoveableEntity::MoveableEntity(int x, int y, SpriteTag tag, Input* input): Moveable(x, y, input), Entity(x, y, tag) {
+MoveableEntity::MoveableEntity(int x, int y, SpriteID id, Input* input): Moveable(x, y, input), Entity(x, y, id) {
 	// nothing
 }
 

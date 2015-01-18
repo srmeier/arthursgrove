@@ -1,7 +1,7 @@
 /* playerentity.cpp */
 //----------------------------------------------------------------------
-PlayerEntity::PlayerEntity(int x, int y): Moveable(x, y, new PlayerInput()), Entity(x, y, PLAYER_TILE_00) {
-	shield = new Entity(x, y, SHIELD_TILE_00);
+PlayerEntity::PlayerEntity(int x, int y): Moveable(x, y, new PlayerInput()), Entity(x, y, SpriteID::PLAYER00) {
+	shield = new Entity(x, y, SpriteID::SHIELD00);
 
 	sword = new SwordEntity(x, y-8*2);
 	sword->active = SDL_FALSE;
@@ -9,15 +9,15 @@ PlayerEntity::PlayerEntity(int x, int y): Moveable(x, y, new PlayerInput()), Ent
 	tsunami = new TsunamiEntity(x, y);
 	tsunami->active = SDL_FALSE;
 
-	for(int i=0; i<7; i++) inventory[i] = EMPTY_TILE;
+	for(int i=0; i<7; i++) inventory[i] = SpriteID::EMPTY;
 
-	inventory[0] = FOOD_TILE_00;
-	inventory[1] = SCROLL_TILE_00;
-	inventory[2] = RING_TILE_00;
-	inventory[3] = POTION_TILE_00;
-	inventory[4] = LIGHT_TILE_00;
-	inventory[5] = ROPE_TILE_00;
-	inventory[6] = KEY_TILE_00;
+	inventory[0] = SpriteID::FOOD00;
+	inventory[1] = SpriteID::SCROLL00;
+	inventory[2] = SpriteID::RING00;
+	inventory[3] = SpriteID::POTION00;
+	inventory[4] = SpriteID::LIGHT00;
+	inventory[5] = SpriteID::ROPE00;
+	inventory[6] = SpriteID::KEY00;
 }
 
 PlayerEntity::~PlayerEntity(void) {
@@ -31,18 +31,18 @@ void PlayerEntity::update(void) {
 	WorldNode* node = overworld.getCurNode();
 
 	if(
-		node->getTile(_i,_j)==SEA_TILE_00||
-		node->getTile(_i,_j)==SEA_TILE_01||
-		node->getTile(_i,_j)==SEA_TILE_02||
-		node->getTile(_i,_j)==SEA_TILE_03||
-		node->getTile(_i,_j)==SEA_TILE_04||
-		node->getTile(_i,_j)==SEA_TILE_05||
-		node->getTile(_i,_j)==SEA_TILE_06||
-		node->getTile(_i,_j)==SEA_TILE_07||
-		node->getTile(_i,_j)==SEA_TILE_08||
-		node->getTile(_i,_j)==SEA_TILE_09||
-		node->getTile(_i,_j)==SEA_TILE_0A||
-		node->getTile(_i,_j)==SEA_TILE_0B
+		node->getTile(_i,_j)==SpriteID::SEA00||
+		node->getTile(_i,_j)==SpriteID::SEA01||
+		node->getTile(_i,_j)==SpriteID::SEA02||
+		node->getTile(_i,_j)==SpriteID::SEA03||
+		node->getTile(_i,_j)==SpriteID::SEA04||
+		node->getTile(_i,_j)==SpriteID::SEA05||
+		node->getTile(_i,_j)==SpriteID::SEA06||
+		node->getTile(_i,_j)==SpriteID::SEA07||
+		node->getTile(_i,_j)==SpriteID::SEA08||
+		node->getTile(_i,_j)==SpriteID::SEA09||
+		node->getTile(_i,_j)==SpriteID::SEA0A||
+		node->getTile(_i,_j)==SpriteID::SEA0B
 	) _on_sea_tile = SDL_TRUE;
 	else _on_sea_tile = SDL_FALSE;
 
@@ -55,10 +55,10 @@ void PlayerEntity::update(void) {
 	if(old_direc!=_movedirec) {
 		// setup for new move direction animation
 		switch(_movedirec) {
-			case 0: _tag = PLAYER_TILE_03; break;
-			case 1: _tag = PLAYER_TILE_00; break;
-			case 2: _tag = PLAYER_TILE_06; break;
-			case 3: _tag = PLAYER_TILE_09; break;
+			case 0: _id = SpriteID::PLAYER03; break;
+			case 1: _id = SpriteID::PLAYER00; break;
+			case 2: _id = SpriteID::PLAYER06; break;
+			case 3: _id = SpriteID::PLAYER09; break;
 		}
 	}
 
@@ -100,59 +100,59 @@ void PlayerEntity::update(void) {
 	if(_frame>0) _frame--;
 	switch(_movedirec) {
 		case 0: {
-			if(_tag==PLAYER_TILE_03&&_frame==0) {
+			if(_id==SpriteID::PLAYER03&&_frame==0) {
 				_oddone++;
 				_frame = _fpa;
-				if(_oddone%2==0) _tag = PLAYER_TILE_04;
-				else _tag = PLAYER_TILE_05;
-			} else if(_tag==PLAYER_TILE_04&&_frame==0) {
+				if(_oddone%2==0) _id = SpriteID::PLAYER04;
+				else _id = SpriteID::PLAYER05;
+			} else if(_id==SpriteID::PLAYER04&&_frame==0) {
 				_frame = _fpa;
-				_tag = PLAYER_TILE_03;
-			} else if(_tag==PLAYER_TILE_05&&_frame==0) {
+				_id = SpriteID::PLAYER03;
+			} else if(_id==SpriteID::PLAYER05&&_frame==0) {
 				_frame = _fpa;
-				_tag = PLAYER_TILE_03;
+				_id = SpriteID::PLAYER03;
 			}
 		} break;
 		case 1: {
-			if(_tag==PLAYER_TILE_00&&_frame==0) {
+			if(_id==SpriteID::PLAYER00&&_frame==0) {
 				_oddone++;
 				_frame = _fpa;
-				if(_oddone%2==0) _tag = PLAYER_TILE_01;
-				else _tag = PLAYER_TILE_02;
-			} else if(_tag==PLAYER_TILE_01&&_frame==0) {
+				if(_oddone%2==0) _id = SpriteID::PLAYER01;
+				else _id = SpriteID::PLAYER02;
+			} else if(_id==SpriteID::PLAYER01&&_frame==0) {
 				_frame = _fpa;
-				_tag = PLAYER_TILE_00;
-			} else if(_tag==PLAYER_TILE_02&&_frame==0) {
+				_id = SpriteID::PLAYER00;
+			} else if(_id==SpriteID::PLAYER02&&_frame==0) {
 				_frame = _fpa;
-				_tag = PLAYER_TILE_00;
+				_id = SpriteID::PLAYER00;
 			}
 		} break;
 		case 2: {
-			if(_tag==PLAYER_TILE_06&&_frame==0) {
+			if(_id==SpriteID::PLAYER06&&_frame==0) {
 				_oddone++;
 				_frame = _fpa;
-				if(_oddone%2==0) _tag = PLAYER_TILE_07;
-				else _tag = PLAYER_TILE_08;
-			} else if(_tag==PLAYER_TILE_07&&_frame==0) {
+				if(_oddone%2==0) _id = SpriteID::PLAYER07;
+				else _id = SpriteID::PLAYER08;
+			} else if(_id==SpriteID::PLAYER07&&_frame==0) {
 				_frame = _fpa;
-				_tag = PLAYER_TILE_06;
-			} else if(_tag==PLAYER_TILE_08&&_frame==0) {
+				_id = SpriteID::PLAYER06;
+			} else if(_id==SpriteID::PLAYER08&&_frame==0) {
 				_frame = _fpa;
-				_tag = PLAYER_TILE_06;
+				_id = SpriteID::PLAYER06;
 			}
 		} break;
 		case 3: {
-			if(_tag==PLAYER_TILE_09&&_frame==0) {
+			if(_id==SpriteID::PLAYER09&&_frame==0) {
 				_oddone++;
 				_frame = _fpa;
-				if(_oddone%2==0) _tag = PLAYER_TILE_0A;
-				else _tag = PLAYER_TILE_0B;
-			} else if(_tag==PLAYER_TILE_0A&&_frame==0) {
+				if(_oddone%2==0) _id = SpriteID::PLAYER0A;
+				else _id = SpriteID::PLAYER0B;
+			} else if(_id==SpriteID::PLAYER0A&&_frame==0) {
 				_frame = _fpa;
-				_tag = PLAYER_TILE_09;
-			} else if(_tag==PLAYER_TILE_0B&&_frame==0) {
+				_id = SpriteID::PLAYER09;
+			} else if(_id==SpriteID::PLAYER0B&&_frame==0) {
 				_frame = _fpa;
-				_tag = PLAYER_TILE_09;
+				_id = SpriteID::PLAYER09;
 			}
 		} break;
 	}
@@ -167,8 +167,8 @@ void PlayerEntity::draw(void) {
 		if(_fish_frame>0) _fish_frame--;
 		if(_fish_frame==0) {
 			_fish_frame = _fish_fpa;
-			if(_fish_tag==FISH_TILE_00) _fish_tag = FISH_TILE_01;
-			else _fish_tag = FISH_TILE_00;
+			if(_fish_tag==FISH_TILE_00) _fish_tag = SpriteID::FISH01;
+			else _fish_tag = SpriteID::FISH00;
 		}
 
 		SDL_Rect rect = {_rect.x, _rect.y+8, 8*2, 8*2};
@@ -177,13 +177,13 @@ void PlayerEntity::draw(void) {
 
 		Sprite* spr;
 		switch(_movedirec) {
-			case 0: spr = SprManager::getRef().getSprite(PLAYER_TILE_03); break;
-			case 1: spr = SprManager::getRef().getSprite(PLAYER_TILE_00); break;
-			case 2: spr = SprManager::getRef().getSprite(PLAYER_TILE_06); break;
-			case 3: spr = SprManager::getRef().getSprite(PLAYER_TILE_09); break;
+			case 0: spr = SprManager::getRef().getSprite(SpriteID::PLAYER03); break;
+			case 1: spr = SprManager::getRef().getSprite(SpriteID::PLAYER00); break;
+			case 2: spr = SprManager::getRef().getSprite(SpriteID::PLAYER06); break;
+			case 3: spr = SprManager::getRef().getSprite(SpriteID::PLAYER09); break;
 		}
 
-		if(_fish_tag==FISH_TILE_01) _rect.y -= 2;
+		if(_fish_tag==SpriteID::FISH01) _rect.y -= 2;
 		SDL_BlitSurface(spr->tile, NULL, screen, &_rect);
 
 	} else {
@@ -246,34 +246,34 @@ SDL_bool PlayerEntity::canMove(int i, int j) {
 
 	return (SDL_bool) (
 		(
-			node->getTile(i,j)==GRASS_TILE_00 ||
-			node->getTile(i,j)==SAND_TILE_00  ||
+			node->getTile(i,j)==SpriteID::GRASS00 ||
+			node->getTile(i,j)==SpriteID::SAND00  ||
 		(
 			(
-				node->getTile(i,j)==SEA_TILE_00   ||
-				node->getTile(i,j)==SEA_TILE_01   ||
-				node->getTile(i,j)==SEA_TILE_02   ||
-				node->getTile(i,j)==SEA_TILE_03   ||
-				node->getTile(i,j)==SEA_TILE_04   ||
-				node->getTile(i,j)==SEA_TILE_05   ||
-				node->getTile(i,j)==SEA_TILE_06   ||
-				node->getTile(i,j)==SEA_TILE_07   ||
-				node->getTile(i,j)==SEA_TILE_08   ||
-				node->getTile(i,j)==SEA_TILE_09   ||
-				node->getTile(i,j)==SEA_TILE_0A   ||
-				node->getTile(i,j)==SEA_TILE_0B
+				node->getTile(i,j)==SpriteID::SEA00   ||
+				node->getTile(i,j)==SpriteID::SEA01   ||
+				node->getTile(i,j)==SpriteID::SEA02   ||
+				node->getTile(i,j)==SpriteID::SEA03   ||
+				node->getTile(i,j)==SpriteID::SEA04   ||
+				node->getTile(i,j)==SpriteID::SEA05   ||
+				node->getTile(i,j)==SpriteID::SEA06   ||
+				node->getTile(i,j)==SpriteID::SEA07   ||
+				node->getTile(i,j)==SpriteID::SEA08   ||
+				node->getTile(i,j)==SpriteID::SEA09   ||
+				node->getTile(i,j)==SpriteID::SEA0A   ||
+				node->getTile(i,j)==SpriteID::SEA0B
 			)&&_has_fish)||
-			node->getTile(i,j)==BRICK_TILE_00 ||
-			node->getTile(i,j)==FLOOR_TILE_00 ||
-			node->getTile(i,j)==FLOOR_TILE_01 ||
-			node->getTile(i,j)==FLOOR_TILE_02 ||
-			node->getTile(i,j)==FLOOR_TILE_03 ||
-			node->getTile(i,j)==FLOOR_TILE_04 ||
-			node->getTile(i,j)==FLOOR_TILE_05 ||
-			node->getTile(i,j)==FLOOR_TILE_06 ||
-			node->getTile(i,j)==FLOOR_TILE_07 ||
-			node->getTile(i,j)==FLOOR_TILE_08 ||
-			node->getTile(i,j)==DOOR_TILE_00
+			node->getTile(i,j)==SpriteID::BRICK00 ||
+			node->getTile(i,j)==SpriteID::FLOOR00 ||
+			node->getTile(i,j)==SpriteID::FLOOR01 ||
+			node->getTile(i,j)==SpriteID::FLOOR02 ||
+			node->getTile(i,j)==SpriteID::FLOOR03 ||
+			node->getTile(i,j)==SpriteID::FLOOR04 ||
+			node->getTile(i,j)==SpriteID::FLOOR05 ||
+			node->getTile(i,j)==SpriteID::FLOOR06 ||
+			node->getTile(i,j)==SpriteID::FLOOR07 ||
+			node->getTile(i,j)==SpriteID::FLOOR08 ||
+			node->getTile(i,j)==SpriteID::DOOR00
 		)&&check
 	);
 }

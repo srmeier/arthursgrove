@@ -6,7 +6,7 @@
 //----------------------------------------------------------------------
 class Entity: public Drawable {
 public:
-	Entity(int x, int y, SpriteTag tag);
+	Entity(int x, int y, SpriteID id);
 	~Entity(void);
 
 	virtual void update(void);
@@ -17,7 +17,7 @@ public:
 
 /* entity.cpp */
 //----------------------------------------------------------------------
-Entity::Entity(int x, int y, SpriteTag tag): Drawable(tag) {
+Entity::Entity(int x, int y, SpriteID id): Drawable(id) {
 	_rect.x = x;
 	_rect.y = y;
 }

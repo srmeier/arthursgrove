@@ -7,6 +7,8 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 /*
 CLEAN-UP:
 - not sure that the canMove should be in the moveable class...
+- the components should have specific names since their variables are used
+	within a varity of different objects
 
 % === %
 - need to add a method to the player class which checks for a particular
@@ -34,7 +36,6 @@ CLEAN-UP:
 #include "drawable.h"
 #include "moveable.h"
 
-/*
 #include "playerinput.h"
 #include "randominput.h"
 #include "straightinput.h"
@@ -45,6 +46,7 @@ CLEAN-UP:
 #include "swordentity.h"
 #include "tsunamientity.h"
 #include "playerentity.h"
+/*
 #include "npcentity.h"
 #include "sandstormentity.h"
 #include "bugentity.h"
@@ -72,7 +74,7 @@ int SDL_main(int argc, char* argv[]) {
 	/* TESTING */
 	/* === */
 
-	ResourceManager& rm = ResourceManager::getRef();
+	//ResourceManager& rm = ResourceManager::getRef();
 
 	//PlayerEntity player(16*5, 16*5);
 	//Overworld::getRef().addPlayer(&player);
