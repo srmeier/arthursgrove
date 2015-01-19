@@ -7,9 +7,10 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 /*
 CLEAN-UP:
 - not sure that the canMove should be in the moveable class...
-- the components should have specific names since their variables are used
-	within a varity of different objects
-- input class is a mess
+	- probably makes sense because each entity will have different sprites it
+		can move on
+- the components should have specific names since their private variables are
+	used within a varity of different objects
 
 % === %
 - need to add a method to the player class which checks for a particular
@@ -17,6 +18,13 @@ CLEAN-UP:
 - might want to consider adding an "interactable" component
 	(although the entity class basically is a moveable interact
 	component)
+- work on integrating the diamondcollector project? using arthur's grove as a
+	temporary project/engine name
+
+% === %
+- the b key press doesn't register while the sword is swinging because moveable
+	is only updated if the player can move (and input is linked to moveable
+	which sets the keys)
 */
 
 //-----------------------------------------------------------------------------
@@ -30,7 +38,6 @@ CLEAN-UP:
 
 //-----------------------------------------------------------------------------
 #include "engine.h"
-
 #include "resourcemanager.h"
 
 #include "input.h"
@@ -71,8 +78,6 @@ int SDL_main(int argc, char* argv[]) {
 	/* TESTING */
 	/* === */
 
-	//ResourceManager& rm = ResourceManager::getRef();
-
 	PlayerEntity player(16*5, 16*5);
 	Overworld::getRef().addPlayer(&player);
 
@@ -89,6 +94,9 @@ int SDL_main(int argc, char* argv[]) {
 			case 0x00: {
 				Overworld::getRef().updateNode();
 				Overworld::getRef().drawNode();
+
+				/* === */
+				/* === */
 			} break;
 			case 0x01: {
 			} break;
@@ -123,6 +131,9 @@ int SDL_main(int argc, char* argv[]) {
 
 	/* TESTING */
 	/* === */
+
+
+
 	/* === */
 
 	// NOTE: release the libraries and free global resources

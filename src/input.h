@@ -3,7 +3,9 @@
 #define _INPUT_HEADER_
 
 /* input.h */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+*/
 class Input {
 protected:
 	SDL_bool _up;
@@ -29,11 +31,17 @@ public:
 };
 
 /* input.cpp */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+*/
 Input::Input(void) {
 	clear();
 }
 
+//-----------------------------------------------------------------------------
+/*
+- used to clear the input class to its original state
+*/
 void Input::clear(void) {
 	_a      = SDL_FALSE;
 	_b      = SDL_FALSE;
@@ -50,6 +58,11 @@ void Input::clear(void) {
 	_rightc = SDL_FALSE;
 }
 
+//-----------------------------------------------------------------------------
+/*
+- this prevents the one frame delay on key presses (because the checks have one
+	run into the Input::isPressed() to be set to SDL_FALSE)
+*/
 void Input::poll(void) {
 	if(!_up) _upc = SDL_FALSE;
 	if(!_down) _downc = SDL_FALSE;
@@ -59,6 +72,10 @@ void Input::poll(void) {
 	if(!_b) _bc = SDL_FALSE;
 }
 
+//-----------------------------------------------------------------------------
+/*
+- used to check whether a particular key is down
+*/
 SDL_bool Input::isDown(const char* key) {
 	if(!strcmp(key, "up")) {
 		return _up;
@@ -75,58 +92,55 @@ SDL_bool Input::isDown(const char* key) {
 	}
 }
 
+//-----------------------------------------------------------------------------
+/*
+- used to check whether a particular key is pressed
+*/
 SDL_bool Input::isPressed(const char* key) {
 	if(!strcmp(key, "up")) {
 		if(_up&&!_upc) {
 			_upc = SDL_TRUE;
 			return SDL_TRUE;
-		} else {
-			_upc = SDL_FALSE;
-			return SDL_FALSE;
-		}
+		} else if(!_up) _upc = SDL_FALSE;
+		return SDL_FALSE;
 	} else if(!strcmp(key, "down")) {
 		if(_down&&!_downc) {
 			_downc = SDL_TRUE;
 			return SDL_TRUE;
-		} else {
-			_downc = SDL_FALSE;
-			return SDL_FALSE;
-		}
+		} else if(!_down) _downc = SDL_FALSE;
+		return SDL_FALSE;
 	} else if(!strcmp(key, "left")) {
 		if(_left&&!_leftc) {
 			_leftc = SDL_TRUE;
 			return SDL_TRUE;
-		} else {
-			_leftc = SDL_FALSE;
-			return SDL_FALSE;
-		}
+		} else if(!_left) _leftc = SDL_FALSE;
+		return SDL_FALSE;
 	} else if(!strcmp(key, "right")) {
 		if(_right&&!_rightc) {
 			_rightc = SDL_TRUE;
 			return SDL_TRUE;
-		} else {
-			_rightc = SDL_FALSE;
-			return SDL_FALSE;
-		}
+		} else if(!_right) _rightc = SDL_FALSE;
+		return SDL_FALSE;
 	} else if(!strcmp(key, "a")) {
 		if(_a&&!_ac) {
 			_ac = SDL_TRUE;
 			return SDL_TRUE;
-		} else {
-			_ac = SDL_FALSE;
-			return SDL_FALSE;
-		}
+		} else if(!_a) _ac = SDL_FALSE;
+		return SDL_FALSE;
 	} else if(!strcmp(key, "b")) {
 		if(_b&&!_bc) {
 			_bc = SDL_TRUE;
 			return SDL_TRUE;
-		} else {
-			_bc = SDL_FALSE;
-			return SDL_FALSE;
-		}
+		} else if(!_b) _bc = SDL_FALSE;
+		return SDL_FALSE;
 	}
 }
 
+//-----------------------------------------------------------------------------
+/*
+- used to set whether a key is up of down
+- this is used by AI and user input
+*/
 void Input::setKey(const char* key, SDL_bool isdown) {
 	if(!strcmp(key, "up")) {
 		_up = isdown;

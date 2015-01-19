@@ -3,14 +3,12 @@
 #define _RESOURCEMANAGER_HEADER_
 
 //-----------------------------------------------------------------------------
-/*
-- includes all the tile ids needed for each metasprite
-*/
-
 #include "spriteid.h"
 
 /* resourcemanager.h */
 //-----------------------------------------------------------------------------
+/*
+*/
 class ResourceManager {
 private:
 	ResourceManager(ResourceManager const&);
@@ -32,6 +30,8 @@ public:
 
 /* resourcemanager.cpp */
 //-----------------------------------------------------------------------------
+/*
+*/
 ResourceManager::ResourceManager(void) {
 	for(int i=0; i<SpriteID::NUM_SPRITES; i++) {
 		_sprites[i] = NULL;
@@ -855,12 +855,21 @@ ResourceManager::ResourceManager(void) {
 	_sprites[SpriteID::FRAME0B] = buildSprite(20, 6, frameTile0B);
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 ResourceManager::~ResourceManager(void) {
 	for(int i=0; i<SpriteID::NUM_SPRITES; i++) {
 		freeSprite(_sprites[i]);
+		_sprites[i] = NULL;
 	}
 }
 
+//-----------------------------------------------------------------------------
+/*
+- checks that the id is within bounds
+- returns a pointer to the sprite specified by the SpriteID
+*/
 Sprite* ResourceManager::getSprite(SpriteID id) {
 	if(id<0||id>=SpriteID::NUM_SPRITES) return NULL;
 	return _sprites[id];

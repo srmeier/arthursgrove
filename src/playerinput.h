@@ -12,6 +12,8 @@ public:
 /* playerinput.cpp */
 //----------------------------------------------------------------------
 void PlayerInput::poll(void) {
+	Input::poll();
+
 	SDL_Event event;
 	while(SDL_PollEvent(&event)) {
 		switch(event.type) {
