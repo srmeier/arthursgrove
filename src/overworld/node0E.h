@@ -32,7 +32,7 @@ Node0E::Node0E(void) {
 
 	for(int j=0; j<15; j++) {
 		for(int i=0; i<20; i++) {
-			_tiles[j][i] = tiles[j][i];
+			_background[j][i] = tiles[j][i];
 		}
 	}
 }

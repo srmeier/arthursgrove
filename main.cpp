@@ -9,6 +9,7 @@ CLEAN-UP:
 - not sure that the canMove should be in the moveable class...
 - the components should have specific names since their variables are used
 	within a varity of different objects
+- input class is a mess
 
 % === %
 - need to add a method to the player class which checks for a particular
@@ -46,7 +47,6 @@ CLEAN-UP:
 #include "swordentity.h"
 #include "tsunamientity.h"
 #include "playerentity.h"
-/*
 #include "npcentity.h"
 #include "sandstormentity.h"
 #include "bugentity.h"
@@ -62,9 +62,6 @@ CLEAN-UP:
 #include "bugentity.cpp"
 #include "npc00entity.cpp"
 #include "wormentity.cpp"
-*/
-
-//-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 int SDL_main(int argc, char* argv[]) {
@@ -76,8 +73,8 @@ int SDL_main(int argc, char* argv[]) {
 
 	//ResourceManager& rm = ResourceManager::getRef();
 
-	//PlayerEntity player(16*5, 16*5);
-	//Overworld::getRef().addPlayer(&player);
+	PlayerEntity player(16*5, 16*5);
+	Overworld::getRef().addPlayer(&player);
 
 	/* === */
 
@@ -90,8 +87,8 @@ int SDL_main(int argc, char* argv[]) {
 
 		switch(Game.state) {
 			case 0x00: {
-				//Overworld::getRef().updateNode();
-				//Overworld::getRef().drawNode();
+				Overworld::getRef().updateNode();
+				Overworld::getRef().drawNode();
 			} break;
 			case 0x01: {
 			} break;

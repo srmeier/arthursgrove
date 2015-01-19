@@ -42,15 +42,15 @@ SDL_bool Npc00Entity::canMove(int i, int j) {
 
 	return (SDL_bool) (
 		(
-			node->getTile(i,j)==FLOOR_TILE_00 ||
-			node->getTile(i,j)==FLOOR_TILE_01 ||
-			node->getTile(i,j)==FLOOR_TILE_02 ||
-			node->getTile(i,j)==FLOOR_TILE_03 ||
-			node->getTile(i,j)==FLOOR_TILE_04 ||
-			node->getTile(i,j)==FLOOR_TILE_05 ||
-			node->getTile(i,j)==FLOOR_TILE_06 ||
-			node->getTile(i,j)==FLOOR_TILE_07 ||
-			node->getTile(i,j)==FLOOR_TILE_08
+			node->getTile(i,j)==SpriteID::FLOOR00 ||
+			node->getTile(i,j)==SpriteID::FLOOR01 ||
+			node->getTile(i,j)==SpriteID::FLOOR02 ||
+			node->getTile(i,j)==SpriteID::FLOOR03 ||
+			node->getTile(i,j)==SpriteID::FLOOR04 ||
+			node->getTile(i,j)==SpriteID::FLOOR05 ||
+			node->getTile(i,j)==SpriteID::FLOOR06 ||
+			node->getTile(i,j)==SpriteID::FLOOR07 ||
+			node->getTile(i,j)==SpriteID::FLOOR08
 		)
 		&&!(i==pi&&j==pj)
 	);

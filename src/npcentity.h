@@ -6,7 +6,7 @@
 //----------------------------------------------------------------------
 class NpcEntity: public MoveableEntity {
 public:
-	NpcEntity(int x, int y, SpriteTag tag, Input* input);
+	NpcEntity(int x, int y, SpriteID id, Input* input);
 
 	virtual void interactWith(void);
 	virtual void resolveInteraction(PlayerEntity* player);
@@ -14,7 +14,7 @@ public:
 
 /* npcentity.cpp */
 //----------------------------------------------------------------------
-NpcEntity::NpcEntity(int x, int y, SpriteTag tag, Input* input): MoveableEntity(x, y, tag, input) {
+NpcEntity::NpcEntity(int x, int y, SpriteID id, Input* input): MoveableEntity(x, y, id, input) {
 	// nothing
 }
 

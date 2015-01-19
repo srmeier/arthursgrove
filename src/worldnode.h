@@ -6,7 +6,7 @@
 //----------------------------------------------------------------------
 class WorldNode {
 protected:
-	int _tiles[15][20];
+	int _background[15][20];
 	PlayerEntity* _player;
 	int _messageAButnFlash;
 	char* _messageForPlayer1;
@@ -28,7 +28,7 @@ public:
 	virtual void draw(void);
 
 	PlayerEntity* getPlayer(void);
-	SpriteTag getTile(int i, int j);
+	SpriteID getTile(int i, int j);
 	virtual SDL_bool canSpawn(int i, int j);
 	virtual void writeMessageToPlayer(NpcEntity* npcentity, const char* message);
 	virtual Entity* getEntityAt(int i, int j);
@@ -78,9 +78,9 @@ void WorldNode::_drawGUI(void) {
 	// back-drop
 	for(int j=0; j<3; j++) {
 		for(int i=0; i<20; i++) {
-			Sprite* spr = SprManager::getRef().getSprite((SpriteTag) _tiles[j][i]);
+			Sprite* spr = ResourceManager::getRef().getSprite((SpriteID) _background[j][i]);
 			SDL_Rect rect = {16*i, 16*j, spr->w, spr->h};
-			SDL_BlitSurface(spr->tile, NULL, screen, &rect);
+			SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &rect);
 		}
 	}
 
@@ -89,16 +89,15 @@ void WorldNode::_drawGUI(void) {
 		int drawy = 16*(_interactingNpc->getJ()-3);
 		SDL_Color color = {0x00, 0x00, 0x00, 0x00};
 
-		Sprite* spr = SprManager::getRef().getSprite(FRAME_TILE_0B);
+		Sprite* spr = ResourceManager::getRef().getSprite(SpriteID::FRAME0B);
 		SDL_Rect rect = {drawx, drawy, spr->w, spr->h};
-		SDL_BlitSurface(spr->tile, NULL, screen, &rect);
+		SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &rect);
 
-		SprManager& sprmanager = SprManager::getRef();
-		sprmanager.drawText(_messageForPlayer1, drawx+5, drawy+2, color, 6);
-		sprmanager.drawText(_messageForPlayer2, drawx+5, drawy+2+6, color, 6);
-		sprmanager.drawText(_messageForPlayer3, drawx+5, drawy+2+12, color, 6);
-		sprmanager.drawText(_messageForPlayer4, drawx+5, drawy+2+18, color, 6);
-		sprmanager.drawText(_messageForPlayer5, drawx+5, drawy+2+24, color, 6);
+		drawText(_messageForPlayer1, drawx+5, drawy+2, color, 6);
+		drawText(_messageForPlayer2, drawx+5, drawy+2+6, color, 6);
+		drawText(_messageForPlayer3, drawx+5, drawy+2+12, color, 6);
+		drawText(_messageForPlayer4, drawx+5, drawy+2+18, color, 6);
+		drawText(_messageForPlayer5, drawx+5, drawy+2+24, color, 6);
 
 		static int on = 1;
 		if(_messageAButnFlash>0) _messageAButnFlash--;
@@ -108,7 +107,7 @@ void WorldNode::_drawGUI(void) {
 		}
 
 		//SDL_Color color0 = {0x00, 0xFF, 0xAA, 0xAA};
-		if(on) sprmanager.drawText("Press B", drawx+5+8*14-5, drawy+8*5-2, color, 6);
+		if(on) drawText("Press B", drawx+5+8*14-5, drawy+8*5-2, color, 6);
 	}
 
 	// GUI
@@ -117,84 +116,84 @@ void WorldNode::_drawGUI(void) {
 
 	// heart near top
 	SDL_Rect gui_rect = {8, 8, 16, 16};
-	spr = SprManager::getRef().getSprite(HEART_TILE_01);
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	spr = ResourceManager::getRef().getSprite(SpriteID::HEART01);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 
 	gui_rect.x += 16;
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 
 	gui_rect.x += 16;
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 
 	gui_rect.x += 16;
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 
 	// bar at bottom
 	gui_rect.x = 8; gui_rect.y = 24;
-	spr = SprManager::getRef().getSprite(GUI_TILE_03);
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
-	spr = SprManager::getRef().getSprite(GUI_TILE_00);
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	spr = ResourceManager::getRef().getSprite(SpriteID::GUI03);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
+	spr = ResourceManager::getRef().getSprite(SpriteID::GUI00);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 
 	gui_rect.x += 16;
-	spr = SprManager::getRef().getSprite(GUI_TILE_03);
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
-	spr = SprManager::getRef().getSprite(GUI_TILE_01);
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	spr = ResourceManager::getRef().getSprite(SpriteID::GUI03);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
+	spr = ResourceManager::getRef().getSprite(SpriteID::GUI01);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 
 	gui_rect.x += 16;
-	spr = SprManager::getRef().getSprite(GUI_TILE_03);
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
-	spr = SprManager::getRef().getSprite(GUI_TILE_01);
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	spr = ResourceManager::getRef().getSprite(SpriteID::GUI03);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
+	spr = ResourceManager::getRef().getSprite(SpriteID::GUI01);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 
 	gui_rect.x += 16;
-	spr = SprManager::getRef().getSprite(GUI_TILE_03);
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
-	spr = SprManager::getRef().getSprite(GUI_TILE_02);
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	spr = ResourceManager::getRef().getSprite(SpriteID::GUI03);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
+	spr = ResourceManager::getRef().getSprite(SpriteID::GUI02);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 
 	// inventory
 	gui_rect.y -= 16; gui_rect.x += 16*7-8;
-	spr = SprManager::getRef().getSprite(FRAME_TILE_09);
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
-	SprManager::getRef().drawText("Bag", gui_rect.x+16*4, gui_rect.y+18+8, color);
+	spr = ResourceManager::getRef().getSprite(SpriteID::FRAME09);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
+	drawText("Bag", gui_rect.x+16*4, gui_rect.y+18+8, color);
 
 	gui_rect.x += 8; gui_rect.y += 8;
 	for(int i=0; i<7; i++) {
-		spr = SprManager::getRef().getSprite(_player->inventory[i]);
-		SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+		spr = ResourceManager::getRef().getSprite(_player->inventory[i]);
+		SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 		gui_rect.x += 16+4;
 	}
 
 	// equiped frames
 	gui_rect.x = 64+16;
 	gui_rect.y = 8;
-	spr = SprManager::getRef().getSprite(FRAME_TILE_0A);
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	spr = ResourceManager::getRef().getSprite(SpriteID::FRAME0A);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 	gui_rect.x += 4;
 	gui_rect.y += 8;
-	spr = SprManager::getRef().getSprite(SHIELD_TILE_00);
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
-	SprManager::getRef().drawText("A", gui_rect.x+4, gui_rect.y+18, color);
+	spr = ResourceManager::getRef().getSprite(SpriteID::SHIELD00);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
+	drawText("A", gui_rect.x+4, gui_rect.y+18, color);
 
 	gui_rect.x = 64+16+16+16;
 	gui_rect.y -= 8;
-	spr = SprManager::getRef().getSprite(FRAME_TILE_0A);
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
+	spr = ResourceManager::getRef().getSprite(SpriteID::FRAME0A);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 	gui_rect.x += 4;
 	gui_rect.y += 8;
-	spr = SprManager::getRef().getSprite(ATTACK_TILE_02);
-	SDL_BlitSurface(spr->tile, NULL, screen, &gui_rect);
-	SprManager::getRef().drawText("B", gui_rect.x+4, gui_rect.y+18, color);
+	spr = ResourceManager::getRef().getSprite(SpriteID::ATTACK02);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
+	drawText("B", gui_rect.x+4, gui_rect.y+18, color);
 }
 
 void WorldNode::draw(void) {
 	for(int j=3; j<15; j++) {
 		for(int i=0; i<20; i++) {
-			Sprite* spr = SprManager::getRef().getSprite((SpriteTag) _tiles[j][i]);
+			Sprite* spr = ResourceManager::getRef().getSprite((SpriteID) _background[j][i]);
 			SDL_Rect rect = {16*i, 16*j, spr->w, spr->h};
-			SDL_BlitSurface(spr->tile, NULL, screen, &rect);
+			SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &rect);
 		}
 	}
 
@@ -208,8 +207,8 @@ PlayerEntity* WorldNode::getPlayer(void) {
 	return _player;
 }
 
-SpriteTag WorldNode::getTile(int i, int j) {
-	return (SpriteTag) _tiles[j][i];
+SpriteID WorldNode::getTile(int i, int j) {
+	return (SpriteID) _background[j][i];
 }
 
 void WorldNode::writeMessageToPlayer(NpcEntity* npcentity, const char* message) {

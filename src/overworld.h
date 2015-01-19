@@ -63,7 +63,7 @@ public:
 	SDL_bool hasRightNode(void);
 
 	WorldNode* getCurNode(void);
-	SpriteTag getTile(int i, int j);
+	SpriteID getTile(int i, int j);
 	void addPlayer(PlayerEntity* player);
 };
 
@@ -133,7 +133,7 @@ WorldNode* Overworld::getCurNode(void) {
 	return _nodes[_j][_i];
 }
 
-SpriteTag Overworld::getTile(int i, int j) {
+SpriteID Overworld::getTile(int i, int j) {
 	return _nodes[_j][_i]->getTile(i, j);
 }
 

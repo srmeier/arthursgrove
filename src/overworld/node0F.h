@@ -38,7 +38,7 @@ Node0F::Node0F(void) {
 
 	for(int j=0; j<15; j++) {
 		for(int i=0; i<20; i++) {
-			_tiles[j][i] = tiles[j][i];
+			_background[j][i] = tiles[j][i];
 		}
 	}
 }
@@ -51,23 +51,23 @@ void Node0F::update(void) {
 		_sea_frame = _fpa;
 		for(int j=3; j<15; j++) {
 			for(int i=0; i<20; i++) {
-				if(_tiles[j][i]==SEA_TILE_00) _tiles[j][i] = SEA_TILE_01;
-				else if(_tiles[j][i]==SEA_TILE_01) _tiles[j][i] = SEA_TILE_00;
+				if(_background[j][i]==SpriteID::SEA00) _background[j][i] = SpriteID::SEA01;
+				else if(_background[j][i]==SpriteID::SEA01) _background[j][i] = SpriteID::SEA00;
 
-				if(_tiles[j][i]==SEA_TILE_02) _tiles[j][i] = SEA_TILE_03;
-				else if(_tiles[j][i]==SEA_TILE_03) _tiles[j][i] = SEA_TILE_02;
+				if(_background[j][i]==SpriteID::SEA02) _background[j][i] = SpriteID::SEA03;
+				else if(_background[j][i]==SpriteID::SEA03) _background[j][i] = SpriteID::SEA02;
 
-				if(_tiles[j][i]==SEA_TILE_04) _tiles[j][i] = SEA_TILE_05;
-				else if(_tiles[j][i]==SEA_TILE_05) _tiles[j][i] = SEA_TILE_04;
+				if(_background[j][i]==SpriteID::SEA04) _background[j][i] = SpriteID::SEA05;
+				else if(_background[j][i]==SpriteID::SEA05) _background[j][i] = SpriteID::SEA04;
 
-				if(_tiles[j][i]==SEA_TILE_06) _tiles[j][i] = SEA_TILE_07;
-				else if(_tiles[j][i]==SEA_TILE_07) _tiles[j][i] = SEA_TILE_06;
+				if(_background[j][i]==SpriteID::SEA06) _background[j][i] = SpriteID::SEA07;
+				else if(_background[j][i]==SpriteID::SEA07) _background[j][i] = SpriteID::SEA06;
 
-				if(_tiles[j][i]==SEA_TILE_08) _tiles[j][i] = SEA_TILE_09;
-				else if(_tiles[j][i]==SEA_TILE_09) _tiles[j][i] = SEA_TILE_08;
+				if(_background[j][i]==SpriteID::SEA08) _background[j][i] = SpriteID::SEA09;
+				else if(_background[j][i]==SpriteID::SEA09) _background[j][i] = SpriteID::SEA08;
 
-				if(_tiles[j][i]==SEA_TILE_0A) _tiles[j][i] = SEA_TILE_0B;
-				else if(_tiles[j][i]==SEA_TILE_0B) _tiles[j][i] = SEA_TILE_0A;
+				if(_background[j][i]==SpriteID::SEA0A) _background[j][i] = SpriteID::SEA0B;
+				else if(_background[j][i]==SpriteID::SEA0B) _background[j][i] = SpriteID::SEA0A;
 			}
 		}
 	}

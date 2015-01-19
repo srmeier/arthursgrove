@@ -12,14 +12,14 @@ WormEntity::~WormEntity(void) {
 }
 
 void WormEntity::draw(void) {
-	Sprite* spr = SprManager::getRef().getSprite(_id);
+	Sprite* spr = ResourceManager::getRef().getSprite(_id);
 
 	_rect.w = spr->w;
 	_rect.h = spr->h;
 
 	SDL_Rect rect;
 	memcpy(&rect, &_rect, sizeof(SDL_Rect));
-	SDL_BlitSurface(spr->tile, NULL, screen, &rect);
+	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &rect);
 
 	if(weapon->active) weapon->draw();
 }
@@ -83,7 +83,7 @@ void WormEntity::setPos(int x, int y) {
 
 	active = SDL_TRUE;
 	_dying = SDL_FALSE;
-	_tag = WORM_TILE_00;
+	_id = SpriteID::WORM00;
 	Moveable::setPos(x, y);
 }
 

@@ -167,24 +167,24 @@ void PlayerEntity::draw(void) {
 		if(_fish_frame>0) _fish_frame--;
 		if(_fish_frame==0) {
 			_fish_frame = _fish_fpa;
-			if(_fish_tag==FISH_TILE_00) _fish_tag = SpriteID::FISH01;
-			else _fish_tag = SpriteID::FISH00;
+			if(_fish_id==SpriteID::FISH00) _fish_id = SpriteID::FISH01;
+			else _fish_id = SpriteID::FISH00;
 		}
 
 		SDL_Rect rect = {_rect.x, _rect.y+8, 8*2, 8*2};
-		Sprite* fish_spr = SprManager::getRef().getSprite(_fish_tag);
-		SDL_BlitSurface(fish_spr->tile, NULL, screen, &rect);
+		Sprite* fish_spr = ResourceManager::getRef().getSprite(_fish_id);
+		SDL_BlitSurface(fish_spr->tile, NULL, Game.gfx.screen, &rect);
 
 		Sprite* spr;
 		switch(_movedirec) {
-			case 0: spr = SprManager::getRef().getSprite(SpriteID::PLAYER03); break;
-			case 1: spr = SprManager::getRef().getSprite(SpriteID::PLAYER00); break;
-			case 2: spr = SprManager::getRef().getSprite(SpriteID::PLAYER06); break;
-			case 3: spr = SprManager::getRef().getSprite(SpriteID::PLAYER09); break;
+			case 0: spr = ResourceManager::getRef().getSprite(SpriteID::PLAYER03); break;
+			case 1: spr = ResourceManager::getRef().getSprite(SpriteID::PLAYER00); break;
+			case 2: spr = ResourceManager::getRef().getSprite(SpriteID::PLAYER06); break;
+			case 3: spr = ResourceManager::getRef().getSprite(SpriteID::PLAYER09); break;
 		}
 
-		if(_fish_tag==SpriteID::FISH01) _rect.y -= 2;
-		SDL_BlitSurface(spr->tile, NULL, screen, &_rect);
+		if(_fish_id==SpriteID::FISH01) _rect.y -= 2;
+		SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &_rect);
 
 	} else {
 		Drawable::draw();

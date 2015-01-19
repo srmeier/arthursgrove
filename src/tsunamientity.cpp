@@ -1,6 +1,6 @@
 /* tsunamientity.cpp */
 //----------------------------------------------------------------------
-TsunamiEntity::TsunamiEntity(int x, int y): WeaponEntity(x, y, TSUNAMI_TILE_00) {
+TsunamiEntity::TsunamiEntity(int x, int y): WeaponEntity(x, y, SpriteID::TSUNAMI00) {
 	// nothing
 }
 
@@ -12,27 +12,27 @@ void TsunamiEntity::update(void) {
 	WorldNode* node = overworld.getCurNode();
 
 	if(!(
-		node->getTile(_i,_j)==SEA_TILE_00||
-		node->getTile(_i,_j)==SEA_TILE_01||
-		node->getTile(_i,_j)==SEA_TILE_02||
-		node->getTile(_i,_j)==SEA_TILE_03||
-		node->getTile(_i,_j)==SEA_TILE_04||
-		node->getTile(_i,_j)==SEA_TILE_05||
-		node->getTile(_i,_j)==SEA_TILE_06||
-		node->getTile(_i,_j)==SEA_TILE_07||
-		node->getTile(_i,_j)==SEA_TILE_08||
-		node->getTile(_i,_j)==SEA_TILE_09||
-		node->getTile(_i,_j)==SEA_TILE_0A||
-		node->getTile(_i,_j)==SEA_TILE_0B
+		node->getTile(_i,_j)==SpriteID::SEA00||
+		node->getTile(_i,_j)==SpriteID::SEA01||
+		node->getTile(_i,_j)==SpriteID::SEA02||
+		node->getTile(_i,_j)==SpriteID::SEA03||
+		node->getTile(_i,_j)==SpriteID::SEA04||
+		node->getTile(_i,_j)==SpriteID::SEA05||
+		node->getTile(_i,_j)==SpriteID::SEA06||
+		node->getTile(_i,_j)==SpriteID::SEA07||
+		node->getTile(_i,_j)==SpriteID::SEA08||
+		node->getTile(_i,_j)==SpriteID::SEA09||
+		node->getTile(_i,_j)==SpriteID::SEA0A||
+		node->getTile(_i,_j)==SpriteID::SEA0B
 	)) active = SDL_FALSE;
 
 	if(_frame>0) _frame--;
-	if(_frame==0&&_tag==TSUNAMI_TILE_00) {
+	if(_frame==0&&_id==SpriteID::TSUNAMI00) {
 		_frame = _fpa;
-		_tag = TSUNAMI_TILE_01;
-	} else if(_frame==0&&_tag==TSUNAMI_TILE_01) {
+		_id = SpriteID::TSUNAMI01;
+	} else if(_frame==0&&_id==SpriteID::TSUNAMI01) {
 		_frame = _fpa;
-		_tag = TSUNAMI_TILE_00;
+		_id = SpriteID::TSUNAMI00;
 	}
 
 	switch(_direc) {
@@ -46,23 +46,23 @@ void TsunamiEntity::update(void) {
 void TsunamiEntity::swingUp(int x, int y) {
 	_direc = 0;
 	setPos(x, y-8*2);
-	_tag = TSUNAMI_TILE_00;
+	_id = SpriteID::TSUNAMI00;
 }
 
 void TsunamiEntity::swingDown(int x, int y) {
 	_direc = 1;
 	setPos(x, y+8*2);
-	_tag = TSUNAMI_TILE_00;
+	_id = SpriteID::TSUNAMI00;
 }
 
 void TsunamiEntity::swingLeft(int x, int y) {
 	_direc = 2;
 	setPos(x-8*2, y);
-	_tag = TSUNAMI_TILE_00;
+	_id = SpriteID::TSUNAMI00;
 }
 
 void TsunamiEntity::swingRight(int x, int y) {
 	_direc = 3;
 	setPos(x+8*2, y);
-	_tag = TSUNAMI_TILE_00;
+	_id = SpriteID::TSUNAMI00;
 }

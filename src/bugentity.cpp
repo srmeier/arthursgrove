@@ -1,6 +1,6 @@
 /* bugentity.cpp */
 //----------------------------------------------------------------------
-BugEntity::BugEntity(int x, int y): Moveable(x, y, new RandomInput()), Entity(x, y, BUG_TILE_00) {
+BugEntity::BugEntity(int x, int y): Moveable(x, y, new RandomInput()), Entity(x, y, SpriteID::BUG00) {
 	// nothing
 }
 
@@ -10,23 +10,23 @@ void BugEntity::update(void) {
 	if(_frame>0) _frame--;
 
 	if(_dying) {
-		if(_frame==0&&_tag==SMALLFLAME_TILE_00) {
+		if(_frame==0&&_id==SpriteID::SMALLFLAME00) {
 			_frame = _fpa;
-			_tag = SMALLFLAME_TILE_01;
-		} else if(_frame==0&&_tag==SMALLFLAME_TILE_01) {
+			_id = SpriteID::SMALLFLAME01;
+		} else if(_frame==0&&_id==SpriteID::SMALLFLAME01) {
 			_frame = _fpa;
-			_tag = BUG_TILE_00;
+			_id = SpriteID::BUG00;
 
 			active = SDL_FALSE;
 			_dying = SDL_FALSE;
 		}
 	} else {
-		if(_frame==0&&_tag==BUG_TILE_00) {
+		if(_frame==0&&_id==SpriteID::BUG00) {
 			_frame = _fpa;
-			_tag = BUG_TILE_01;
-		} else if(_frame==0&&_tag==BUG_TILE_01) {
+			_id = SpriteID::BUG01;
+		} else if(_frame==0&&_id==SpriteID::BUG01) {
 			_frame = _fpa;
-			_tag = BUG_TILE_00;
+			_id = SpriteID::BUG00;
 		}
 	}
 
@@ -40,7 +40,7 @@ void BugEntity::setPos(int x, int y) {
 
 	active = SDL_TRUE;
 	_dying = SDL_FALSE;
-	_tag = BUG_TILE_00;
+	_id = SpriteID::BUG00;
 	Moveable::setPos(x, y);
 }
 
@@ -58,10 +58,10 @@ SDL_bool BugEntity::canMove(int i, int j) {
 
 	return (SDL_bool) (
 		(
-		node->getTile(i,j)==GRASS_TILE_00 ||
-		node->getTile(i,j)==SAND_TILE_00  ||
-		node->getTile(i,j)==SEA_TILE_00   ||
-		node->getTile(i,j)==BRICK_TILE_00
+		node->getTile(i,j)==SpriteID::GRASS00 ||
+		node->getTile(i,j)==SpriteID::SAND00  ||
+		node->getTile(i,j)==SpriteID::SEA00   ||
+		node->getTile(i,j)==SpriteID::BRICK00
 		)
 		&&!(i==pi&&j==pj)
 	);
@@ -73,6 +73,6 @@ void BugEntity::hit(int damage) {
 	if(damage>0) {
 		_frame = _fpa;
 		_dying = SDL_TRUE;
-		_tag = SMALLFLAME_TILE_00;
+		_id = SpriteID::SMALLFLAME00;
 	}
 }

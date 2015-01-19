@@ -45,7 +45,7 @@ Node00::Node00(void): WorldNode() {
 
 	for(int j=0; j<15; j++) {
 		for(int i=0; i<20; i++) {
-			_tiles[j][i] = tiles[j][i];
+			_background[j][i] = tiles[j][i];
 		}
 	}
 
@@ -56,7 +56,7 @@ Node00::Node00(void): WorldNode() {
 			int ni = rand()%20;
 			int nj = rand()%(15-4)+3;
 
-			if(getTile(ni,nj)==GRASS_TILE_00) {
+			if(getTile(ni,nj)==SpriteID::GRASS00) {
 				bugSet = SDL_TRUE;
 				_bug[i] = new BugEntity(16*ni, 16*nj);
 			}
@@ -81,8 +81,8 @@ void Node00::update(void) {
 	int pj = _player->getJ();
 
 	if(pi==11&&pj==12)
-		_tiles[12][11] = DOOR_TILE_01;
-	else _tiles[12][11] = DOOR_TILE_00;
+		_background[12][11] = SpriteID::DOOR01;
+	else _background[12][11] = SpriteID::DOOR00;
 
 	for(int i=0; i<numofbugs; i++) {
 		int bi = _bug[i]->getI();
@@ -131,7 +131,7 @@ SDL_bool Node00::canSpawn(int i, int j) {
 
 	return (SDL_bool) (
 		(
-		getTile(i,j)==GRASS_TILE_00
+		getTile(i,j)==SpriteID::GRASS00
 		)
 		&&(i!=pi&&j!=pj)
 		&&(i!=ni&&j!=nj)
