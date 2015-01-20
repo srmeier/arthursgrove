@@ -6,9 +6,13 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 
 /*
 CLEAN-UP:
+- Moveable::canMove() determines if an entity can move to a particular grid
+	point. currently each entity implements this function and gets a reference
+	to the node and goes from there
 - not sure that the canMove should be in the moveable class...
 	- probably makes sense because each entity will have different sprites it
 		can move on
+
 - the components should have specific names since their private variables are
 	used within a varity of different objects
 
@@ -40,14 +44,17 @@ CLEAN-UP:
 #include "engine.h"
 #include "resourcemanager.h"
 
+//-----------------------------------------------------------------------------
 #include "input.h"
 #include "drawable.h"
 #include "moveable.h"
 
+//-----------------------------------------------------------------------------
 #include "playerinput.h"
 #include "randominput.h"
-#include "straightinput.h"
+#include "straightinput.h" //here
 
+//-----------------------------------------------------------------------------
 #include "entity.h"
 #include "moveableentity.h"
 #include "weaponentity.h"
@@ -60,9 +67,11 @@ CLEAN-UP:
 #include "npc00entity.h"
 #include "wormentity.h"
 
+//-----------------------------------------------------------------------------
 #include "worldnode.h"
 #include "overworld.h"
 
+//-----------------------------------------------------------------------------
 #include "straightinput.cpp"
 #include "tsunamientity.cpp"
 #include "playerentity.cpp"

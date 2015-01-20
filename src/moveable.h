@@ -1,9 +1,13 @@
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 #ifndef _MOVEABLE_HEADER_
 #define _MOVEABLE_HEADER_
 
 /* moveable.h */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+- this component provides basic entity movement from one grid point to the next
+	grid point
+*/
 class Moveable {
 protected:
 	virtual SDL_bool canMove(int i, int j);
@@ -32,7 +36,11 @@ public:
 };
 
 /* moveable.cpp */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+- set the components x and y along with the input responsible for moving the
+	component
+*/
 Moveable::Moveable(int x, int y, Input* _input) {
 	_x = x;
 	_y = y;
@@ -49,14 +57,25 @@ Moveable::Moveable(int x, int y, Input* _input) {
 	_tomove = SDL_TRUE;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 Moveable::~Moveable(void) {
 	delete input;
 }
 
+//-----------------------------------------------------------------------------
+/*
+- this is a virtual function which each class is required to set unless the
+	entity can move everywhere
+*/
 SDL_bool Moveable::canMove(int i, int j) {
 	return SDL_TRUE;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void Moveable::update(void) {
 	input->poll();
 	
@@ -100,6 +119,9 @@ void Moveable::update(void) {
 	}
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void Moveable::setPos(int x, int y) {
 	_x = x;
 	_y = y;
@@ -114,18 +136,34 @@ void Moveable::setPos(int x, int y) {
 	_tomove = SDL_TRUE;
 }
 
+//-----------------------------------------------------------------------------
+/*
+- get the x coordinate
+*/
 int Moveable::getI(void) {
 	return _i;
 }
 
+//-----------------------------------------------------------------------------
+/*
+- get the y coordinate
+*/
 int Moveable::getJ(void) {
 	return _j;
 }
 
+//-----------------------------------------------------------------------------
+/*
+- allow the entity to move
+*/
 void Moveable::allowMovement(void) {
 	_tomove = SDL_TRUE;
 }
 
+//-----------------------------------------------------------------------------
+/*
+- prevent the entity from move
+*/
 void Moveable::preventMovement(void) {
 	_tomove = SDL_FALSE;
 }

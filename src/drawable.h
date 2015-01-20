@@ -1,12 +1,11 @@
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 #ifndef _DRAWABLE_HEADER_
 #define _DRAWABLE_HEADER_
 
-//----------------------------------------------------------------------
-extern SDL_Surface* screen;
-
 /* drawable.h */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+*/
 class Drawable {
 protected:
 	SDL_Rect _rect;
@@ -20,11 +19,19 @@ public:
 };
 
 /* drawable.cpp */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+- set the spriteid for this drawable component
+*/
 Drawable::Drawable(SpriteID id) {
 	_id = id;
 }
 
+//-----------------------------------------------------------------------------
+/*
+- get a reference to the metasprite that should be drawn to the screen
+- draw the sprite to the sreen
+*/
 void Drawable::draw(void) {
 	Sprite* spr = ResourceManager::getRef().getSprite(_id);
 
