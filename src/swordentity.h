@@ -1,9 +1,11 @@
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 #ifndef _SWORDENTITY_HEADER_
 #define _SWORDENTITY_HEADER_
 
 /* swordentity.h */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+*/
 class SwordEntity: public WeaponEntity {
 public:
 	SwordEntity(int x, int y);
@@ -17,11 +19,16 @@ public:
 };
 
 /* swordentity.cpp */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+*/
 SwordEntity::SwordEntity(int x, int y): WeaponEntity(x, y, SpriteID::ATTACK00) {
 	// nothing
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void SwordEntity::update(void) {
 	_i = floor(_rect.x/16.0f);
 	_j = floor(_rect.y/16.0f);
@@ -130,6 +137,9 @@ void SwordEntity::update(void) {
 	}
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void SwordEntity::swingUp(int x, int y) {
 	_direc = 0;
 	setPos(x-8*2, y);
@@ -137,6 +147,9 @@ void SwordEntity::swingUp(int x, int y) {
 	_id = SpriteID::ATTACK06;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void SwordEntity::swingDown(int x, int y) {
 	_direc = 1;
 	setPos(x+8*2, y);
@@ -144,6 +157,9 @@ void SwordEntity::swingDown(int x, int y) {
 	_id = SpriteID::ATTACK02;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void SwordEntity::swingLeft(int x, int y) {
 	_direc = 2;
 	setPos(x, y-8*2);
@@ -151,6 +167,9 @@ void SwordEntity::swingLeft(int x, int y) {
 	_id = SpriteID::ATTACK00;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void SwordEntity::swingRight(int x, int y) {
 	_direc = 3;
 	setPos(x, y-8*2);

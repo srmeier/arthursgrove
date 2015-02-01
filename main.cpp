@@ -16,6 +16,8 @@ CLEAN-UP:
 - the components should have specific names since their private variables are
 	used within a varity of different objects
 
+- moveable entity makes it seem like I'm doing something wrong
+
 % === %
 - need to add a method to the player class which checks for a particular
 	spriteID within the inventory array
@@ -52,7 +54,7 @@ CLEAN-UP:
 //-----------------------------------------------------------------------------
 #include "playerinput.h"
 #include "randominput.h"
-#include "straightinput.h" //here
+#include "straightinput.h"
 
 //-----------------------------------------------------------------------------
 #include "entity.h"
@@ -60,7 +62,7 @@ CLEAN-UP:
 #include "weaponentity.h"
 #include "swordentity.h"
 #include "tsunamientity.h"
-#include "playerentity.h"
+#include "playerentity.h" //here
 #include "npcentity.h"
 #include "sandstormentity.h"
 #include "bugentity.h"

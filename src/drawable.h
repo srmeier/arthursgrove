@@ -25,6 +25,7 @@ public:
 */
 Drawable::Drawable(SpriteID id) {
 	_id = id;
+	_todraw = SDL_TRUE;
 }
 
 //-----------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Drawable::Drawable(SpriteID id) {
 - draw the sprite to the sreen
 */
 void Drawable::draw(void) {
+	if(!_todraw) return;
+
 	Sprite* spr = ResourceManager::getRef().getSprite(_id);
 
 	_rect.w = spr->w;
