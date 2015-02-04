@@ -1,5 +1,7 @@
 /* wormentity.cpp */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+*/
 WormEntity::WormEntity(int x, int y): Moveable(x, y, new StraightInput()), Entity(x, y, SpriteID::WORM00) {
 	((StraightInput*) input)->parent = this;
 
@@ -7,10 +9,16 @@ WormEntity::WormEntity(int x, int y): Moveable(x, y, new StraightInput()), Entit
 	weapon->active = SDL_FALSE;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 WormEntity::~WormEntity(void) {
 	delete weapon;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void WormEntity::draw(void) {
 	Sprite* spr = ResourceManager::getRef().getSprite(_id);
 
@@ -24,6 +32,9 @@ void WormEntity::draw(void) {
 	if(weapon->active) weapon->draw();
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void WormEntity::update(void) {
 	Moveable::update();
 
@@ -77,6 +88,9 @@ void WormEntity::update(void) {
 	_rect.y = _y;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void WormEntity::setPos(int x, int y) {
 	_rect.x = x;
 	_rect.y = y;
@@ -87,6 +101,9 @@ void WormEntity::setPos(int x, int y) {
 	Moveable::setPos(x, y);
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 SDL_bool WormEntity::canMove(int i, int j) {
 	if(i<0||i>=20||j<0||j>=15) return SDL_FALSE;
 	if(_dying) return SDL_FALSE;
@@ -110,6 +127,9 @@ SDL_bool WormEntity::canMove(int i, int j) {
 	);
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void WormEntity::hit(int damage) {
 	if(_dying) return;
 

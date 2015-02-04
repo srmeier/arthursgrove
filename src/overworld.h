@@ -1,8 +1,8 @@
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 #ifndef _OVERWORLD_HEADER_
 #define _OVERWORLD_HEADER_
 
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 #include "overworld/node00.h"
 #include "overworld/node01.h"
 #include "overworld/node02.h"
@@ -21,7 +21,9 @@
 #include "overworld/node0F.h"
 
 /* overworld.h */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+*/
 class Overworld {
 private:
 	Overworld(Overworld const&);
@@ -68,7 +70,9 @@ public:
 };
 
 /* overworld.cpp */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+*/
 Overworld::~Overworld(void) {
 	for(int j=0; j<_h; j++) {
 		for(int i=0; i<_w; i++) {
@@ -77,66 +81,105 @@ Overworld::~Overworld(void) {
 	}
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void Overworld::updateNode(void) {
 	_nodes[_j][_i]->update();
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void Overworld::drawNode(void) {
 	_nodes[_j][_i]->draw();
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void Overworld::moveTop(void) {
 	if(!hasTopNode()) return;
 	_j--; _nodes[_j][_i]->addPlayerEntity(_player);
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void Overworld::moveBot(void) {
 	if(!hasBotNode()) return;
 	_j++; _nodes[_j][_i]->addPlayerEntity(_player);
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void Overworld::moveLeft(void) {
 	if(!hasLeftNode()) return;
 	_i--; _nodes[_j][_i]->addPlayerEntity(_player);
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void Overworld::moveRight(void) {
 	if(!hasRightNode()) return;
 	_i++; _nodes[_j][_i]->addPlayerEntity(_player);
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 SDL_bool Overworld::hasTopNode(void) {
 	if(_j-1<0) return SDL_FALSE;
 	if(_nodes[_j-1][_i]==NULL) return SDL_FALSE;
 	return SDL_TRUE;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 SDL_bool Overworld::hasBotNode(void) {
 	if(_j+1>=_h) return SDL_FALSE;
 	if(_nodes[_j+1][_i]==NULL) return SDL_FALSE;
 	return SDL_TRUE;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 SDL_bool Overworld::hasLeftNode(void) {
 	if(_i-1<0) return SDL_FALSE;
 	if(_nodes[_j][_i-1]==NULL) return SDL_FALSE;
 	return SDL_TRUE;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 SDL_bool Overworld::hasRightNode(void) {
 	if(_i+1>=_w) return SDL_FALSE;
 	if(_nodes[_j][_i+1]==NULL) return SDL_FALSE;
 	return SDL_TRUE;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 WorldNode* Overworld::getCurNode(void) {
 	return _nodes[_j][_i];
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 SpriteID Overworld::getTile(int i, int j) {
 	return _nodes[_j][_i]->getTile(i, j);
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void Overworld::addPlayer(PlayerEntity* player) {
 	_player = player;
 	_nodes[_j][_i]->addPlayerEntity(player);

@@ -1,9 +1,14 @@
 /* bugentity.cpp */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+*/
 BugEntity::BugEntity(int x, int y): Moveable(x, y, new RandomInput()), Entity(x, y, SpriteID::BUG00) {
 	// nothing
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void BugEntity::update(void) {
 	Moveable::update();
 
@@ -34,6 +39,9 @@ void BugEntity::update(void) {
 	_rect.y = _y;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void BugEntity::setPos(int x, int y) {
 	_rect.x = x;
 	_rect.y = y;
@@ -44,6 +52,9 @@ void BugEntity::setPos(int x, int y) {
 	Moveable::setPos(x, y);
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 SDL_bool BugEntity::canMove(int i, int j) {
 	if(i<0||i>=20||j<0||j>=15) return SDL_FALSE;
 	if(_dying) return SDL_FALSE;
@@ -67,6 +78,9 @@ SDL_bool BugEntity::canMove(int i, int j) {
 	);
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void BugEntity::hit(int damage) {
 	if(_dying) return;
 

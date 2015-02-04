@@ -1,9 +1,14 @@
 /* straightinput.cpp */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+*/
 StraightInput::StraightInput(int freq = 48) {
 	_freq = freq;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void StraightInput::poll(void) {
 	Overworld& overworld = Overworld::getRef();
 	WorldNode* node = overworld.getCurNode();

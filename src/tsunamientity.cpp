@@ -1,9 +1,14 @@
 /* tsunamientity.cpp */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+*/
 TsunamiEntity::TsunamiEntity(int x, int y): WeaponEntity(x, y, SpriteID::TSUNAMI00) {
 	// nothing
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void TsunamiEntity::update(void) {
 	_i = floor((_rect.x+8.0f)/16.0f);
 	_j = floor((_rect.y+8.0f)/16.0f);
@@ -43,24 +48,36 @@ void TsunamiEntity::update(void) {
 	}
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void TsunamiEntity::swingUp(int x, int y) {
 	_direc = 0;
 	setPos(x, y-8*2);
 	_id = SpriteID::TSUNAMI00;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void TsunamiEntity::swingDown(int x, int y) {
 	_direc = 1;
 	setPos(x, y+8*2);
 	_id = SpriteID::TSUNAMI00;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void TsunamiEntity::swingLeft(int x, int y) {
 	_direc = 2;
 	setPos(x-8*2, y);
 	_id = SpriteID::TSUNAMI00;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void TsunamiEntity::swingRight(int x, int y) {
 	_direc = 3;
 	setPos(x+8*2, y);

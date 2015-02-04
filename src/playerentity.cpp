@@ -1,5 +1,7 @@
 /* playerentity.cpp */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+*/
 PlayerEntity::PlayerEntity(int x, int y): Moveable(x, y, new PlayerInput()), Entity(x, y, SpriteID::PLAYER00) {
 	shield = new Entity(x, y, SpriteID::SHIELD00);
 
@@ -20,12 +22,18 @@ PlayerEntity::PlayerEntity(int x, int y): Moveable(x, y, new PlayerInput()), Ent
 	inventory[6] = SpriteID::KEY00;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 PlayerEntity::~PlayerEntity(void) {
 	delete shield;
 	delete sword;
 	delete tsunami;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void PlayerEntity::update(void) {
 	Overworld& overworld = Overworld::getRef();
 	WorldNode* node = overworld.getCurNode();
@@ -161,6 +169,9 @@ void PlayerEntity::update(void) {
 	_rect.y = _y;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void PlayerEntity::draw(void) {
 
 	if(_on_sea_tile) {		
@@ -198,14 +209,23 @@ void PlayerEntity::draw(void) {
 	}
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 int PlayerEntity::getX(void) {
 	return _rect.x;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 int PlayerEntity::getY(void) {
 	return _rect.y;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 SDL_bool PlayerEntity::canMove(int i, int j) {
 	if(_attack_next_free_time) return SDL_FALSE;
 

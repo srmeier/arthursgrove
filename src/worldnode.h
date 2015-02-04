@@ -1,9 +1,11 @@
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 #ifndef _WORLDNODE_HEADER_
 #define _WORLDNODE_HEADER_
 
 /* worldnode.h */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+*/
 class WorldNode {
 protected:
 	int _background[15][20];
@@ -36,7 +38,9 @@ public:
 };
 
 /* worldnode.cpp */
-//----------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+*/
 WorldNode::WorldNode(void) {
 	_player = NULL;
 	_messageAButnFlash = 32;
@@ -48,6 +52,9 @@ WorldNode::WorldNode(void) {
 	_writingMessageToPlayer = SDL_FALSE;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 WorldNode::~WorldNode(void) {
 	free(_messageForPlayer1);
 	_messageForPlayer1 = NULL;
@@ -61,6 +68,9 @@ WorldNode::~WorldNode(void) {
 	_messageForPlayer5 = NULL;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void WorldNode::update(void) {
 	_player->update();
 
@@ -74,6 +84,9 @@ void WorldNode::update(void) {
 	}
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void WorldNode::_drawGUI(void) {
 	// back-drop
 	for(int j=0; j<3; j++) {
@@ -188,6 +201,9 @@ void WorldNode::_drawGUI(void) {
 	drawText("B", gui_rect.x+4, gui_rect.y+18, color);
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void WorldNode::draw(void) {
 	for(int j=3; j<15; j++) {
 		for(int i=0; i<20; i++) {
@@ -203,14 +219,23 @@ void WorldNode::draw(void) {
 	_drawGUI();
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 PlayerEntity* WorldNode::getPlayer(void) {
 	return _player;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 SpriteID WorldNode::getTile(int i, int j) {
 	return (SpriteID) _background[j][i];
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void WorldNode::writeMessageToPlayer(NpcEntity* npcentity, const char* message) {
 	if(!message) return;
 
@@ -305,14 +330,23 @@ void WorldNode::writeMessageToPlayer(NpcEntity* npcentity, const char* message) 
 	_interactingNpc->preventMovement();
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 Entity* WorldNode::getEntityAt(int i, int j) {
 	return NULL;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 void WorldNode::addPlayerEntity(PlayerEntity* player) {
 	_player = player;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
 SDL_bool WorldNode::canSpawn(int i, int j) {
 	return SDL_TRUE;
 }

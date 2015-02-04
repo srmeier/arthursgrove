@@ -1,31 +1,15 @@
 /*
 g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
-.\test
 - for polymorphism make sure to use "virtual"
 */
 
 /*
-CLEAN-UP:
-- Moveable::canMove() determines if an entity can move to a particular grid
-	point. currently each entity implements this function and gets a reference
-	to the node and goes from there
-- not sure that the canMove should be in the moveable class...
-	- probably makes sense because each entity will have different sprites it
-		can move on
-
-- the components should have specific names since their private variables are
-	used within a varity of different objects
-
-- moveable entity makes it seem like I'm doing something wrong
-
 % === %
 - need to add a method to the player class which checks for a particular
 	spriteID within the inventory array
 - might want to consider adding an "interactable" component
 	(although the entity class basically is a moveable interact
 	component)
-- work on integrating the diamondcollector project? using arthur's grove as a
-	temporary project/engine name
 
 % === %
 - the b key press doesn't register while the sword is swinging because moveable
@@ -62,7 +46,7 @@ CLEAN-UP:
 #include "weaponentity.h"
 #include "swordentity.h"
 #include "tsunamientity.h"
-#include "playerentity.h" //here
+#include "playerentity.h"
 #include "npcentity.h"
 #include "sandstormentity.h"
 #include "bugentity.h"
