@@ -31,8 +31,8 @@ public:
 	int getX(void);
 	int getY(void);
 
-	Entity* shield;
 	SwordEntity* sword;
+	WeaponEntity* shield;
 	WeaponEntity* weapon;
 	TsunamiEntity* tsunami;
 	SpriteID inventory[7];

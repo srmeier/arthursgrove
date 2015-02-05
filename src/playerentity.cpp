@@ -3,16 +3,20 @@
 /*
 */
 PlayerEntity::PlayerEntity(int x, int y): Moveable(x, y, new PlayerInput()), Entity(x, y, SpriteID::PLAYER00) {
-	shield = new Entity(x, y, SpriteID::SHIELD00);
-
 	sword = new SwordEntity(x, y-8*2);
 	sword->active = SDL_FALSE;
+
+	shield = new WeaponEntity(x, y, SpriteID::SHIELD00);
+	shield->active = SDL_FALSE;
 
 	tsunami = new TsunamiEntity(x, y);
 	tsunami->active = SDL_FALSE;
 
-	for(int i=0; i<7; i++) inventory[i] = SpriteID::EMPTY;
+	weapon = sword;
 
+	for(int i=0; i<7; i++) inventory[i] = SpriteID::FRAME08;
+
+	/*
 	inventory[0] = SpriteID::FOOD00;
 	inventory[1] = SpriteID::SCROLL00;
 	inventory[2] = SpriteID::RING00;
@@ -20,6 +24,7 @@ PlayerEntity::PlayerEntity(int x, int y): Moveable(x, y, new PlayerInput()), Ent
 	inventory[4] = SpriteID::LIGHT00;
 	inventory[5] = SpriteID::ROPE00;
 	inventory[6] = SpriteID::KEY00;
+	*/
 }
 
 //-----------------------------------------------------------------------------
@@ -58,7 +63,7 @@ void PlayerEntity::update(void) {
 	else weapon = sword;
 
 	int old_direc = _movedirec;
-	if(weapon->canmove) Moveable::update();
+	if(weapon->canmove || !weapon->equipped) Moveable::update();
 
 	if(old_direc!=_movedirec) {
 		// setup for new move direction animation
@@ -88,20 +93,24 @@ void PlayerEntity::update(void) {
 		if(weapon->active)
 			weapon->update();
 		else {
-			if(input->isDown("b")&&!_moving) {
-				switch(_movedirec) {
-					case 0: weapon->swingUp(_x, _y); break;
-					case 1: weapon->swingDown(_x, _y); break;
-					case 2: weapon->swingLeft(_x, _y); break;
-					case 3: weapon->swingRight(_x, _y); break;
+			if(weapon->equipped) {
+				if(input->isDown("b")&&!_moving) {
+					switch(_movedirec) {
+						case 0: weapon->swingUp(_x, _y); break;
+						case 1: weapon->swingDown(_x, _y); break;
+						case 2: weapon->swingLeft(_x, _y); break;
+						case 3: weapon->swingRight(_x, _y); break;
+					}
+				} else if(input->isDown("b")&&_moving) {
+					_attack_next_free_time = SDL_TRUE;
 				}
-			} else if(input->isDown("b")&&_moving) {
-				_attack_next_free_time = SDL_TRUE;
 			}
 
-			if(input->isDown("a")&&!_attack_next_free_time&&!weapon->active) {
-				shield->setPos(_x, _y);
-			} else shield->active = SDL_FALSE;
+			if(shield->equipped) {
+				if(input->isDown("a")&&!_attack_next_free_time&&!weapon->active) {
+					shield->setPos(_x, _y);
+				} else shield->active = SDL_FALSE;
+			}
 		}
 	}
 

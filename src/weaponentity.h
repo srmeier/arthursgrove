@@ -17,17 +17,18 @@ protected:
 public:
 	WeaponEntity(int x, int y, SpriteID id);
 
-	virtual void update(void) = 0;
+	virtual void update(void) {};
 
 	int getI(void);
 	int getJ(void);
 
-	virtual void swingUp(int x, int y) = 0;
-	virtual void swingDown(int x, int y) = 0;
-	virtual void swingLeft(int x, int y) = 0;
-	virtual void swingRight(int x, int y) = 0;
+	virtual void swingUp(int x, int y) {};
+	virtual void swingDown(int x, int y) {};
+	virtual void swingLeft(int x, int y) {};
+	virtual void swingRight(int x, int y) {};
 
 	SDL_bool canmove = SDL_TRUE;
+	SDL_bool equipped = SDL_FALSE;
 };
 
 /* weaponentity.cpp */

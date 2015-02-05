@@ -179,14 +179,15 @@ void WorldNode::_drawGUI(void) {
 		gui_rect.x += 16+4;
 	}
 
-	// equiped frames
+	// equipped frames
 	gui_rect.x = 64+16;
 	gui_rect.y = 8;
 	spr = ResourceManager::getRef().getSprite(SpriteID::FRAME0A);
 	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 	gui_rect.x += 4;
 	gui_rect.y += 8;
-	spr = ResourceManager::getRef().getSprite(SpriteID::SHIELD00);
+	if(_player->shield->equipped) spr = ResourceManager::getRef().getSprite(SpriteID::SHIELD00);
+	else spr = ResourceManager::getRef().getSprite(SpriteID::FRAME08);
 	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 	drawText("A", gui_rect.x+4, gui_rect.y+18, color);
 
@@ -196,7 +197,8 @@ void WorldNode::_drawGUI(void) {
 	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 	gui_rect.x += 4;
 	gui_rect.y += 8;
-	spr = ResourceManager::getRef().getSprite(SpriteID::ATTACK02);
+	if(_player->weapon->equipped) spr = ResourceManager::getRef().getSprite(SpriteID::ATTACK02);
+	else spr = ResourceManager::getRef().getSprite(SpriteID::FRAME08);
 	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
 	drawText("B", gui_rect.x+4, gui_rect.y+18, color);
 }

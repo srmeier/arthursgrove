@@ -16,6 +16,7 @@ public:
 	Drawable(SpriteID id);
 
 	virtual void draw(void);
+	SpriteID getSpriteID(void) {return _id;}
 };
 
 /* drawable.cpp */
