@@ -56,6 +56,11 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 //-----------------------------------------------------------------------------
 #include "worldnode.h"
 #include "overworld.h"
+#include "dungeon00.h"
+
+//-----------------------------------------------------------------------------
+#include "overworld/node00.cpp"
+#include "dungeon00/d00node00.cpp"
 
 //-----------------------------------------------------------------------------
 #include "straightinput.cpp"
@@ -74,7 +79,9 @@ int SDL_main(int argc, char* argv[]) {
 	/* === */
 
 	PlayerEntity player(16*5, 16*5);
+
 	Overworld::getRef().addPlayer(&player);
+	Dungeon00::getRef().addPlayer(&player);
 
 	/* === */
 
@@ -87,13 +94,17 @@ int SDL_main(int argc, char* argv[]) {
 
 		switch(Game.state) {
 			case 0x00: {
+				/* === */
 				Overworld::getRef().updateNode();
 				Overworld::getRef().drawNode();
-
-				/* === */
 				/* === */
 			} break;
+
 			case 0x01: {
+				/* === */
+				Dungeon00::getRef().updateNode();
+				Dungeon00::getRef().drawNode();
+				/* === */
 			} break;
 		}
 

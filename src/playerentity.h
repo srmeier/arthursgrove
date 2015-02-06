@@ -30,6 +30,9 @@ public:
 	void draw(void);
 	int getX(void);
 	int getY(void);
+	
+	SDL_bool hasItem(SpriteID id);
+	SDL_bool takeItem(SpriteID id);
 
 	SwordEntity* sword;
 	WeaponEntity* shield;

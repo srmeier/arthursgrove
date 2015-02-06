@@ -121,6 +121,10 @@ enum SpriteID {
 	NPC00,        // 0x70
 	NPC01,        // 0x71
 	FRAME0B,      // 0x72
+	AMULET00,     // 0x73
+	PIT00,        // 0x74
+	LADDER00,     // 0x75
+	DIRT00,       // 0x76
 	NUM_SPRITES
 };
 

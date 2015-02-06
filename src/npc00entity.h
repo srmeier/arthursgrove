@@ -20,6 +20,7 @@ public:
 	void setPos(int x, int y);
 
 	void interactWith(void);
+	void resolveInteraction(PlayerEntity* player);
 };
 
 #endif

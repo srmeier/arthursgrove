@@ -15,6 +15,7 @@ PlayerEntity::PlayerEntity(int x, int y): Moveable(x, y, new PlayerInput()), Ent
 	weapon = sword;
 
 	for(int i=0; i<7; i++) inventory[i] = SpriteID::FRAME08;
+	inventory[0] = SpriteID::AMULET00;
 
 	/*
 	inventory[0] = SpriteID::FOOD00;
@@ -40,8 +41,19 @@ PlayerEntity::~PlayerEntity(void) {
 /*
 */
 void PlayerEntity::update(void) {
-	Overworld& overworld = Overworld::getRef();
-	WorldNode* node = overworld.getCurNode();
+	WorldNode* node = NULL;
+
+	switch(Game.state) {
+		case 0x00: {
+			Overworld& overworld = Overworld::getRef();
+			node = overworld.getCurNode();
+		} break;
+
+		case 0x01: {
+			Dungeon00& dungeon00 = Dungeon00::getRef();
+			node = dungeon00.getCurNode();
+		} break;
+	}
 
 	if(
 		node->getTile(_i,_j)==SpriteID::SEA00||
@@ -238,25 +250,54 @@ int PlayerEntity::getY(void) {
 SDL_bool PlayerEntity::canMove(int i, int j) {
 	if(_attack_next_free_time) return SDL_FALSE;
 
-	Overworld& overworld = Overworld::getRef();
-	WorldNode* node = overworld.getCurNode();
+	WorldNode* node = NULL;
 
-	if(j<3&&overworld.hasTopNode()) {
-		_y += 16*12;
-		overworld.moveTop();
-		weapon->active = SDL_FALSE;
-	} else if(j>=15&&overworld.hasBotNode()) {
-		_y -= 16*12;
-		overworld.moveBot();
-		weapon->active = SDL_FALSE;
-	} else if(i<0&&overworld.hasLeftNode()) {
-		_x += 16*20;
-		overworld.moveLeft();
-		weapon->active = SDL_FALSE;
-	} else if(i>=20&&overworld.hasRightNode()) {
-		_x -= 16*20;
-		overworld.moveRight();
-		weapon->active = SDL_FALSE;
+	switch(Game.state) {
+		case 0x00: {
+			Overworld& overworld = Overworld::getRef();
+			node = overworld.getCurNode();
+
+			if(j<3&&overworld.hasTopNode()) {
+				_y += 16*12;
+				overworld.moveTop();
+				weapon->active = SDL_FALSE;
+			} else if(j>=15&&overworld.hasBotNode()) {
+				_y -= 16*12;
+				overworld.moveBot();
+				weapon->active = SDL_FALSE;
+			} else if(i<0&&overworld.hasLeftNode()) {
+				_x += 16*20;
+				overworld.moveLeft();
+				weapon->active = SDL_FALSE;
+			} else if(i>=20&&overworld.hasRightNode()) {
+				_x -= 16*20;
+				overworld.moveRight();
+				weapon->active = SDL_FALSE;
+			}
+		} break;
+
+		case 0x01: {
+			Dungeon00& dungeon00 = Dungeon00::getRef();
+			node = dungeon00.getCurNode();
+
+			if(j<3&&dungeon00.hasTopNode()) {
+				_y += 16*12;
+				dungeon00.moveTop();
+				weapon->active = SDL_FALSE;
+			} else if(j>=15&&dungeon00.hasBotNode()) {
+				_y -= 16*12;
+				dungeon00.moveBot();
+				weapon->active = SDL_FALSE;
+			} else if(i<0&&dungeon00.hasLeftNode()) {
+				_x += 16*20;
+				dungeon00.moveLeft();
+				weapon->active = SDL_FALSE;
+			} else if(i>=20&&dungeon00.hasRightNode()) {
+				_x -= 16*20;
+				dungeon00.moveRight();
+				weapon->active = SDL_FALSE;
+			}
+		} break;
 	}
 
 	SDL_bool check = SDL_TRUE;
@@ -275,8 +316,10 @@ SDL_bool PlayerEntity::canMove(int i, int j) {
 
 	return (SDL_bool) (
 		(
-			node->getTile(i,j)==SpriteID::GRASS00 ||
-			node->getTile(i,j)==SpriteID::SAND00  ||
+			node->getTile(i,j)==SpriteID::GRASS00  ||
+			node->getTile(i,j)==SpriteID::SAND00   ||
+			node->getTile(i,j)==SpriteID::PIT00    ||
+			node->getTile(i,j)==SpriteID::LADDER00 ||
 		(
 			(
 				node->getTile(i,j)==SpriteID::SEA00   ||
@@ -306,3 +349,34 @@ SDL_bool PlayerEntity::canMove(int i, int j) {
 		)&&check
 	);
 }
+
+//-----------------------------------------------------------------------------
+/*
+*/
+SDL_bool PlayerEntity::hasItem(SpriteID id) {
+	for(int i=0; i<7; i++) {
+		if(inventory[i] == id) {
+			return SDL_TRUE;
+		}
+	} return SDL_FALSE;
+}
+
+//-----------------------------------------------------------------------------
+/*
+*/
+SDL_bool PlayerEntity::takeItem(SpriteID id) {
+	int ind = 0;
+	SDL_bool hasitem = SDL_FALSE;
+
+	for(int i=0; i<7; i++) {
+		if(inventory[i] == id) {
+			ind = i;
+			hasitem = SDL_TRUE;
+		}
+	}
+
+	if(hasitem) inventory[ind] = SpriteID::FRAME08;
+
+	return hasitem;
+}
+

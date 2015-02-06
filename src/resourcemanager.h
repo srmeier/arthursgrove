@@ -853,6 +853,34 @@ ResourceManager::ResourceManager(void) {
 		586, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 585, 587
 	};
 	_sprites[SpriteID::FRAME0B] = buildSprite(20, 6, frameTile0B);
+
+	//% === %
+	int amuletTile00[2*2] = {
+		549, 550,
+		581, 582
+	};
+	_sprites[SpriteID::AMULET00] = buildSprite(2, 2, amuletTile00);
+
+	//% === %
+	int pitTile00[2*2] = {
+		547, 548,
+		579, 580
+	};
+	_sprites[SpriteID::PIT00] = buildSprite(2, 2, pitTile00);
+
+	//% === %
+	int ladderTile00[2*2] = {
+		545, 546,
+		577, 578
+	};
+	_sprites[SpriteID::LADDER00] = buildSprite(2, 2, ladderTile00);
+
+	//% === %
+	int dirtTile00[2*2] = {
+		484, 485,
+		516, 517
+	};
+	_sprites[SpriteID::DIRT00] = buildSprite(2, 2, dirtTile00);
 }
 
 //-----------------------------------------------------------------------------

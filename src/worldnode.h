@@ -31,6 +31,7 @@ public:
 
 	PlayerEntity* getPlayer(void);
 	SpriteID getTile(int i, int j);
+	void setTile(int i, int j, SpriteID id);
 	virtual SDL_bool canSpawn(int i, int j);
 	virtual void writeMessageToPlayer(NpcEntity* npcentity, const char* message);
 	virtual Entity* getEntityAt(int i, int j);
@@ -233,6 +234,13 @@ PlayerEntity* WorldNode::getPlayer(void) {
 */
 SpriteID WorldNode::getTile(int i, int j) {
 	return (SpriteID) _background[j][i];
+}
+
+//-----------------------------------------------------------------------------
+/*
+*/
+void WorldNode::setTile(int i, int j, SpriteID id) {
+	_background[j][i] = id;
 }
 
 //-----------------------------------------------------------------------------

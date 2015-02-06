@@ -5,6 +5,9 @@
 /* npcentity.h */
 //-----------------------------------------------------------------------------
 class NpcEntity: public MoveableEntity {
+protected:
+	int _npcState = 0;
+
 public:
 	NpcEntity(int x, int y, SpriteID id, Input* input);
 

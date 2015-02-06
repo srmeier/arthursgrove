@@ -74,9 +74,83 @@ void Npc00Entity::interactWith(void) {
 	Overworld& overworld = Overworld::getRef();
 	WorldNode* node = overworld.getCurNode();
 
-	char str[] =\
-		"Hello, I'm looking for my"\
-		"amulet. If you see it be "\
-		"sure to let me know!     ";
-	node->writeMessageToPlayer(this, str);
+	switch(_npcState) {
+		case 0x00: {
+			if(!node->getPlayer()->hasItem(SpriteID::AMULET00)) {
+				char str[] =\
+					"Hello, I'm looking for my"\
+					"amulet. If you see it be "\
+					"sure to let me know!     ";
+				node->writeMessageToPlayer(this, str);
+			} else {
+				char str[] =\
+					"Oh good! Thank you for   "\
+					"finding my amulet. In    "\
+					"return let me show you a "\
+					"a secret...              ";
+				node->writeMessageToPlayer(this, str);
+			}
+		} break;
+
+		case 0x01: {
+			char str[] =\
+				"Be careful down there!   ";
+			node->writeMessageToPlayer(this, str);
+		} break;
+
+		default: {
+			char str[] =\
+				"I have nothing else to   "\
+				"say.                     ";
+			node->writeMessageToPlayer(this, str);
+		} break;
+	}
+
+}
+
+//-----------------------------------------------------------------------------
+/*
+*/
+void Npc00Entity::resolveInteraction(PlayerEntity* player) {
+	switch(_npcState) {
+		case 0x00: {
+			if(!player->hasItem(SpriteID::AMULET00)) {
+				player->input->clear();
+				player->allowMovement();
+			} else {
+				WorldNode* node = Overworld::getRef().getCurNode();
+				node->setTile(_i, _j, SpriteID::LADDER00);
+
+				WorldNode* d00node = Dungeon00::getRef().getCurNode();
+				d00node->setTile(_i, _j, SpriteID::LADDER00);
+
+				player->takeItem(SpriteID::AMULET00);
+
+				if(moveUp());
+				else if(moveDown());
+				else if(moveLeft());
+				else if(moveRight());
+
+				char str[] =\
+					"Also, take this! You will"\
+					"need it down there...    ";
+				node->writeMessageToPlayer(this, str);
+
+				player->input->clear();
+				player->weapon->equipped = SDL_TRUE;
+
+				_npcState++;
+			}
+		} break;
+
+		case 0x01: {
+			player->input->clear();
+			player->allowMovement();
+		} break;
+
+		default: {
+			player->input->clear();
+			player->allowMovement();
+		} break;
+	}
 }

@@ -1,22 +1,18 @@
 //-----------------------------------------------------------------------------
-#ifndef _NODE00_HEADER_
-#define _NODE00_HEADER_
+#ifndef _D00NODE00_HEADER_
+#define _D00NODE00_HEADER_
 
-/* node00.h */
+/* d00node00.h */
 //-----------------------------------------------------------------------------
 /*
 */
-class Node00: public WorldNode {
+class D00Node00: public WorldNode {
 protected:
-	int _numofbugs = 4;
-	BugEntity* _bug[4];
-	Npc00Entity* _npc00;
-
 	void _drawEntities(void);
 
 public:
-	Node00(void);
-	~Node00(void);
+	D00Node00(void);
+	~D00Node00(void);
 
 	void update(void);
 

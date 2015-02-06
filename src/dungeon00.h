@@ -1,53 +1,35 @@
 //-----------------------------------------------------------------------------
-#ifndef _OVERWORLD_HEADER_
-#define _OVERWORLD_HEADER_
+#ifndef _DUNGEON00_HEADER_
+#define _DUNGEON00_HEADER_
 
 //-----------------------------------------------------------------------------
-#include "overworld/node00.h"
-#include "overworld/node01.h"
-#include "overworld/node02.h"
-#include "overworld/node03.h"
-#include "overworld/node04.h"
-#include "overworld/node05.h"
-#include "overworld/node06.h"
-#include "overworld/node07.h"
-#include "overworld/node08.h"
-#include "overworld/node09.h"
-#include "overworld/node0A.h"
-#include "overworld/node0B.h"
-#include "overworld/node0C.h"
-#include "overworld/node0D.h"
-#include "overworld/node0E.h"
-#include "overworld/node0F.h"
+#include "dungeon00/d00node00.h"
 
-/* overworld.h */
+/* dungeon00.h */
 //-----------------------------------------------------------------------------
 /*
 */
-class Overworld {
+class Dungeon00 {
 private:
-	Overworld(Overworld const&);
-	void operator = (Overworld const&);
+	Dungeon00(Dungeon00 const&);
+	void operator = (Dungeon00 const&);
 
-	Overworld(void) {};
-	~Overworld(void);
+	Dungeon00(void) {};
+	~Dungeon00(void);
 
-	int _i = 1;
-	int _j = 1;
-	int _w = 4;
-	int _h = 4;
+	int _i = 0;
+	int _j = 0;
+	int _w = 1;
+	int _h = 1;
 
 	PlayerEntity* _player;
-	WorldNode* _nodes[4][4] = {
-		{new Node04(), new Node03(), new Node05(), new Node07()},
-		{new Node02(), new Node00(), new Node01(), new Node08()},
-		{new Node0F(), new Node0C(), new Node0D(), new Node0E()},
-		{new Node06(), new Node0B(), new Node0A(), new Node09()}
+	WorldNode* _nodes[1][1] = {
+		{new D00Node00()}
 	};
 
 public:
-	static Overworld& getRef(void) {
-		static Overworld instance;
+	static Dungeon00& getRef(void) {
+		static Dungeon00 instance;
 		return instance;
 	}
 
@@ -71,11 +53,11 @@ public:
 	void addPlayer(PlayerEntity* player);
 };
 
-/* overworld.cpp */
+/* dungeon00.cpp */
 //-----------------------------------------------------------------------------
 /*
 */
-Overworld::~Overworld(void) {
+Dungeon00::~Dungeon00(void) {
 	for(int j=0; j<_h; j++) {
 		for(int i=0; i<_w; i++) {
 			delete _nodes[j][i];
@@ -86,21 +68,21 @@ Overworld::~Overworld(void) {
 //-----------------------------------------------------------------------------
 /*
 */
-void Overworld::updateNode(void) {
+void Dungeon00::updateNode(void) {
 	_nodes[_j][_i]->update();
 }
 
 //-----------------------------------------------------------------------------
 /*
 */
-void Overworld::drawNode(void) {
+void Dungeon00::drawNode(void) {
 	_nodes[_j][_i]->draw();
 }
 
 //-----------------------------------------------------------------------------
 /*
 */
-void Overworld::moveTop(void) {
+void Dungeon00::moveTop(void) {
 	if(!hasTopNode()) return;
 	_j--; _nodes[_j][_i]->addPlayerEntity(_player);
 }
@@ -108,7 +90,7 @@ void Overworld::moveTop(void) {
 //-----------------------------------------------------------------------------
 /*
 */
-void Overworld::moveBot(void) {
+void Dungeon00::moveBot(void) {
 	if(!hasBotNode()) return;
 	_j++; _nodes[_j][_i]->addPlayerEntity(_player);
 }
@@ -116,7 +98,7 @@ void Overworld::moveBot(void) {
 //-----------------------------------------------------------------------------
 /*
 */
-void Overworld::moveLeft(void) {
+void Dungeon00::moveLeft(void) {
 	if(!hasLeftNode()) return;
 	_i--; _nodes[_j][_i]->addPlayerEntity(_player);
 }
@@ -124,7 +106,7 @@ void Overworld::moveLeft(void) {
 //-----------------------------------------------------------------------------
 /*
 */
-void Overworld::moveRight(void) {
+void Dungeon00::moveRight(void) {
 	if(!hasRightNode()) return;
 	_i++; _nodes[_j][_i]->addPlayerEntity(_player);
 }
@@ -132,7 +114,7 @@ void Overworld::moveRight(void) {
 //-----------------------------------------------------------------------------
 /*
 */
-SDL_bool Overworld::hasTopNode(void) {
+SDL_bool Dungeon00::hasTopNode(void) {
 	if(_j-1<0) return SDL_FALSE;
 	if(_nodes[_j-1][_i]==NULL) return SDL_FALSE;
 	return SDL_TRUE;
@@ -141,7 +123,7 @@ SDL_bool Overworld::hasTopNode(void) {
 //-----------------------------------------------------------------------------
 /*
 */
-SDL_bool Overworld::hasBotNode(void) {
+SDL_bool Dungeon00::hasBotNode(void) {
 	if(_j+1>=_h) return SDL_FALSE;
 	if(_nodes[_j+1][_i]==NULL) return SDL_FALSE;
 	return SDL_TRUE;
@@ -150,7 +132,7 @@ SDL_bool Overworld::hasBotNode(void) {
 //-----------------------------------------------------------------------------
 /*
 */
-SDL_bool Overworld::hasLeftNode(void) {
+SDL_bool Dungeon00::hasLeftNode(void) {
 	if(_i-1<0) return SDL_FALSE;
 	if(_nodes[_j][_i-1]==NULL) return SDL_FALSE;
 	return SDL_TRUE;
@@ -159,7 +141,7 @@ SDL_bool Overworld::hasLeftNode(void) {
 //-----------------------------------------------------------------------------
 /*
 */
-SDL_bool Overworld::hasRightNode(void) {
+SDL_bool Dungeon00::hasRightNode(void) {
 	if(_i+1>=_w) return SDL_FALSE;
 	if(_nodes[_j][_i+1]==NULL) return SDL_FALSE;
 	return SDL_TRUE;
@@ -168,21 +150,21 @@ SDL_bool Overworld::hasRightNode(void) {
 //-----------------------------------------------------------------------------
 /*
 */
-WorldNode* Overworld::getCurNode(void) {
+WorldNode* Dungeon00::getCurNode(void) {
 	return _nodes[_j][_i];
 }
 
 //-----------------------------------------------------------------------------
 /*
 */
-SpriteID Overworld::getTile(int i, int j) {
+SpriteID Dungeon00::getTile(int i, int j) {
 	return _nodes[_j][_i]->getTile(i, j);
 }
 
 //-----------------------------------------------------------------------------
 /*
 */
-void Overworld::addPlayer(PlayerEntity* player) {
+void Dungeon00::addPlayer(PlayerEntity* player) {
 	_player = player;
 	_nodes[_j][_i]->addPlayerEntity(player);
 }
