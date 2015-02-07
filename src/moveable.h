@@ -18,6 +18,7 @@ protected:
 	int _movedirec;
 	SDL_bool _moving;
 	SDL_bool _tomove;
+	SDL_bool _disable;
 
 	int _fmovedirec;
 	SDL_bool _forceMove;
@@ -57,6 +58,8 @@ Moveable::Moveable(int x, int y, Input* _input) {
 	_j = floor(_y/16.0f);
 
 	input = _input;
+	if(!_input) _disable = SDL_TRUE;
+	else _disable = SDL_FALSE;
 
 	_moveframe = 0;
 	_movedirec = 1;
@@ -87,6 +90,8 @@ SDL_bool Moveable::canMove(int i, int j) {
 /*
 */
 void Moveable::update(void) {
+	if(_disable) return;
+
 	if(!_forceMove) input->poll();
 	if(!_tomove&&!_moving) return;
 
@@ -162,8 +167,8 @@ void Moveable::setPos(int x, int y) {
 	_i = floor(_x/16.0f);
 	_j = floor(_y/16.0f);
 
-	_moveframe = 0;
-	_movedirec = 0;
+	//_moveframe = 0;
+	//_movedirec = 0;
 
 	_moving = SDL_FALSE;
 	_tomove = SDL_TRUE;
@@ -198,7 +203,10 @@ void Moveable::allowMovement(void) {
 - prevent the entity from move
 */
 void Moveable::preventMovement(void) {
+	setPos(16*_i, 16*_j);
+
 	_tomove = SDL_FALSE;
+	_moving = SDL_FALSE;
 }
 
 //-----------------------------------------------------------------------------

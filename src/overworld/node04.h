@@ -48,14 +48,14 @@ Node04::Node04(void) {
 		}
 	}
 
-	_worm = new WormEntity(16*4, 16*11);
+	//_worm = new WormEntity(16*4, 16*11);
 }
 
 //-----------------------------------------------------------------------------
 /*
 */
 Node04::~Node04(void) {
-	delete _worm;
+	//delete _worm;
 }
 
 //-----------------------------------------------------------------------------
@@ -67,6 +67,7 @@ void Node04::update(void) {
 	int pi = _player->getI();
 	int pj = _player->getJ();
 
+	/*
 	int wi = _worm->getI();
 	int wj = _worm->getJ();
 
@@ -80,13 +81,14 @@ void Node04::update(void) {
 	}
 
 	if(_worm->active) _worm->update();
+	*/
 }
 
 //-----------------------------------------------------------------------------
 /*
 */
 void Node04::_drawEntities(void) {
-	if(_worm->active) _worm->draw();
+	//if(_worm->active) _worm->draw();
 }
 
 #endif

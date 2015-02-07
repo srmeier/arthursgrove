@@ -5,8 +5,6 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 
 /*
 % === %
-- need to add a method to the player class which checks for a particular
-	spriteID within the inventory array
 - might want to consider adding an "interactable" component
 	(although the entity class basically is a moveable interact
 	component)
@@ -51,6 +49,7 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 #include "sandstormentity.h"
 #include "bugentity.h"
 #include "npc00entity.h"
+#include "npc01entity.h"
 #include "wormentity.h"
 
 //-----------------------------------------------------------------------------
@@ -68,6 +67,7 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 #include "playerentity.cpp"
 #include "bugentity.cpp"
 #include "npc00entity.cpp"
+#include "npc01entity.cpp"
 #include "wormentity.cpp"
 
 //-----------------------------------------------------------------------------
@@ -78,7 +78,7 @@ int SDL_main(int argc, char* argv[]) {
 	/* TESTING */
 	/* === */
 
-	PlayerEntity player(16*5, 16*5);
+	PlayerEntity player(16*3, 16*8);
 
 	Overworld::getRef().addPlayer(&player);
 	Dungeon00::getRef().addPlayer(&player);

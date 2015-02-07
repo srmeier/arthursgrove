@@ -7,8 +7,18 @@
 /*
 */
 class Node07: public WorldNode {
+protected:
+	Npc01Entity* _npc00;
+
+	void _drawEntities(void);
+
 public:
 	Node07(void);
+	~Node07(void);
+
+	void update(void);
+
+	Entity* getEntityAt(int i, int j);
 };
 
 /* node07.cpp */
@@ -39,6 +49,46 @@ Node07::Node07(void) {
 			_background[j][i] = tiles[j][i];
 		}
 	}
+
+	_npc00 = new Npc01Entity(16*18, 16*7);
 }
+
+//-----------------------------------------------------------------------------
+/*
+*/
+Node07::~Node07(void) {
+	delete _npc00;
+}
+
+//-----------------------------------------------------------------------------
+/*
+*/
+void Node07::update(void) {
+	WorldNode::update();
+	
+	int pi = _player->getI();
+	int pj = _player->getJ();
+
+	_npc00->update();
+}
+
+//-----------------------------------------------------------------------------
+/*
+*/
+void Node07::_drawEntities(void) {
+	_npc00->draw();
+}
+
+//-----------------------------------------------------------------------------
+/*
+*/
+Entity* Node07::getEntityAt(int i, int j) {
+	int ni = _npc00->getI();
+	int nj = _npc00->getJ();
+
+	if(i==ni&&j==nj) return _npc00;
+	else return NULL;
+}
+
 
 #endif

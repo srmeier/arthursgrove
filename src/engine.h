@@ -9,7 +9,7 @@
 #define SCREEN_H 240 // 30 -> 15
 #define NUM_TILES (1024+1)
 #define SCREEN_NAME "Prototype"
-#define SCREEN_SCALE 2
+#define SCREEN_SCALE 3
 
 //-----------------------------------------------------------------------------
 /*

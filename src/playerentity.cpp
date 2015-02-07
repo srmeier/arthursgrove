@@ -15,8 +15,8 @@ PlayerEntity::PlayerEntity(int x, int y): Moveable(x, y, new PlayerInput()), Ent
 	weapon = sword;
 
 	for(int i=0; i<7; i++) inventory[i] = SpriteID::FRAME08;
-	inventory[0] = SpriteID::AMULET00;
-
+	
+	//inventory[0] = SpriteID::COIN00;
 	/*
 	inventory[0] = SpriteID::FOOD00;
 	inventory[1] = SpriteID::SCROLL00;
@@ -365,18 +365,37 @@ SDL_bool PlayerEntity::hasItem(SpriteID id) {
 /*
 */
 SDL_bool PlayerEntity::takeItem(SpriteID id) {
-	int ind = 0;
+	int _ind = 0;
 	SDL_bool hasitem = SDL_FALSE;
 
 	for(int i=0; i<7; i++) {
 		if(inventory[i] == id) {
-			ind = i;
+			_ind = i;
 			hasitem = SDL_TRUE;
 		}
 	}
 
-	if(hasitem) inventory[ind] = SpriteID::FRAME08;
+	if(hasitem) inventory[_ind] = SpriteID::FRAME08;
 
 	return hasitem;
 }
 
+//-----------------------------------------------------------------------------
+/*
+*/
+SDL_bool PlayerEntity::takeItem(SpriteID id, int* ind) {
+	int _ind = 0;
+	SDL_bool hasitem = SDL_FALSE;
+
+	for(int i=0; i<7; i++) {
+		if(inventory[i] == id) {
+			_ind = i;
+			hasitem = SDL_TRUE;
+		}
+	}
+
+	if(hasitem) inventory[_ind] = SpriteID::FRAME08;
+	if(ind) *ind = _ind;
+
+	return hasitem;
+}

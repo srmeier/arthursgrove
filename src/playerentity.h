@@ -16,7 +16,7 @@ protected:
 
 	int _fish_fpa = 14;
 	int _fish_frame = 14;
-	SDL_bool _has_fish = SDL_TRUE;
+	SDL_bool _has_fish = SDL_FALSE;
 	SDL_bool _on_sea_tile = SDL_FALSE;
 	SpriteID _fish_id = SpriteID::FISH00;
 	
@@ -31,14 +31,16 @@ public:
 	int getX(void);
 	int getY(void);
 	
+	SpriteID inventory[7];
+	
 	SDL_bool hasItem(SpriteID id);
 	SDL_bool takeItem(SpriteID id);
+	SDL_bool takeItem(SpriteID id, int* ind);
 
 	SwordEntity* sword;
 	WeaponEntity* shield;
 	WeaponEntity* weapon;
 	TsunamiEntity* tsunami;
-	SpriteID inventory[7];
 };
 
 #endif

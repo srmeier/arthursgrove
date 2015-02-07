@@ -125,6 +125,21 @@ enum SpriteID {
 	PIT00,        // 0x74
 	LADDER00,     // 0x75
 	DIRT00,       // 0x76
+	WALL07,       // 0x77
+	WALL08,       // 0x78
+	WALL09,       // 0x79
+	WALL0A,       // 0x7A
+	NPC02,        // 0x7B
+	NPC03,        // 0x7C
+	DIRT01,       // 0x7D
+	DIRT02,       // 0x7E
+	DIRT03,       // 0x7F
+	DIRT04,       // 0x80
+	DIRT05,       // 0x81
+	DIRT06,       // 0x82
+	DIRT07,       // 0x83
+	DIRT08,       // 0x84
+	DIRT09,       // 0x85
 	NUM_SPRITES
 };
 

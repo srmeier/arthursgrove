@@ -881,6 +881,111 @@ ResourceManager::ResourceManager(void) {
 		516, 517
 	};
 	_sprites[SpriteID::DIRT00] = buildSprite(2, 2, dirtTile00);
+
+	//% === %
+	int wallTile07[2*2] = {
+		486, 487,
+		518, 519
+	};
+	_sprites[SpriteID::WALL07] = buildSprite(2, 2, wallTile07);
+
+	//% === %
+	int wallTile08[2*2] = {
+		488, 489,
+		520, 521
+	};
+	_sprites[SpriteID::WALL08] = buildSprite(2, 2, wallTile08);
+
+	//% === %
+	int wallTile09[2*2] = {
+		490, 491,
+		522, 523
+	};
+	_sprites[SpriteID::WALL09] = buildSprite(2, 2, wallTile09);
+
+	//% === %
+	int wallTile0A[2*2] = {
+		492, 493,
+		524, 525
+	};
+	_sprites[SpriteID::WALL0A] = buildSprite(2, 2, wallTile0A);
+
+	//% === %
+	int npcTile02[2*2] = {
+		494, 495,
+		526, 527
+	};
+	_sprites[SpriteID::NPC02] = buildSprite(2, 2, npcTile02);
+
+	//% === %
+	int npcTile03[2*2] = {
+		496, 497,
+		528, 529
+	};
+	_sprites[SpriteID::NPC03] = buildSprite(2, 2, npcTile03);
+
+	//% === %
+	int dirtTile01[2*2] = {
+		498, 499,
+		530, 531
+	};
+	_sprites[SpriteID::DIRT01] = buildSprite(2, 2, dirtTile01);
+
+	//% === %
+	int dirtTile02[2*2] = {
+		510, 511,
+		542, 543
+	};
+	_sprites[SpriteID::DIRT02] = buildSprite(2, 2, dirtTile02);
+
+	//% === %
+	int dirtTile03[2*2] = {
+		  1,   2,
+		 33,  34
+	};
+	_sprites[SpriteID::DIRT03] = buildSprite(2, 2, dirtTile03);
+
+	//% === %
+	int dirtTile04[2*2] = {
+		  3,   4,
+		 35,  36
+	};
+	_sprites[SpriteID::DIRT04] = buildSprite(2, 2, dirtTile04);
+
+	//% === %
+	int dirtTile05[2*2] = {
+		  5,   6,
+		 37,  38
+	};
+	_sprites[SpriteID::DIRT05] = buildSprite(2, 2, dirtTile05);
+
+	//% === %
+	int dirtTile06[2*2] = {
+		  7,   8,
+		 39,  40
+	};
+	_sprites[SpriteID::DIRT06] = buildSprite(2, 2, dirtTile06);
+
+	//% === %
+	int dirtTile07[2*2] = {
+		  9,  10,
+		 41,  42
+	};
+	_sprites[SpriteID::DIRT07] = buildSprite(2, 2, dirtTile07);
+
+	//% === %
+	int dirtTile08[2*2] = {
+		 11,  12,
+		 43,  44
+	};
+	_sprites[SpriteID::DIRT08] = buildSprite(2, 2, dirtTile08);
+
+	//% === %
+	int dirtTile09[2*2] = {
+		 13,  14,
+		 45,  46
+	};
+	_sprites[SpriteID::DIRT09] = buildSprite(2, 2, dirtTile09);
 }
 
 //-----------------------------------------------------------------------------

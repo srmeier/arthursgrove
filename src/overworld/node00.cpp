@@ -27,6 +27,7 @@ Node00::Node00(void): WorldNode() {
 		}
 	}
 
+	/*
 	for(int i=0; i<_numofbugs; i++) {
 		SDL_bool bugSet = SDL_FALSE;
 
@@ -40,6 +41,7 @@ Node00::Node00(void): WorldNode() {
 			}
 		}
 	}
+	*/
 
 	_npc00 = new Npc00Entity(16*17, 16*9);
 }
@@ -48,9 +50,11 @@ Node00::Node00(void): WorldNode() {
 /*
 */
 Node00::~Node00(void) {
+	/*
 	for(int i=0; i<_numofbugs; i++) {
 		delete _bug[i];
 	}
+	*/
 
 	delete _npc00;
 }
@@ -68,6 +72,7 @@ void Node00::update(void) {
 		_background[12][11] = SpriteID::DOOR01;
 	else _background[12][11] = SpriteID::DOOR00;
 
+	/*
 	for(int i=0; i<_numofbugs; i++) {
 		int bi = _bug[i]->getI();
 		int bj = _bug[i]->getJ();
@@ -83,6 +88,7 @@ void Node00::update(void) {
 
 		_bug[i]->update();
 	}
+	*/
 
 	_npc00->update();
 
@@ -100,8 +106,10 @@ void Node00::update(void) {
 /*
 */
 void Node00::_drawEntities(void) {
+	/*
 	for(int i=0; i<_numofbugs; i++)
 		if(_bug[i]->active) _bug[i]->draw();
+	*/
 
 	_npc00->draw();
 }
