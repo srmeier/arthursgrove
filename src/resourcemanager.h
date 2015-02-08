@@ -986,6 +986,41 @@ ResourceManager::ResourceManager(void) {
 		 45,  46
 	};
 	_sprites[SpriteID::DIRT09] = buildSprite(2, 2, dirtTile09);
+
+	//% === %
+	int dirtTile0A[2*2] = {
+		 15,  16,
+		 47,  48
+	};
+	_sprites[SpriteID::DIRT0A] = buildSprite(2, 2, dirtTile0A);
+
+	//% === %
+	int dirtTile0B[2*2] = {
+		 17,  18,
+		 49,  50
+	};
+	_sprites[SpriteID::DIRT0B] = buildSprite(2, 2, dirtTile0B);
+
+	//% === %
+	int dirtTile0C[2*2] = {
+		 19,  20,
+		 51,  52
+	};
+	_sprites[SpriteID::DIRT0C] = buildSprite(2, 2, dirtTile0C);
+
+	//% === %
+	int dirtTile0D[2*2] = {
+		 21,  22,
+		 53,  54
+	};
+	_sprites[SpriteID::DIRT0D] = buildSprite(2, 2, dirtTile0D);
+
+	//% === %
+	int barrelTile00[2*2] = {
+		 23,  24,
+		 55,  56
+	};
+	_sprites[SpriteID::BARREL00] = buildSprite(2, 2, barrelTile00);
 }
 
 //-----------------------------------------------------------------------------

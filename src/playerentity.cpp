@@ -320,6 +320,19 @@ SDL_bool PlayerEntity::canMove(int i, int j) {
 			node->getTile(i,j)==SpriteID::SAND00   ||
 			node->getTile(i,j)==SpriteID::PIT00    ||
 			node->getTile(i,j)==SpriteID::LADDER00 ||
+			node->getTile(i,j)==SpriteID::DIRT01   ||
+			node->getTile(i,j)==SpriteID::DIRT02   ||
+			node->getTile(i,j)==SpriteID::DIRT03   ||
+			node->getTile(i,j)==SpriteID::DIRT04   ||
+			node->getTile(i,j)==SpriteID::DIRT05   ||
+			node->getTile(i,j)==SpriteID::DIRT06   ||
+			node->getTile(i,j)==SpriteID::DIRT07   ||
+			node->getTile(i,j)==SpriteID::DIRT08   ||
+			node->getTile(i,j)==SpriteID::DIRT09   ||
+			node->getTile(i,j)==SpriteID::DIRT0A   ||
+			node->getTile(i,j)==SpriteID::DIRT0B   ||
+			node->getTile(i,j)==SpriteID::DIRT0C   ||
+			node->getTile(i,j)==SpriteID::DIRT0D   ||
 		(
 			(
 				node->getTile(i,j)==SpriteID::SEA00   ||
