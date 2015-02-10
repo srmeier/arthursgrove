@@ -7,6 +7,7 @@
 class BarrelEntity: public NpcEntity {
 protected:
 	int _npcState = 0;
+	int _plGotCoin = SDL_FALSE;
 
 public:
 	BarrelEntity(int x, int y, SpriteID id);

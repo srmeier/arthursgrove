@@ -78,8 +78,10 @@ void Npc01Entity::interactWith(void) {
 		case 0x00: {
 			if(node->getPlayer()->hasItem(SpriteID::COIN00)) {
 				char str[] =\
-					"Thanks, now take this    "\
-					"ugly thing!              ";
+					"I'll be taking that coin "\
+					"Thanks!                  "\
+					"In return you can have   "\
+					"this ugly amulet. Hehe   ";
 				node->writeMessageToPlayer(this, str);
 			} else {
 				char str[] =\
@@ -91,16 +93,10 @@ void Npc01Entity::interactWith(void) {
 			}
 		} break;
 
-		case 0x01: {
-			char str[] =\
-				"Take care now! Hehe      ";
-			node->writeMessageToPlayer(this, str);
-		} break;
-
 		default: {
 			char str[] =\
-				"I have nothing else to   "\
-				"say.                     ";
+				"Thanks again for the     "\
+				"coin. Hehe               ";
 			node->writeMessageToPlayer(this, str);
 		} break;
 	}

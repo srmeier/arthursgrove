@@ -15,7 +15,7 @@ void BarrelEntity::interactWith(void) {
 
 	switch(_npcState) {
 		case 0x00: {
-			if(!node->getPlayer()->hasItem(SpriteID::COIN00)) {
+			if(!node->getPlayer()->hasItem(SpriteID::COIN00) && !_plGotCoin) {
 				char str[] =\
 					"Oh nice! I found a coin. ";
 				node->writeMessageToPlayer(this, str);
@@ -44,12 +44,13 @@ void BarrelEntity::resolveInteraction(PlayerEntity* player) {
 
 	switch(_npcState) {
 		case 0x00: {
-			if(!node->getPlayer()->hasItem(SpriteID::COIN00)) {
+			if(!node->getPlayer()->hasItem(SpriteID::COIN00) && !_plGotCoin) {
 				SDL_bool done = SDL_FALSE;
 				for(int i=0; i<7; i++) {
 					if(done) continue;
 					if(player->inventory[i] == SpriteID::FRAME08) {
 						done = SDL_TRUE;
+						_plGotCoin = SDL_TRUE;
 						player->inventory[i] = SpriteID::COIN00;
 					}
 				}
