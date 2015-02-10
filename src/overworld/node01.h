@@ -8,7 +8,7 @@
 */
 class Node01: public WorldNode {
 protected:
-	NpcEntity* _barrelEnt;
+	BarrelEntity* _barrelEnt;
 
 	void _drawEntities(void);
 
@@ -50,7 +50,7 @@ Node01::Node01(void) {
 		}
 	}
 
-	_barrelEnt = new NpcEntity(16*17, 16*8, SpriteID::BARREL00, NULL);
+	_barrelEnt = new BarrelEntity(16*17, 16*8, SpriteID::BARREL00);
 }
 
 //-----------------------------------------------------------------------------
