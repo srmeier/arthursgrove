@@ -1,8 +1,9 @@
 /* npc02entity.cpp */
 //-----------------------------------------------------------------------------
 /*
+- new RandomInput(2*256)
 */
-Npc02Entity::Npc02Entity(int x, int y): NpcEntity(x, y, SpriteID::NPC00, new RandomInput(2*256)) {
+Npc02Entity::Npc02Entity(int x, int y): NpcEntity(x, y, SpriteID::NPC00, NULL) {
 	// nothing
 }
 
@@ -46,6 +47,8 @@ SDL_bool Npc02Entity::canMove(int i, int j) {
 	Overworld& overworld = Overworld::getRef();
 	WorldNode* node = overworld.getCurNode();
 
+	if(node->getEntityAt(i,j) != NULL) return SDL_FALSE;
+
 	PlayerEntity* player = node->getPlayer();
 
 	int pi = player->getI();
@@ -53,15 +56,19 @@ SDL_bool Npc02Entity::canMove(int i, int j) {
 
 	return (SDL_bool) (
 		(
-			node->getTile(i,j)==SpriteID::FLOOR00 ||
-			node->getTile(i,j)==SpriteID::FLOOR01 ||
-			node->getTile(i,j)==SpriteID::FLOOR02 ||
-			node->getTile(i,j)==SpriteID::FLOOR03 ||
-			node->getTile(i,j)==SpriteID::FLOOR04 ||
-			node->getTile(i,j)==SpriteID::FLOOR05 ||
-			node->getTile(i,j)==SpriteID::FLOOR06 ||
-			node->getTile(i,j)==SpriteID::FLOOR07 ||
-			node->getTile(i,j)==SpriteID::FLOOR08
+			node->getTile(i,j)==SpriteID::DIRT01 ||
+			node->getTile(i,j)==SpriteID::DIRT02 ||
+			node->getTile(i,j)==SpriteID::DIRT03 ||
+			node->getTile(i,j)==SpriteID::DIRT04 ||
+			node->getTile(i,j)==SpriteID::DIRT05 ||
+			node->getTile(i,j)==SpriteID::DIRT06 ||
+			node->getTile(i,j)==SpriteID::DIRT07 ||
+			node->getTile(i,j)==SpriteID::DIRT08 ||
+			node->getTile(i,j)==SpriteID::DIRT09 ||
+			node->getTile(i,j)==SpriteID::DIRT0A ||
+			node->getTile(i,j)==SpriteID::DIRT0B ||
+			node->getTile(i,j)==SpriteID::DIRT0C ||
+			node->getTile(i,j)==SpriteID::DIRT0D
 		)
 		&&!(i==pi&&j==pj)
 	);

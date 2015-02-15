@@ -8,6 +8,7 @@
 */
 class Node01: public WorldNode {
 protected:
+	Npc02Entity* _miners[4];
 	BarrelEntity* _barrelEnt;
 
 	void _drawEntities(void);
@@ -51,6 +52,10 @@ Node01::Node01(void) {
 	}
 
 	_barrelEnt = new BarrelEntity(16*17, 16*8, SpriteID::BARREL00);
+
+	for(int i=0; i<4; i++) {
+		_miners[i] = new Npc02Entity(16*3+16*(i+1), 16*8);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -58,12 +63,20 @@ Node01::Node01(void) {
 */
 Node01::~Node01(void) {
 	delete _barrelEnt;
+
+	for(int i=0; i<4; i++) {
+		delete _miners[i];
+	}
 }
 
 //-----------------------------------------------------------------------------
 /*
 */
 void Node01::_drawEntities(void) {
+	for(int i=0; i<4; i++) {
+		_miners[i]->draw();
+	}
+
 	_barrelEnt->draw();
 }
 
@@ -72,6 +85,11 @@ void Node01::_drawEntities(void) {
 */
 void Node01::update(void) {
 	WorldNode::update();
+
+	for(int i=0; i<4; i++) {
+		_miners[i]->update();
+	}
+
 	_barrelEnt->update();
 }
 
@@ -83,7 +101,15 @@ Entity* Node01::getEntityAt(int i, int j) {
 	int bj = _barrelEnt->getJ();
 
 	if(i==bi&&j==bj) return _barrelEnt;
-	else return NULL;
+
+	for(int _i=0; _i<4; _i++) {
+		int ni = _miners[_i]->getI();
+		int nj = _miners[_i]->getJ();
+
+		if(i==ni&&j==nj) return _miners[_i];
+	}
+
+	return NULL;
 }
 
 #endif
