@@ -145,6 +145,7 @@ enum SpriteID {
 	DIRT0C,       // 0x88
 	DIRT0D,       // 0x89
 	BARREL00,     // 0x8A
+	FRAME0C,      // 0x8B
 	NUM_SPRITES
 };
 

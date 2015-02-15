@@ -16,6 +16,7 @@ protected:
 	char* _messageForPlayer3;
 	char* _messageForPlayer4;
 	char* _messageForPlayer5;
+	SDL_bool _writeOnLeftSide;
 	NpcEntity* _interactingNpc;
 	SDL_bool _writingMessageToPlayer;
 
@@ -44,6 +45,7 @@ public:
 */
 WorldNode::WorldNode(void) {
 	_player = NULL;
+	_writeOnLeftSide = SDL_TRUE;
 	_messageAButnFlash = 32;
 	_messageForPlayer1 = NULL;
 	_messageForPlayer2 = NULL;
@@ -99,11 +101,22 @@ void WorldNode::_drawGUI(void) {
 	}
 
 	if(_writingMessageToPlayer) {
-		int drawx = 16*(_interactingNpc->getI()-9);
-		int drawy = 16*(_interactingNpc->getJ()-3);
+		int drawx = 0;
+		int drawy = 0;
+		SpriteID bkId = SpriteID::FRAME0B;
+
+		if(_writeOnLeftSide) {
+			drawx = 16*(_interactingNpc->getI()-9);
+			drawy = 16*(_interactingNpc->getJ()-3);
+		} else {
+			bkId = SpriteID::FRAME0C;
+			drawx = 16*(_interactingNpc->getI()+0);
+			drawy = 16*(_interactingNpc->getJ()-3);
+		}
+
 		SDL_Color color = {0x00, 0x00, 0x00, 0x00};
 
-		Sprite* spr = ResourceManager::getRef().getSprite(SpriteID::FRAME0B);
+		Sprite* spr = ResourceManager::getRef().getSprite(bkId);
 		SDL_Rect rect = {drawx, drawy, spr->w, spr->h};
 		SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &rect);
 
@@ -248,6 +261,11 @@ void WorldNode::setTile(int i, int j, SpriteID id) {
 */
 void WorldNode::writeMessageToPlayer(NpcEntity* npcentity, const char* message) {
 	if(!message) return;
+
+	if(16*npcentity->getI()<SCREEN_W/2)
+		_writeOnLeftSide = SDL_FALSE;
+	else
+		_writeOnLeftSide = SDL_TRUE;
 
 	_interactingNpc = npcentity;
 	_writingMessageToPlayer = SDL_TRUE;
