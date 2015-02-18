@@ -5,9 +5,7 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 
 /*
 % === %
-- might want to consider adding an "interactable" component
-	(although the entity class basically is a moveable interact
-	component)
+- need to add sign and a few rocks to node01
 
 % === %
 - the b key press doesn't register while the sword is swinging because moveable

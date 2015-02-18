@@ -3,7 +3,7 @@
 /*
 - new RandomInput(2*256)
 */
-Npc02Entity::Npc02Entity(int x, int y): NpcEntity(x, y, SpriteID::NPC00, NULL) {
+Npc02Entity::Npc02Entity(int x, int y): NpcEntity(x, y, SpriteID::NPC04, NULL) {
 	// nothing
 }
 
@@ -14,12 +14,12 @@ void Npc02Entity::update(void) {
 	Moveable::update();
 
 	if(_frame>0) _frame--;
-	if(_frame==0&&_id==SpriteID::NPC00) {
+	if(_frame==0&&_id==SpriteID::NPC04) {
 		_frame = _fpa;
-		_id = SpriteID::NPC01;
-	} else if(_frame==0&&_id==SpriteID::NPC01) {
+		_id = SpriteID::NPC05;
+	} else if(_frame==0&&_id==SpriteID::NPC05) {
 		_frame = _fpa;
-		_id = SpriteID::NPC00;
+		_id = SpriteID::NPC04;
 	}
 
 	_rect.x = _x;
@@ -34,7 +34,7 @@ void Npc02Entity::setPos(int x, int y) {
 	_rect.y = y;
 
 	active = SDL_TRUE;
-	_id = SpriteID::NPC00;
+	_id = SpriteID::NPC04;
 	Moveable::setPos(x, y);
 }
 

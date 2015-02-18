@@ -53,9 +53,13 @@ Node01::Node01(void) {
 
 	_barrelEnt = new BarrelEntity(16*17, 16*8, SpriteID::BARREL00);
 
-	for(int i=0; i<4; i++) {
+	for(int i=0; i<2; i++) {
 		_miners[i] = new Npc02Entity(16*3+16*(i+1), 16*8);
 	}
+
+	_miners[2] = new Npc02Entity(16*3+16*(4+1), 16*8+16*3);
+
+	_miners[3] = new Npc02Entity(16*3+16*(12+1), 16*8);
 }
 
 //-----------------------------------------------------------------------------

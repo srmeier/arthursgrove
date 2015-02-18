@@ -1032,6 +1032,34 @@ ResourceManager::ResourceManager(void) {
 		 55,  56
 	};
 	_sprites[SpriteID::BARREL00] = buildSprite(2, 2, barrelTile00);
+
+	//% === %
+	int npcTile04[2*2] = {
+		 25,  26,
+		 57,  58
+	};
+	_sprites[SpriteID::NPC04] = buildSprite(2, 2, npcTile04);
+
+	//% === %
+	int npcTile05[2*2] = {
+		 27,  28,
+		 59,  60
+	};
+	_sprites[SpriteID::NPC05] = buildSprite(2, 2, npcTile05);
+
+	//% === %
+	int signTile00[2*2] = {
+		 29,  30,
+		 61,  62
+	};
+	_sprites[SpriteID::SIGN00] = buildSprite(2, 2, signTile00);
+
+	//% === %
+	int rockTile06[2*2] = {
+		 31,  32,
+		 63,  64
+	};
+	_sprites[SpriteID::ROCK06] = buildSprite(2, 2, rockTile06);
 }
 
 //-----------------------------------------------------------------------------
