@@ -49,6 +49,7 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 #include "npc00entity.h"
 #include "npc01entity.h"
 #include "npc02entity.h"
+#include "signentity.h"
 #include "barrelentity.h"
 #include "wormentity.h"
 
@@ -69,6 +70,7 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 #include "npc00entity.cpp"
 #include "npc01entity.cpp"
 #include "npc02entity.cpp"
+#include "signentity.cpp"
 #include "barrelentity.cpp"
 #include "wormentity.cpp"
 
