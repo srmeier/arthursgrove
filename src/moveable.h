@@ -18,7 +18,6 @@ protected:
 	int _movedirec;
 	SDL_bool _moving;
 	SDL_bool _tomove;
-	SDL_bool _disable;
 
 	int _fmovedirec;
 	SDL_bool _forceMove;
@@ -58,8 +57,6 @@ Moveable::Moveable(int x, int y, Input* _input) {
 	_j = floor(_y/16.0f);
 
 	input = _input;
-	if(!_input) _disable = SDL_TRUE;
-	else _disable = SDL_FALSE;
 
 	_moveframe = 0;
 	_movedirec = 1;
@@ -90,9 +87,7 @@ SDL_bool Moveable::canMove(int i, int j) {
 /*
 */
 void Moveable::update(void) {
-	if(_disable) return;
-
-	if(!_forceMove) input->poll();
+	if(!_forceMove) if(input) input->poll();
 	if(!_tomove&&!_moving) return;
 
 	_i = floor(_x/16.0f);
@@ -126,7 +121,7 @@ void Moveable::update(void) {
 				_moveframe = 16-1;
 				_movedirec = 3;
 			}
-		} else {
+		} else if(input) {
 			if(input->isDown("up")&&canMove(_i, _j-1)) {
 				_moving = SDL_TRUE;
 				_moveframe = 16-1;
@@ -213,6 +208,8 @@ void Moveable::preventMovement(void) {
 /*
 */
 SDL_bool Moveable::moveUp(void) {
+	if(_moving) return SDL_FALSE;
+
 	_forceMove = canMove(_i, _j-1);
 	_fmovedirec = 0;
 
@@ -223,6 +220,8 @@ SDL_bool Moveable::moveUp(void) {
 /*
 */
 SDL_bool Moveable::moveDown(void) {
+	if(_moving) return SDL_FALSE;
+
 	_forceMove = canMove(_i, _j+1);
 	_fmovedirec = 1;
 
@@ -233,6 +232,8 @@ SDL_bool Moveable::moveDown(void) {
 /*
 */
 SDL_bool Moveable::moveLeft(void) {
+	if(_moving) return SDL_FALSE;
+
 	_forceMove = canMove(_i-1, _j);
 	_fmovedirec = 2;
 
@@ -243,6 +244,8 @@ SDL_bool Moveable::moveLeft(void) {
 /*
 */
 SDL_bool Moveable::moveRight(void) {
+	if(_moving) return SDL_FALSE;
+
 	_forceMove = canMove(_i+1, _j);
 	_fmovedirec = 3;
 

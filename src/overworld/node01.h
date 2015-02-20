@@ -10,6 +10,7 @@ class Node01: public WorldNode {
 protected:
 	SignEntity* _sign;
 	Npc02Entity* _miners[4];
+	Rock00Entity* _rocks[4];
 	BarrelEntity* _barrelEnt;
 
 	void _drawEntities(void);
@@ -64,6 +65,12 @@ Node01::Node01(void) {
 
 	_miners[2] = new Npc02Entity(16*3+16*(4+1), 16*8+16*3);
 	_miners[3] = new Npc02Entity(16*3+16*(12+1), 16*8);
+
+	for(int i=0; i<4; i++) {
+		_rocks[i] = NULL;
+	}
+
+	_rocks[0] = new Rock00Entity(16*3+16*6, 16*12);
 }
 
 //-----------------------------------------------------------------------------
@@ -75,6 +82,7 @@ Node01::~Node01(void) {
 
 	for(int i=0; i<4; i++) {
 		delete _miners[i];
+		delete _rocks[i];
 	}
 }
 
@@ -83,7 +91,8 @@ Node01::~Node01(void) {
 */
 void Node01::_drawEntities(void) {
 	for(int i=0; i<4; i++) {
-		_miners[i]->draw();
+		if(_miners[i]) _miners[i]->draw();
+		if(_rocks[i]) _rocks[i]->draw();
 	}
 
 	_sign->draw();
@@ -97,7 +106,8 @@ void Node01::update(void) {
 	WorldNode::update();
 
 	for(int i=0; i<4; i++) {
-		_miners[i]->update();
+		if(_miners[i]) _miners[i]->update();
+		if(_rocks[i]) _rocks[i]->update();
 	}
 
 	_sign->update();
@@ -116,10 +126,16 @@ Entity* Node01::getEntityAt(int i, int j) {
 	int bj = _barrelEnt->getJ();
 	if(i==bi&&j==bj) return _barrelEnt;
 
-	for(int _i=0; _i<4; _i++) {
-		int ni = _miners[_i]->getI();
-		int nj = _miners[_i]->getJ();
-		if(i==ni&&j==nj) return _miners[_i];
+	for(int k=0; k<4; k++) {
+		if(!_miners[k]) continue;
+		int ni = _miners[k]->getI();
+		int nj = _miners[k]->getJ();
+		if(i==ni&&j==nj) return _miners[k];
+
+		if(!_rocks[k]) continue;
+		int ri = _rocks[k]->getI();
+		int rj = _rocks[k]->getJ();
+		if(i==ri&&j==rj) return _rocks[k];
 	}
 
 	return NULL;
