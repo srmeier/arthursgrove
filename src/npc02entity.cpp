@@ -1,9 +1,8 @@
 /* npc02entity.cpp */
 //-----------------------------------------------------------------------------
 /*
-- new RandomInput(2*256)
 */
-Npc02Entity::Npc02Entity(int x, int y): NpcEntity(x, y, SpriteID::NPC04, NULL) {
+Npc02Entity::Npc02Entity(int x, int y, Input* input): NpcEntity(x, y, SpriteID::NPC04, input) {
 	// nothing
 }
 
@@ -85,8 +84,8 @@ void Npc02Entity::interactWith(void) {
 
 		default: {
 			char str[] =\
-				"I have nothing else to   "\
-				"say.                     ";
+				"Hey buddy! Can't you see "\
+				"I'm working here?        ";
 			node->writeMessageToPlayer(this, str);
 		} break;
 	}

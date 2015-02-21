@@ -32,6 +32,8 @@ public:
 	int getI(void);
 	int getJ(void);
 
+	void addInput(Input* _input);
+
 	void allowMovement(void);
 	void preventMovement(void);
 
@@ -183,6 +185,13 @@ int Moveable::getI(void) {
 */
 int Moveable::getJ(void) {
 	return _j;
+}
+
+//-----------------------------------------------------------------------------
+/*
+*/
+void Moveable::addInput(Input* _input) {
+	input = _input;
 }
 
 //-----------------------------------------------------------------------------

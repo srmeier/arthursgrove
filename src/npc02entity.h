@@ -14,7 +14,7 @@ protected:
 	int _frame = 14;
 
 public:
-	Npc02Entity(int x, int y);
+	Npc02Entity(int x, int y, Input* input);
 
 	void update(void);
 	void setPos(int x, int y);

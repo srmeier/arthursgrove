@@ -54,23 +54,20 @@ Node01::Node01(void) {
 	}
 
 	char str[] =\
-		"Sign                     ";
+		"Under Construction!      ";
 	_sign = new SignEntity(16*5, 16*11, str);
 
 	_barrelEnt = new BarrelEntity(16*17, 16*8, SpriteID::BARREL00);
 
-	for(int i=0; i<2; i++) {
-		_miners[i] = new Npc02Entity(16*3+16*(i+1), 16*8);
-	}
+	_miners[0] = new Npc02Entity(16*3+16*(7), 16*8, new RandomInput(64));
+	_miners[1] = new Npc02Entity(16*3+16*(10), 16*12, new RandomInput(64));
+	_miners[2] = new Npc02Entity(16*3+16*(3), 16*8+16*3, NULL);
+	_miners[3] = new Npc02Entity(16*3+16*(12+1), 16*8, NULL);
 
-	_miners[2] = new Npc02Entity(16*3+16*(4+1), 16*8+16*3);
-	_miners[3] = new Npc02Entity(16*3+16*(12+1), 16*8);
-
-	for(int i=0; i<4; i++) {
-		_rocks[i] = NULL;
-	}
-
-	_rocks[0] = new Rock00Entity(16*3+16*6, 16*12);
+	_rocks[0] = new Rock00Entity(16*3+16*4, 16*11);
+	_rocks[1] = new Rock00Entity(16*3+16*6, 16*10);
+	_rocks[2] = new Rock00Entity(16*3+16*11, 16*8);
+	_rocks[3] = new Rock00Entity(16*3+16*3, 16*8);
 }
 
 //-----------------------------------------------------------------------------

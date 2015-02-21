@@ -10,6 +10,8 @@ class Rock00Entity: public NpcEntity {
 protected:
 	SDL_bool canMove(int i, int j);
 
+	SDL_bool _interacting;
+
 public:
 	Rock00Entity(int x, int y);
 

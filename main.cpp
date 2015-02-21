@@ -5,7 +5,7 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 
 /*
 % === %
-- need to add sign and a few rocks to node01
+
 
 % === %
 - the b key press doesn't register while the sword is swinging because moveable

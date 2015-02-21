@@ -4,7 +4,7 @@
 - new RandomInput(2*256)
 */
 Rock00Entity::Rock00Entity(int x, int y): NpcEntity(x, y, SpriteID::ROCK06, NULL) {
-	// nothing
+	_interacting = SDL_FALSE;
 }
 
 //-----------------------------------------------------------------------------
@@ -15,6 +15,16 @@ void Rock00Entity::update(void) {
 
 	_rect.x = _x;
 	_rect.y = _y;
+
+	if(_interacting && !_moving) {
+		Overworld& overworld = Overworld::getRef();
+		WorldNode* node = overworld.getCurNode();
+
+		PlayerEntity* player = node->getPlayer();
+
+		_interacting = SDL_FALSE;
+		resolveInteraction(player);
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -75,18 +85,22 @@ void Rock00Entity::interactWith(void) {
 	int pi = node->getPlayer()->getI();
 	int pj = node->getPlayer()->getJ();
 
-	//node->getPlayer()->input->clear();
-	//node->getPlayer()->preventMovement();
+	int hasMoved = 0;
 
 	switch(_npcState) {
 		default: {
-			if((pj-1) == _j) moveUp();
-			else if((pj+1) == _j) moveDown();
-			else if((pi-1) == _i) moveLeft();
-			else if((pi+1) == _i) moveRight();
+			if((pj-1) == _j) hasMoved |= (int) moveUp();
+			else if((pj+1) == _j) hasMoved |= (int) moveDown();
+			else if((pi-1) == _i) hasMoved |= (int) moveLeft();
+			else if((pi+1) == _i) hasMoved |= (int) moveRight();
 		} break;
 	}
 
+	if(hasMoved) {
+		_interacting = SDL_TRUE;
+		node->getPlayer()->input->clear();
+		node->getPlayer()->preventMovement();
+	}
 }
 
 //-----------------------------------------------------------------------------
