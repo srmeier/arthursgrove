@@ -84,7 +84,7 @@ int SDL_main(int argc, char* argv[]) {
 	/* TESTING */
 	/* === */
 
-	PlayerEntity player(16*3, 16*8);
+	PlayerEntity player(16*3, 16*4);
 
 	Overworld::getRef().addPlayer(&player);
 	Dungeon00::getRef().addPlayer(&player);
