@@ -7,10 +7,18 @@
 /*
 */
 class Node0A: public WorldNode {
+protected:
+	Npc00Entity* _npc00;
+
+	void _drawEntities(void);
+
 public:
 	Node0A(void);
+	~Node0A(void);
 
 	void update(void);
+
+	Entity* getEntityAt(int i, int j);
 };
 
 /* node0A.cpp */
@@ -41,6 +49,15 @@ Node0A::Node0A(void) {
 			_background[j][i] = tiles[j][i];
 		}
 	}
+
+	_npc00 = new Npc00Entity(16*7, 16*11);
+}
+
+//-----------------------------------------------------------------------------
+/*
+*/
+Node0A::~Node0A(void) {
+	delete _npc00;
 }
 
 //-----------------------------------------------------------------------------
@@ -55,6 +72,26 @@ void Node0A::update(void) {
 	if(pi==9&&pj==9)
 		_background[9][9] = SpriteID::DOOR01;
 	else _background[9][9] = SpriteID::DOOR00;
+
+	_npc00->update();
+}
+
+//-----------------------------------------------------------------------------
+/*
+*/
+void Node0A::_drawEntities(void) {
+	_npc00->draw();
+}
+
+//-----------------------------------------------------------------------------
+/*
+*/
+Entity* Node0A::getEntityAt(int i, int j) {
+	int ni = _npc00->getI();
+	int nj = _npc00->getJ();
+
+	if(i==ni&&j==nj) return _npc00;
+	else return NULL;
 }
 
 #endif
