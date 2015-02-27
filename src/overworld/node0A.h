@@ -8,7 +8,7 @@
 */
 class Node0A: public WorldNode {
 protected:
-	Npc00Entity* _npc00;
+	Npc03Entity* _npc00;
 
 	void _drawEntities(void);
 
@@ -50,7 +50,7 @@ Node0A::Node0A(void) {
 		}
 	}
 
-	_npc00 = new Npc00Entity(16*7, 16*11);
+	_npc00 = new Npc03Entity(16*7, 16*11);
 }
 
 //-----------------------------------------------------------------------------
