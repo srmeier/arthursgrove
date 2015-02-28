@@ -1,23 +1,26 @@
 //-----------------------------------------------------------------------------
-#ifndef _NODE0A_HEADER_
-#define _NODE0A_HEADER_
+#ifndef _P00NODE00_HEADER_
+#define _P00NODE00_HEADER_
 
-/* node0A.h */
+/* p00node00.h */
 //-----------------------------------------------------------------------------
 /*
 */
-class Node0A: public WorldNode {
+class P00Node00: public WorldNode {
 protected:
-	Npc03Entity* _npc00;
+	int _numRocks = 4;
+	Rock00Entity* _rocks[4];
 
 	void _drawEntities(void);
 
 public:
-	Node0A(void);
-	~Node0A(void);
+	P00Node00(void);
+	~P00Node00(void);
 
 	void update(void);
+	void reset(void);
 
+	SDL_bool canSpawn(int i, int j);
 	Entity* getEntityAt(int i, int j);
 };
 

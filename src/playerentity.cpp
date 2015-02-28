@@ -53,6 +53,11 @@ void PlayerEntity::update(void) {
 			Dungeon00& dungeon00 = Dungeon00::getRef();
 			node = dungeon00.getCurNode();
 		} break;
+
+		case 0x02: {
+			Puzzle00& puzzle00 = Puzzle00::getRef();
+			node = puzzle00.getCurNode();
+		} break;
 	}
 
 	if(
@@ -298,6 +303,29 @@ SDL_bool PlayerEntity::canMove(int i, int j) {
 				weapon->active = SDL_FALSE;
 			}
 		} break;
+
+		case 0x02: {
+			Puzzle00& puzzle00 = Puzzle00::getRef();
+			node = puzzle00.getCurNode();
+
+			if(j<3&&puzzle00.hasTopNode()) {
+				_y += 16*12;
+				puzzle00.moveTop();
+				weapon->active = SDL_FALSE;
+			} else if(j>=15&&puzzle00.hasBotNode()) {
+				_y -= 16*12;
+				puzzle00.moveBot();
+				weapon->active = SDL_FALSE;
+			} else if(i<0&&puzzle00.hasLeftNode()) {
+				_x += 16*20;
+				puzzle00.moveLeft();
+				weapon->active = SDL_FALSE;
+			} else if(i>=20&&puzzle00.hasRightNode()) {
+				_x -= 16*20;
+				puzzle00.moveRight();
+				weapon->active = SDL_FALSE;
+			}
+		} break;
 	}
 
 	SDL_bool check = SDL_TRUE;
@@ -320,6 +348,7 @@ SDL_bool PlayerEntity::canMove(int i, int j) {
 			node->getTile(i,j)==SpriteID::SAND00   ||
 			node->getTile(i,j)==SpriteID::PIT00    ||
 			node->getTile(i,j)==SpriteID::LADDER00 ||
+			node->getTile(i,j)==SpriteID::DIRT00   ||
 			node->getTile(i,j)==SpriteID::DIRT01   ||
 			node->getTile(i,j)==SpriteID::DIRT02   ||
 			node->getTile(i,j)==SpriteID::DIRT03   ||

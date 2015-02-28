@@ -108,8 +108,8 @@ void Npc03Entity::resolveInteraction(PlayerEntity* player) {
 			WorldNode* node = Overworld::getRef().getCurNode();
 			node->setTile(_i, _j, SpriteID::LADDER00);
 
-			//WorldNode* d00node = Dungeon00::getRef().getCurNode();
-			//d00node->setTile(_i, _j, SpriteID::LADDER00);
+			WorldNode* p00node = Puzzle00::getRef().getCurNode();
+			p00node->setTile(_i, _j, SpriteID::LADDER00);
 
 			if(moveUp());
 			else if(moveDown());

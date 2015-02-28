@@ -1,6 +1,8 @@
 /*
 g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
 - for polymorphism make sure to use "virtual"
+- whenever a new "overworld" is added the player.cpp needs updating
+	- so too does rock00entity.cpp
 */
 
 /*
@@ -59,10 +61,13 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 #include "worldnode.h"
 #include "overworld.h"
 #include "dungeon00.h"
+#include "puzzle00.h"
 
 //-----------------------------------------------------------------------------
 #include "overworld/node00.cpp"
+#include "overworld/node0A.cpp"
 #include "dungeon00/d00node00.cpp"
+#include "puzzle00/p00node00.cpp"
 
 //-----------------------------------------------------------------------------
 #include "straightinput.cpp"
@@ -90,6 +95,7 @@ int SDL_main(int argc, char* argv[]) {
 
 	Overworld::getRef().addPlayer(&player);
 	Dungeon00::getRef().addPlayer(&player);
+	Puzzle00::getRef().addPlayer(&player);
 
 	/* === */
 
@@ -112,6 +118,13 @@ int SDL_main(int argc, char* argv[]) {
 				/* === */
 				Dungeon00::getRef().updateNode();
 				Dungeon00::getRef().drawNode();
+				/* === */
+			} break;
+
+			case 0x02: {
+				/* === */
+				Puzzle00::getRef().updateNode();
+				Puzzle00::getRef().drawNode();
 				/* === */
 			} break;
 		}

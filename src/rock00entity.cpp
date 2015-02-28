@@ -45,8 +45,19 @@ void Rock00Entity::setPos(int x, int y) {
 SDL_bool Rock00Entity::canMove(int i, int j) {
 	if(i<0||i>=20||j<0||j>=15) return SDL_FALSE;
 
-	Overworld& overworld = Overworld::getRef();
-	WorldNode* node = overworld.getCurNode();
+	WorldNode* node = NULL;
+
+	switch(Game.state) {
+		case 0x00: {
+			Overworld& overworld = Overworld::getRef();
+			node = overworld.getCurNode();
+		} break;
+
+		case 0x02: {
+			Puzzle00& puzzle00 = Puzzle00::getRef();
+			node = puzzle00.getCurNode();
+		} break;
+	}
 
 	if(node->getEntityAt(i,j) != NULL) return SDL_FALSE;
 
@@ -57,6 +68,7 @@ SDL_bool Rock00Entity::canMove(int i, int j) {
 
 	return (SDL_bool) (
 		(
+			node->getTile(i,j)==SpriteID::DIRT00 ||
 			node->getTile(i,j)==SpriteID::DIRT01 ||
 			node->getTile(i,j)==SpriteID::DIRT02 ||
 			node->getTile(i,j)==SpriteID::DIRT03 ||
