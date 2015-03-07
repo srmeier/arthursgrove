@@ -13,6 +13,8 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 - the b key press doesn't register while the sword is swinging because moveable
 	is only updated if the player can move (and input is linked to moveable
 	which sets the keys)
+- player can definitely move through NPCs, probably due to location indices not
+	updating until the player is already moving
 */
 
 //-----------------------------------------------------------------------------
@@ -91,7 +93,7 @@ int SDL_main(int argc, char* argv[]) {
 	/* TESTING */
 	/* === */
 
-	PlayerEntity player(16*3, 16*4);
+	PlayerEntity player(16*11, 16*5);
 
 	Overworld::getRef().addPlayer(&player);
 	Dungeon00::getRef().addPlayer(&player);

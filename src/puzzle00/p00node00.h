@@ -8,8 +8,8 @@
 */
 class P00Node00: public WorldNode {
 protected:
-	int _numRocks = 4;
-	Rock00Entity* _rocks[4];
+	int _numRocks = 66;
+	Rock00Entity* _rocks[66];
 
 	void _drawEntities(void);
 
