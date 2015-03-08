@@ -1060,6 +1060,20 @@ ResourceManager::ResourceManager(void) {
 		 63,  64
 	};
 	_sprites[SpriteID::ROCK06] = buildSprite(2, 2, rockTile06);
+
+	//% === %
+	int chestTile00[2*2] = {
+		609, 610,
+		641, 642
+	};
+	_sprites[SpriteID::CHEST00] = buildSprite(2, 2, chestTile00);
+
+	//% === %
+	int chestTile01[2*2] = {
+		611, 612,
+		643, 644
+	};
+	_sprites[SpriteID::CHEST01] = buildSprite(2, 2, chestTile01);
 }
 
 //-----------------------------------------------------------------------------

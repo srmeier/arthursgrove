@@ -57,6 +57,7 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 #include "rock00entity.h"
 #include "signentity.h"
 #include "barrelentity.h"
+#include "chestentity.h"
 #include "wormentity.h"
 
 //-----------------------------------------------------------------------------
@@ -83,6 +84,7 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 #include "rock00entity.cpp"
 #include "signentity.cpp"
 #include "barrelentity.cpp"
+#include "chestentity.cpp"
 #include "wormentity.cpp"
 
 //-----------------------------------------------------------------------------

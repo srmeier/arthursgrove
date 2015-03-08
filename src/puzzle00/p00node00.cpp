@@ -34,6 +34,8 @@ P00Node00::P00Node00(void): WorldNode() {
 /*
 */
 P00Node00::~P00Node00(void) {
+	delete _chestEnt;
+
 	for(int i=0; i<_numRocks; i++) {
 		delete _rocks[i];
 	}
@@ -61,6 +63,8 @@ void P00Node00::update(void) {
 	} else if(_background[_player->getJ()][_player->getI()] != SpriteID::LADDER00) {
 		Puzzle00::getRef().onLadder = SDL_FALSE;
 	}
+
+	_chestEnt->update();
 }
 
 //-----------------------------------------------------------------------------
@@ -100,6 +104,8 @@ void P00Node00::reset(void) {
 			_rocks[rock_ind++] = new Rock00Entity(16*i, 16*j);
 		}
 	}
+
+	_chestEnt = new ChestEntity(16*3, 16*4, SpriteID::CHEST00);
 }
 
 //-----------------------------------------------------------------------------
@@ -109,6 +115,8 @@ void P00Node00::_drawEntities(void) {
 	for(int i=0; i<_numRocks; i++) {
 		if(_rocks[i]) _rocks[i]->draw();
 	}
+
+	_chestEnt->draw();
 }
 
 //-----------------------------------------------------------------------------
@@ -138,6 +146,10 @@ Entity* P00Node00::getEntityAt(int i, int j) {
 		int rj = _rocks[k]->getJ();
 		if(i==ri&&j==rj) return _rocks[k];
 	}
+
+	int ci = _chestEnt->getI();
+	int cj = _chestEnt->getJ();
+	if(i==ci&&j==cj) return _chestEnt;
 
 	return NULL;
 }
