@@ -16,6 +16,8 @@ protected:
 	char* _messageForPlayer3;
 	char* _messageForPlayer4;
 	char* _messageForPlayer5;
+
+	SDL_bool _writeAbove;
 	SDL_bool _writeOnLeftSide;
 	NpcEntity* _interactingNpc;
 	SDL_bool _writingMessageToPlayer;
@@ -45,6 +47,7 @@ public:
 */
 WorldNode::WorldNode(void) {
 	_player = NULL;
+	_writeAbove = SDL_TRUE;
 	_writeOnLeftSide = SDL_TRUE;
 	_messageAButnFlash = 32;
 	_messageForPlayer1 = NULL;
@@ -107,11 +110,15 @@ void WorldNode::_drawGUI(void) {
 
 		if(_writeOnLeftSide) {
 			drawx = 16*(_interactingNpc->getI()-9);
-			drawy = 16*(_interactingNpc->getJ()-3);
 		} else {
 			bkId = SpriteID::FRAME0C;
 			drawx = 16*(_interactingNpc->getI()+0);
+		}
+
+		if(_writeAbove) {
 			drawy = 16*(_interactingNpc->getJ()-3);
+		} else {
+			drawy = 16*(_interactingNpc->getJ()+1);
 		}
 
 		SDL_Color color = {0x00, 0x00, 0x00, 0x00};
@@ -266,6 +273,11 @@ void WorldNode::writeMessageToPlayer(NpcEntity* npcentity, const char* message) 
 		_writeOnLeftSide = SDL_FALSE;
 	else
 		_writeOnLeftSide = SDL_TRUE;
+
+	if(16*npcentity->getI()<SCREEN_H/2)
+		_writeAbove = SDL_FALSE;
+	else
+		_writeAbove = SDL_TRUE;
 
 	_interactingNpc = npcentity;
 	_writingMessageToPlayer = SDL_TRUE;
