@@ -118,7 +118,7 @@ void WorldNode::_drawGUI(void) {
 		if(_writeAbove) {
 			drawy = 16*(_interactingNpc->getJ()-3);
 		} else {
-			drawy = 16*(_interactingNpc->getJ()+1);
+			drawy = 16*(_interactingNpc->getJ()+2);
 		}
 
 		SDL_Color color = {0x00, 0x00, 0x00, 0x00};
@@ -274,7 +274,7 @@ void WorldNode::writeMessageToPlayer(NpcEntity* npcentity, const char* message) 
 	else
 		_writeOnLeftSide = SDL_TRUE;
 
-	if(16*npcentity->getI()<SCREEN_H/2)
+	if(16*npcentity->getJ()<SCREEN_H/2)
 		_writeAbove = SDL_FALSE;
 	else
 		_writeAbove = SDL_TRUE;
