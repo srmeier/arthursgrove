@@ -11,6 +11,7 @@ protected:
 	int _numRocks = 66;
 	Rock00Entity* _rocks[66];
 	ChestEntity* _chestEnt;
+	BarrelEntity* _barrelEnt;
 
 	void _drawEntities(void);
 

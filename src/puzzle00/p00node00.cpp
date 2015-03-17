@@ -21,6 +21,9 @@ P00Node00::P00Node00(void): WorldNode() {
 		{0x3A,0x15,0x15,0x15,0x15,0x15,0x15,0x15,0x15,0x15,0x15,0x15,0x15,0x15,0x15,0x15,0x15,0x15,0x15,0x39}
 	};
 
+	_chestEnt = new ChestEntity(16*3, 16*4, SpriteID::CHEST00);
+	_barrelEnt = new BarrelEntity(16*18, 16*13, SpriteID::BARREL00);
+
 	for(int j=0; j<15; j++) {
 		for(int i=0; i<20; i++) {
 			_background[j][i] = tiles[j][i];
@@ -35,6 +38,7 @@ P00Node00::P00Node00(void): WorldNode() {
 */
 P00Node00::~P00Node00(void) {
 	delete _chestEnt;
+	delete _barrelEnt;
 
 	for(int i=0; i<_numRocks; i++) {
 		delete _rocks[i];
@@ -65,6 +69,7 @@ void P00Node00::update(void) {
 	}
 
 	_chestEnt->update();
+	_barrelEnt->update();
 }
 
 //-----------------------------------------------------------------------------
@@ -104,8 +109,6 @@ void P00Node00::reset(void) {
 			_rocks[rock_ind++] = new Rock00Entity(16*i, 16*j);
 		}
 	}
-
-	_chestEnt = new ChestEntity(16*3, 16*4, SpriteID::CHEST00);
 }
 
 //-----------------------------------------------------------------------------
@@ -117,6 +120,7 @@ void P00Node00::_drawEntities(void) {
 	}
 
 	_chestEnt->draw();
+	_barrelEnt->draw();
 }
 
 //-----------------------------------------------------------------------------
@@ -150,6 +154,10 @@ Entity* P00Node00::getEntityAt(int i, int j) {
 	int ci = _chestEnt->getI();
 	int cj = _chestEnt->getJ();
 	if(i==ci&&j==cj) return _chestEnt;
+
+	int bi = _barrelEnt->getI();
+	int bj = _barrelEnt->getJ();
+	if(i==bi&&j==bj) return _barrelEnt;
 
 	return NULL;
 }

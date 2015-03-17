@@ -33,7 +33,8 @@ void ChestEntity::interactWith(void) {
 		case 0x00: {
 			if(!node->getPlayer()->hasItem(SpriteID::COIN00) && !_plGotTreasure) {
 				char str[] =\
-					"Oh nice! I found a coin. ";
+					"Oh nice! I found a       "\
+					"shield.                  ";
 				node->writeMessageToPlayer(this, str);
 			} else {
 				char str[] =\
@@ -76,16 +77,10 @@ void ChestEntity::resolveInteraction(PlayerEntity* player) {
 
 	switch(_npcState) {
 		case 0x00: {
-			if(!node->getPlayer()->hasItem(SpriteID::COIN00) && !_plGotTreasure) {
-				SDL_bool done = SDL_FALSE;
-				for(int i=0; i<7; i++) {
-					if(done) continue;
-					if(player->inventory[i] == SpriteID::FRAME08) {
-						done = SDL_TRUE;
-						_plGotTreasure = SDL_TRUE;
-						player->inventory[i] = SpriteID::COIN00;
-					}
-				}
+			if(!node->getPlayer()->shield->equipped && !_plGotTreasure) {
+				_id = SpriteID::CHEST01;
+				_plGotTreasure = SDL_TRUE;
+				node->getPlayer()->shield->equipped = SDL_TRUE;
 			}
 
 			player->input->clear();
