@@ -3,11 +3,12 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 - for polymorphism make sure to use "virtual"
 - whenever a new "overworld" is added the player.cpp needs updating
 	- so too does rock00entity.cpp
+	- so too does chest and barrel
 */
 
 /*
 % === %
-
+- some problem with going left and right when the node is NULL
 
 % === %
 - the b key press doesn't register while the sword is swinging because moveable

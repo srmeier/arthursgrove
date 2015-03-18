@@ -38,11 +38,20 @@ private:
 	int _h = 4;
 
 	PlayerEntity* _player;
+	/*
 	WorldNode* _nodes[4][4] = {
 		{new Node04(), new Node03(), new Node05(), new Node07()},
 		{new Node02(), new Node00(), new Node01(), new Node08()},
 		{new Node0F(), new Node0C(), new Node0D(), new Node0E()},
 		{new Node06(), new Node0B(), new Node0A(), new Node09()}
+	};
+	*/
+
+	WorldNode* _nodes[4][4] = {
+		{NULL, new Node03(), new Node05(), new Node07()},
+		{NULL, new Node00(), new Node01(), new Node08()},
+		{NULL, new Node0C(),         NULL,         NULL},
+		{NULL, new Node0B(), new Node0A(),         NULL}
 	};
 
 public:
