@@ -8,7 +8,7 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 
 /*
 % === %
-- some problem with going left and right when the node is NULL
+
 
 % === %
 - the b key press doesn't register while the sword is swinging because moveable
@@ -96,7 +96,7 @@ int SDL_main(int argc, char* argv[]) {
 	/* TESTING */
 	/* === */
 
-	PlayerEntity player(16*11, 16*5);
+	PlayerEntity player(16*3, 16*5);
 
 	Overworld::getRef().addPlayer(&player);
 	Dungeon00::getRef().addPlayer(&player);
