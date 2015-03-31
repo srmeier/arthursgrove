@@ -26,6 +26,7 @@ public:
 	PlayerEntity(int x, int y);
 	~PlayerEntity(void);
 
+	void hit(int damage);
 	void update(void);
 	void draw(void);
 	int getX(void);

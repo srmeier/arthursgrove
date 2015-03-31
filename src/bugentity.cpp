@@ -59,8 +59,24 @@ SDL_bool BugEntity::canMove(int i, int j) {
 	if(i<0||i>=20||j<0||j>=15) return SDL_FALSE;
 	if(_dying) return SDL_FALSE;
 
-	Overworld& overworld = Overworld::getRef();
-	WorldNode* node = overworld.getCurNode();
+	WorldNode* node = NULL;
+
+	switch(Game.state) {
+		case 0x00: {
+			Overworld& overworld = Overworld::getRef();
+			node = overworld.getCurNode();
+		} break;
+
+		case 0x01: {
+			Dungeon00& dungeon00 = Dungeon00::getRef();
+			node = dungeon00.getCurNode();
+		} break;
+
+		case 0x02: {
+			Puzzle00& puzzle00 = Puzzle00::getRef();
+			node = puzzle00.getCurNode();
+		} break;
+	}
 
 	PlayerEntity* player = node->getPlayer();
 
@@ -72,9 +88,10 @@ SDL_bool BugEntity::canMove(int i, int j) {
 		node->getTile(i,j)==SpriteID::GRASS00 ||
 		node->getTile(i,j)==SpriteID::SAND00  ||
 		node->getTile(i,j)==SpriteID::SEA00   ||
-		node->getTile(i,j)==SpriteID::BRICK00
+		node->getTile(i,j)==SpriteID::BRICK00 ||
+		node->getTile(i,j)==SpriteID::DIRT00
 		)
-		&&!(i==pi&&j==pj)
+		//&&!(i==pi&&j==pj)
 	);
 }
 

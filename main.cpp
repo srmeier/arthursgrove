@@ -8,7 +8,7 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 
 /*
 % === %
-
+- the node is responsible for dealing out all the damage? :/
 
 % === %
 - the b key press doesn't register while the sword is swinging because moveable
@@ -71,6 +71,7 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 #include "overworld/node00.cpp"
 #include "overworld/node0A.cpp"
 #include "dungeon00/d00node00.cpp"
+#include "dungeon00/d00node01.cpp"
 #include "puzzle00/p00node00.cpp"
 
 //-----------------------------------------------------------------------------
@@ -97,6 +98,10 @@ int SDL_main(int argc, char* argv[]) {
 	/* === */
 
 	PlayerEntity player(16*3, 16*5);
+
+	Game.state = 0x01;
+	player.sword->equipped = SDL_TRUE;
+	player.shield->equipped = SDL_TRUE;
 
 	Overworld::getRef().addPlayer(&player);
 	Dungeon00::getRef().addPlayer(&player);

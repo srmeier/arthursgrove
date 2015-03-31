@@ -441,3 +441,18 @@ SDL_bool PlayerEntity::takeItem(SpriteID id, int* ind) {
 
 	return hasitem;
 }
+
+//-----------------------------------------------------------------------------
+/*
+*/
+void PlayerEntity::hit(int damage) {
+	/*
+	if(_dying) return;
+
+	if(damage>0) {
+		_frame = _fpa;
+		_dying = SDL_TRUE;
+		_id = SpriteID::SMALLFLAME00;
+	}
+	*/
+}

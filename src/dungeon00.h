@@ -4,6 +4,7 @@
 
 //-----------------------------------------------------------------------------
 #include "dungeon00/d00node00.h"
+#include "dungeon00/d00node01.h"
 
 /* dungeon00.h */
 //-----------------------------------------------------------------------------
@@ -18,12 +19,13 @@ private:
 	~Dungeon00(void);
 
 	int _i = 0;
-	int _j = 0;
+	int _j = 1;
 	int _w = 1;
-	int _h = 1;
+	int _h = 2;
 
 	PlayerEntity* _player;
-	WorldNode* _nodes[1][1] = {
+	WorldNode* _nodes[2][1] = {
+		{new D00Node01()},
 		{new D00Node00()}
 	};
 
