@@ -79,6 +79,8 @@ void PlayerEntity::update(void) {
 	if(_on_sea_tile) weapon = tsunami;
 	else weapon = sword;
 
+	if(_damage_delay>0) _damage_delay--;
+
 	int old_direc = _movedirec;
 	if(weapon->canmove || !weapon->equipped) Moveable::update();
 
@@ -455,4 +457,10 @@ void PlayerEntity::hit(int damage) {
 		_id = SpriteID::SMALLFLAME00;
 	}
 	*/
+
+	if(shield->active) return;
+	if(_damage_delay>0) return;
+	_damage_delay = 60;
+
+	if(health>0) health -= damage;
 }

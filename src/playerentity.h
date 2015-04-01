@@ -13,6 +13,7 @@ protected:
 	int _fpa = 14;
 	int _frame = 14;
 	int _oddone = 0;
+	int _damage_delay = 60;
 
 	int _fish_fpa = 14;
 	int _fish_frame = 14;
@@ -32,6 +33,7 @@ public:
 	int getX(void);
 	int getY(void);
 	
+	int health = 4;
 	SpriteID inventory[7];
 	
 	SDL_bool hasItem(SpriteID id);

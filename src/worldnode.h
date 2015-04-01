@@ -151,16 +151,20 @@ void WorldNode::_drawGUI(void) {
 	// heart near top
 	SDL_Rect gui_rect = {8, 8, 16, 16};
 	spr = ResourceManager::getRef().getSprite(SpriteID::HEART01);
-	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
-
-	gui_rect.x += 16;
-	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
-
-	gui_rect.x += 16;
-	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
-
-	gui_rect.x += 16;
-	SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
+	if(_player->health>0)
+		SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
+	if(_player->health>1) {
+		gui_rect.x += 16;
+		SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
+	}
+	if(_player->health>2) {
+		gui_rect.x += 16;
+		SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
+	}
+	if(_player->health>3) {
+		gui_rect.x += 16;
+		SDL_BlitSurface(spr->tile, NULL, Game.gfx.screen, &gui_rect);
+	}
 
 	// bar at bottom
 	gui_rect.x = 8; gui_rect.y = 24;

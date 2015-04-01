@@ -1074,6 +1074,27 @@ ResourceManager::ResourceManager(void) {
 		643, 644
 	};
 	_sprites[SpriteID::CHEST01] = buildSprite(2, 2, chestTile01);
+
+	//% === %
+	int bossTile00[2*2] = {
+		613, 614,
+		645, 646
+	};
+	_sprites[SpriteID::BOSS00] = buildSprite(2, 2, bossTile00);
+
+	//% === %
+	int bossTile01[2*2] = {
+		615, 616,
+		647, 648
+	};
+	_sprites[SpriteID::BOSS01] = buildSprite(2, 2, bossTile01);
+
+	//% === %
+	int icon[2*2] = {
+		617, 618,
+		649, 650
+	};
+	_sprites[SpriteID::ICON] = buildSprite(2, 2, icon);
 }
 
 //-----------------------------------------------------------------------------

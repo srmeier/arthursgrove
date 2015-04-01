@@ -1,5 +1,5 @@
 /*
-g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
+g++ -g -std=c++11 main.cpp -o arthursgrove.exe -I./src -L./lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
 - for polymorphism make sure to use "virtual"
 - whenever a new "overworld" is added the player.cpp needs updating
 	- so too does rock00entity.cpp
@@ -60,6 +60,7 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 #include "barrelentity.h"
 #include "chestentity.h"
 #include "wormentity.h"
+#include "bossentity.h"
 
 //-----------------------------------------------------------------------------
 #include "worldnode.h"
@@ -75,6 +76,7 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 #include "puzzle00/p00node00.cpp"
 
 //-----------------------------------------------------------------------------
+#include "sandstormentity.cpp"
 #include "straightinput.cpp"
 #include "tsunamientity.cpp"
 #include "playerentity.cpp"
@@ -88,20 +90,19 @@ g++ -g -std=c++11 main.cpp -o test.exe -I./src -L./lib -lmingw32 -lSDL2main -lSD
 #include "barrelentity.cpp"
 #include "chestentity.cpp"
 #include "wormentity.cpp"
+#include "bossentity.cpp"
 
 //-----------------------------------------------------------------------------
 int SDL_main(int argc, char* argv[]) {
 	// NOTE: initialize the library and start the game
 	startGame();
 
-	/* TESTING */
 	/* === */
 
-	PlayerEntity player(16*3, 16*5);
+	Sprite* spr = ResourceManager::getRef().getSprite(SpriteID::ICON);
+	SDL_SetWindowIcon(Game.window, spr->tile);
 
-	Game.state = 0x01;
-	player.sword->equipped = SDL_TRUE;
-	player.shield->equipped = SDL_TRUE;
+	PlayerEntity player(16*3, 16*5);
 
 	Overworld::getRef().addPlayer(&player);
 	Dungeon00::getRef().addPlayer(&player);
@@ -139,6 +140,18 @@ int SDL_main(int argc, char* argv[]) {
 			} break;
 		}
 
+		if(Game.won) {
+			SDL_FillRect(Game.gfx.screen, 0, 0x00);
+			SDL_Color color = {0xFF,0xFF,0xFF};
+			drawText("You Win!", SCREEN_W/2-32-4, SCREEN_H/2-32, color);
+		}
+
+		if(player.health==0) {
+			SDL_FillRect(Game.gfx.screen, 0, 0x00);
+			SDL_Color color = {0xFF,0xFF,0xFF};
+			drawText("Game Over!", SCREEN_W/2-32-4, SCREEN_H/2-32, color);
+		}
+
 		/* === */
 
 		int pitch;
@@ -166,7 +179,6 @@ int SDL_main(int argc, char* argv[]) {
 		SDL_RenderPresent(Game.renderer);
 	}
 
-	/* TESTING */
 	/* === */
 
 

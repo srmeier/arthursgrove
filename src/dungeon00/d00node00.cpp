@@ -69,8 +69,9 @@ void D00Node00::update(void) {
 		int bj = _bug[i]->getJ();
 
 		if(bi==pi&&bj==pj) {
+			if(!_bug[i]->_dying && _bug[i]->active)
+				_player->hit(1);
 			_bug[i]->hit(1);
-			_player->hit(1);
 		} else if(_player->weapon->active) {
 			int si = _player->weapon->getI();
 			int sj = _player->weapon->getJ();
@@ -85,7 +86,8 @@ void D00Node00::update(void) {
 	int wj = _worm->getJ();
 
 	if(wi==pi&&wj==pj) {
-		_player->hit(1); //_worm->hit(1);
+		if(!_worm->_dying && _worm->active)
+			_player->hit(1); //_worm->hit(1);
 	} else if(_player->weapon->active) {
 		int si = _player->weapon->getI();
 		int sj = _player->weapon->getJ();

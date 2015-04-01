@@ -152,6 +152,9 @@ enum SpriteID {
 	ROCK06,       // 0x8F
 	CHEST00,      // 0x90
 	CHEST01,      // 0x91
+	BOSS00,       // 0x92
+	BOSS01,       // 0x93
+	ICON,         // 0x94
 	NUM_SPRITES
 };
 

@@ -26,12 +26,36 @@ D00Node01::D00Node01(void): WorldNode() {
 			_background[j][i] = tiles[j][i];
 		}
 	}
+
+	for(int i=0; i<_numofbugs; i++) {
+		SDL_bool bugSet = SDL_FALSE;
+
+		while(!bugSet) {
+			int ni = rand()%20;
+			int nj = rand()%(15-4)+3;
+
+			if(getTile(ni,nj)==SpriteID::DIRT00) {
+				bugSet = SDL_TRUE;
+				_bug[i] = new BugEntity(16*ni, 16*nj);
+			}
+		}
+	}
+
+	_worm = new WormEntity(16*4, 16*11);
+	_boss = new BossEntity(16*8, 16*6);
 }
 
 //-----------------------------------------------------------------------------
 /*
 */
-D00Node01::~D00Node01(void) {}
+D00Node01::~D00Node01(void) {
+	for(int i=0; i<_numofbugs; i++) {
+		delete _bug[i];
+	}
+
+	delete _worm;
+	delete _boss;
+}
 
 //-----------------------------------------------------------------------------
 /*
@@ -41,6 +65,54 @@ void D00Node01::update(void) {
 	
 	int pi = _player->getI();
 	int pj = _player->getJ();
+
+	for(int i=0; i<_numofbugs; i++) {
+		int bi = _bug[i]->getI();
+		int bj = _bug[i]->getJ();
+
+		if(bi==pi&&bj==pj) {
+			if(!_bug[i]->_dying && _bug[i]->active)
+				_player->hit(1);
+			_bug[i]->hit(1);
+		} else if(_player->weapon->active) {
+			int si = _player->weapon->getI();
+			int sj = _player->weapon->getJ();
+			
+			if(bi==si&&bj==sj) _bug[i]->hit(1);
+		}
+
+		_bug[i]->update();
+	}
+
+	int wi = _worm->getI();
+	int wj = _worm->getJ();
+
+	if(wi==pi&&wj==pj) {
+		if(!_worm->_dying && _worm->active)
+			_player->hit(1); //_worm->hit(1);
+	} else if(_player->weapon->active) {
+		int si = _player->weapon->getI();
+		int sj = _player->weapon->getJ();
+		
+		if(wi==si&&wj==sj) _worm->hit(1);
+	}
+
+	if(_worm->active) _worm->update();
+
+	int bi = _boss->getI();
+	int bj = _boss->getJ();
+
+	if(bi==pi&&bj==pj) {
+		if(!_boss->_dying && _boss->active)
+			_player->hit(1);
+	} else if(_player->weapon->active) {
+		int si = _player->weapon->getI();
+		int sj = _player->weapon->getJ();
+		
+		if(bi==si&&bj==sj) _boss->hit(1);
+	}
+
+	if(_boss->active) _boss->update();
 
 	if(_background[_player->getJ()][_player->getI()] == SpriteID::LADDER00 && !Dungeon00::getRef().onLadder) {
 		Overworld::getRef().onLadder = SDL_TRUE;
@@ -55,7 +127,13 @@ void D00Node01::update(void) {
 //-----------------------------------------------------------------------------
 /*
 */
-void D00Node01::_drawEntities(void) {}
+void D00Node01::_drawEntities(void) {
+	for(int i=0; i<_numofbugs; i++)
+		if(_bug[i]->active) _bug[i]->draw();
+
+	if(_worm->active) _worm->draw();
+	if(_boss->active) _boss->draw();
+}
 
 //-----------------------------------------------------------------------------
 /*

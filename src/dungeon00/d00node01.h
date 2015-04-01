@@ -8,6 +8,12 @@
 */
 class D00Node01: public WorldNode {
 protected:
+	int _numofbugs = 24;
+	BugEntity* _bug[24];
+
+	WormEntity* _worm;
+	BossEntity* _boss;
+
 	void _drawEntities(void);
 
 public:

@@ -12,7 +12,6 @@ protected:
 
 	int _fpa = 8;
 	int _frame = 8;
-	SDL_bool _dying = SDL_FALSE;
 
 public:
 	BugEntity(int x, int y);
@@ -20,6 +19,8 @@ public:
 	void update(void);
 	void setPos(int x, int y);
 	void hit(int damage);
+
+	SDL_bool _dying = SDL_FALSE;
 };
 
 #endif

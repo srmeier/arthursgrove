@@ -8,7 +8,7 @@
 #define SCREEN_W 320 // 40 -> 20
 #define SCREEN_H 240 // 30 -> 15
 #define NUM_TILES (1024+1)
-#define SCREEN_NAME "Prototype"
+#define SCREEN_NAME "Arthur's Grove"
 #define SCREEN_SCALE 2
 
 //-----------------------------------------------------------------------------
@@ -28,6 +28,7 @@ typedef struct {
 */
 struct {
 	bool running;
+	SDL_bool won;
 	uint8_t state;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
