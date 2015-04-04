@@ -1,5 +1,5 @@
 /*
-g++ -g -std=c++11 main.cpp -o arthursgrove.exe -I./src -L./lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
+g++ -g -std=c++11 -static-libgcc -static-libstdc++ main.cpp -o arthursgrove.exe -I./src -L./lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
 - for polymorphism make sure to use "virtual"
 - whenever a new "overworld" is added the player.cpp needs updating
 	- so too does rock00entity.cpp
